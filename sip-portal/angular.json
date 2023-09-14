@@ -25,7 +25,10 @@
               "tsConfig": "tsconfig.app.json",
               "inlineStyleLanguage": "scss",
               "assets": ["src/favicon.ico", "src/assets"],
-              "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss"],
+              "styles": [
+                "@angular/material/prebuilt-themes/indigo-pink.css",
+                "src/styles.scss"
+              ],
               "scripts": [],
               "budgets": [
                 {
@@ -48,14 +51,17 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "outputPath": "dist/sip-portal-dev", 
+              "outputPath": "dist/sip-portal-dev",
               "index": "src/index.html",
               "main": "src/main.ts",
               "polyfills": ["zone.js"],
               "tsConfig": "tsconfig.app.json",
               "inlineStyleLanguage": "scss",
               "assets": ["src/favicon.ico", "src/assets"],
-              "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss"],
+              "styles": [
+                "@angular/material/prebuilt-themes/indigo-pink.css",
+                "src/styles.scss"
+              ],
               "scripts": []
             },
             "i4t": {
@@ -66,7 +72,10 @@
               "tsConfig": "tsconfig.app.json",
               "inlineStyleLanguage": "scss",
               "assets": ["src/favicon.ico", "src/assets"],
-              "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss"],
+              "styles": [
+                "@angular/material/prebuilt-themes/indigo-pink.css",
+                "src/styles.scss"
+              ],
               "scripts": []
             }
           },
@@ -100,7 +109,10 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["@angular/material/prebuilt-themes/indigo-pink.css", "src/styles.scss"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         }
