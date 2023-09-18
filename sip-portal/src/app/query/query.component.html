@@ -1,0 +1,62 @@
+<div class="text-center">
+  <h1 class="display-4">Auditoria</h1>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <form
+    [formGroup]="filtroForm"
+    (ngSubmit)="buscar()"
+    class="d-flex align-items-center w-100 justify-content-between"
+  >
+    <div class="form-group">
+      <label for="fechaInicio" class="mr-2">Fecha de Inicio:</label>
+      <input
+        type="date"
+        id="fechaInicio"
+        formControlName="fechaInicio"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fechaFin" class="ml-4 mr-2">Fecha Fin:</label>
+      <input
+        type="date"
+        id="fechaFin"
+        formControlName="fechaFin"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="operacion" class="ml-4 mr-2">Operación:</label>
+      <input
+        type="text"
+        id="operacion"
+        formControlName="operacion"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="entidad" class="ml-4 mr-2">Entidad:</label>
+      <input
+        type="text"
+        id="entidad"
+        formControlName="entidad"
+        class="form-control"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="usuario" class="ml-4 mr-2">Usuario:</label>
+      <input
+        type="text"
+        id="usuario"
+        formControlName="usuario"
+        class="form-control"
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary ml-4">Buscar</button>
+  </form>
+</nav>
