@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { queryService } from './query.service';
 
 @Component({
   selector: 'app-query',
@@ -9,8 +10,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class QueryComponent implements OnInit {
   filtroForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.filtroForm = this.formBuilder.group({
+  constructor(private fb: FormBuilder, private queryService: queryService) {
+    this.filtroForm = this.fb.group({
       fechaInicio: [''],
       fechaFin: [''],
       operacion: [''],
@@ -21,8 +22,13 @@ export class QueryComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  buscar(): void {
-    const filtro = this.filtroForm.value;
-    console.log('Filtro:', filtro);
+  buscar() {
+    const parametrosBusqueda = this.filtroForm.value;
+    this.queryService.buscarAuditorias(parametrosBusqueda).subscribe(
+      (resultados: any) => {},
+      (error: any) => {
+        console.error('Error al buscar auditorías', error);
+      }
+    );
   }
 }
