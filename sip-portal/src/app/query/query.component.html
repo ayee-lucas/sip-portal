@@ -57,7 +57,31 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-primary ml-4">Buscar</button>
+      <div class="mb-3 d-flex">
+        <button
+          type="submit"
+          class="btn btn-outline-primary ml-4 rounded-circle btn-shadow btn-sm mr-auto"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          class="btn btn-outline-secondary ml-4 rounded-circle btn-shadow btn-sm ml-auto"
+          (click)="limpiarFiltros()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
     </form>
   </nav>
 </div>
+<app-tabla
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+></app-tabla>
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  class="fixed-bottom"
+></mat-paginator>
+
