@@ -1,1 +1,24 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "src/theme/theme";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf") format('ttf');
+}
+
+body {
+  min-height: 100svh;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.mdc-notched-outline__notch {
+  border-right: none;
+}
+
+
+
+

@@ -1,5 +1,5 @@
 {
-  "name": "sip-portal",
+  "name": "inv-portal",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
     "autoprefixer": "^10.4.15",
-    "eslint": "^8.33.0",
+    "eslint": "8.33.0",
     "husky": "8.0.0",
     "jasmine-core": "4.5.0",
     "karma": "6.4.0",
@@ -63,7 +63,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "ng test"
     }
   }
 }

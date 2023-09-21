@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sip-portal": {
+    "inv-portal": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -16,25 +16,26 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/inv-portal",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
           "configurations": {
             "production": {
-              "outputPath": "dist/sip-portal",
-              "index": "src/index.html",
-              "main": "src/main.ts",
-              "polyfills": [
-                "zone.js"
-              ],
-              "tsConfig": "tsconfig.app.json",
-              "inlineStyleLanguage": "scss",
-              "assets": [
-                "src/favicon.ico",
-                "src/assets"
-              ],
-              "styles": [
-                "@angular/material/prebuilt-themes/indigo-pink.css",
-                "src/styles.scss"
-              ],
-              "scripts": [],
               "budgets": [
                 {
                   "type": "initial",
@@ -56,42 +57,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "outputPath": "dist/sip-portal-dev",
-              "index": "src/index.html",
-              "main": "src/main.ts",
-              "polyfills": [
-                "zone.js"
-              ],
-              "tsConfig": "tsconfig.app.json",
-              "inlineStyleLanguage": "scss",
-              "assets": [
-                "src/favicon.ico",
-                "src/assets"
-              ],
-              "styles": [
-                "@angular/material/prebuilt-themes/indigo-pink.css",
-                "src/styles.scss"
-              ],
-              "scripts": []
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             },
             "i4t": {
-              "outputPath": "dist/sip-portal-i4t",
-              "index": "src/index.html",
-              "main": "src/main.ts",
-              "polyfills": [
-                "zone.js"
-              ],
-              "tsConfig": "tsconfig.app.json",
-              "inlineStyleLanguage": "scss",
-              "assets": [
-                "src/favicon.ico",
-                "src/assets"
-              ],
-              "styles": [
-                "@angular/material/prebuilt-themes/indigo-pink.css",
-                "src/styles.scss"
-              ],
-              "scripts": []
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.i4t.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -100,13 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "sip-portal:build:production"
+              "browserTarget": "inv-portal:build:production"
             },
             "development": {
-              "browserTarget": "sip-portal:build:development"
-            },
-            "i4t": {
-              "browserTarget": "sip-portal:build:i4t"
+              "browserTarget": "inv-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -114,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sip-portal:build"
+            "browserTarget": "inv-portal:build"
           }
         },
         "test": {
@@ -131,7 +107,6 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -150,9 +125,9 @@
     }
   },
   "cli": {
-    "analytics": "b2b72a6d-729a-40a8-8300-afdd666607c7",
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   }
 }
