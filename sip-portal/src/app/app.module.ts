@@ -10,10 +10,14 @@ import { MatTableModule } from '@angular/material/table';
 import { TablaComponent } from "./tabla/tabla.component";
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
+import { AuditCardComponent } from './shared/audit-card/audit-card.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+
 
 
 @NgModule({
-  declarations: [AppComponent, QueryComponent, TablaComponent],
+  declarations: [AppComponent, QueryComponent, TablaComponent, AuditCardComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

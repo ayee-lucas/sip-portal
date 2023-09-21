@@ -11,14 +11,14 @@ import {} from 'module';
   styleUrls: ['./query.component.scss'],
 })
 export class QueryComponent implements OnInit {
-  filtroForm: FormGroup;
+  filterForm: FormGroup;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   displayedColumns: string[] = [
-    'fechaInicio',
-    'fechaFin',
-    'operacion',
-    'entidad',
-    'usuario',
+    'startDate',
+    'endDate',
+    'operation',
+    'entity',
+    'user',
   ];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,100 +29,100 @@ export class QueryComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.filtroForm = this.fb.group({
-      fechaInicio: [''],
-      fechaFin: [''],
-      operacion: [''],
-      entidad: [''],
-      usuario: [''],
+    this.filterForm = this.fb.group({
+      startDate: [''],
+      endDate: [''],
+      operation: [''],
+      entity: [''],
+      user: [''],
     });
 
     this.originalData = [
       {
-        fechaInicio: '2023-09-01',
-        fechaFin: '2023-09-05',
-        operacion: 'Operación 1',
-        entidad: 'Entidad 1',
-        usuario: 'Usuario 1',
+        startDate: '2023-09-01',
+        endDate: '2023-09-05',
+        operation: 'Operation 1',
+        entity: 'Entity 1',
+        user: 'User 1',
       },
       {
-        fechaInicio: '2023-09-02',
-        fechaFin: '2023-09-06',
-        operacion: 'Operación 2',
-        entidad: 'Entidad 2',
-        usuario: 'Usuario 2',
+        startDate: '2023-09-02',
+        endDate: '2023-09-06',
+        operation: 'Operation 2',
+        entity: 'Entity 2',
+        user: 'User 2',
       },
       {
-        fechaInicio: '2023-09-03',
-        fechaFin: '2023-09-07',
-        operacion: 'Operación 3',
-        entidad: 'Entidad 3',
-        usuario: 'Usuario 3',
+        startDate: '2023-09-03',
+        endDate: '2023-09-07',
+        operation: 'Operation 3',
+        entity: 'Entity 3',
+        user: 'User 3',
       },
       {
-        fechaInicio: '2023-09-04',
-        fechaFin: '2023-09-08',
-        operacion: 'Operación 4',
-        entidad: 'Entidad 4',
-        usuario: 'Usuario 4',
+        startDate: '2023-09-04',
+        endDate: '2023-09-08',
+        operation: 'Operation 4',
+        entity: 'Entity 4',
+        user: 'User 4',
       },
       {
-        fechaInicio: '2023-09-05',
-        fechaFin: '2023-09-09',
-        operacion: 'Operación 5',
-        entidad: 'Entidad 5',
-        usuario: 'Usuario 5',
+        startDate: '2023-09-05',
+        endDate: '2023-09-09',
+        operation: 'Operation 5',
+        entity: 'Entity 5',
+        user: 'User 5',
       },
       {
-        fechaInicio: '2023-09-06',
-        fechaFin: '2023-09-10',
-        operacion: 'Operación 6',
-        entidad: 'Entidad 6',
-        usuario: 'Usuario 6',
+        startDate: '2023-09-06',
+        endDate: '2023-09-10',
+        operation: 'Operation 6',
+        entity: 'Entity 6',
+        user: 'User 6',
       },
       {
-        fechaInicio: '2023-09-07',
-        fechaFin: '2023-09-11',
-        operacion: 'Operación 7',
-        entidad: 'Entidad 7',
-        usuario: 'Usuario 7',
+        startDate: '2023-09-07',
+        endDate: '2023-09-11',
+        operation: 'Operation 7',
+        entity: 'Entity 7',
+        user: 'User 7',
       },
       {
-        fechaInicio: '2023-09-08',
-        fechaFin: '2023-09-12',
-        operacion: 'Operación 8',
-        entidad: 'Entidad 8',
-        usuario: 'Usuario 8',
+        startDate: '2023-09-08',
+        endDate: '2023-09-12',
+        operation: 'Operation 8',
+        entity: 'Entity 8',
+        user: 'User 8',
       },
       {
-        fechaInicio: '2023-09-09',
-        fechaFin: '2023-09-13',
-        operacion: 'Operación 9',
-        entidad: 'Entidad 9',
-        usuario: 'Usuario 9',
+        startDate: '2023-09-09',
+        endDate: '2023-09-13',
+        operation: 'Operation 9',
+        entity: 'Entity 9',
+        user: 'User 9',
       },
       {
-        fechaInicio: '2023-09-10',
-        fechaFin: '2023-09-14',
-        operacion: 'Operación 10',
-        entidad: 'Entidad 10',
-        usuario: 'Usuario 10',
+        startDate: '2023-09-10',
+        endDate: '2023-09-14',
+        operation: 'Operation 10',
+        entity: 'Entity 10',
+        user: 'User 10',
       },
     ];
 
     this.route.queryParams.subscribe((queryParams) => {
       if (Object.keys(queryParams).length > 0) {
-        this.aplicarFiltrosDesdeURL(queryParams);
+        this.applyFiltersFromURL(queryParams);
       }
     });
 
-    this.aplicarFiltros();
+    this.applyFilters();
   }
 
   ngOnInit(): void {}
 
-  limpiarFiltros() {
-    this.filtroForm.reset();
+  clearFilters() {
+    this.filterForm.reset();
 
     this.dataSource = new MatTableDataSource<any>(this.originalData);
 
@@ -131,55 +131,55 @@ export class QueryComponent implements OnInit {
     }
   }
 
-  buscar() {
-    const parametrosBusqueda = this.filtroForm.value;
+  search() {
+    const searchParams = this.filterForm.value;
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: parametrosBusqueda,
+      queryParams: searchParams,
       queryParamsHandling: 'merge',
     });
   }
 
-  aplicarFiltros() {
-    const parametrosBusqueda = this.filtroForm.value;
-    const resultadosFiltrados = this.originalData.filter((item: any) => {
-      const fechaInicio = new Date(item.fechaInicio);
-      const fechaFin = new Date(item.fechaFin);
+  applyFilters() {
+    const searchParams = this.filterForm.value;
+    const filteredResults = this.originalData.filter((item: any) => {
+      const startDate = new Date(item.startDate);
+      const endDate = new Date(item.endDate);
 
       return (
-        (parametrosBusqueda.fechaInicio === '' ||
-          isNaN(fechaInicio.getTime()) ||
-          fechaInicio >= new Date(parametrosBusqueda.fechaInicio)) &&
-        (parametrosBusqueda.fechaFin === '' ||
-          isNaN(fechaFin.getTime()) ||
-          fechaFin <= new Date(parametrosBusqueda.fechaFin)) &&
-        (parametrosBusqueda.operacion === '' ||
-          item.operacion.includes(parametrosBusqueda.operacion)) &&
-        (parametrosBusqueda.entidad === '' ||
-          item.entidad.includes(parametrosBusqueda.entidad)) &&
-        (parametrosBusqueda.usuario === '' ||
-          item.usuario.includes(parametrosBusqueda.usuario))
+        (searchParams.startDate === '' ||
+          isNaN(startDate.getTime()) ||
+          startDate >= new Date(searchParams.startDate)) &&
+        (searchParams.endDate === '' ||
+          isNaN(endDate.getTime()) ||
+          endDate <= new Date(searchParams.endDate)) &&
+        (searchParams.operation === '' ||
+          item.operation.includes(searchParams.operation)) &&
+        (searchParams.entity === '' ||
+          item.entity.includes(searchParams.entity)) &&
+        (searchParams.user === '' ||
+          item.user.includes(searchParams.user))
       );
     });
 
-    this.dataSource = new MatTableDataSource<any>(resultadosFiltrados);
+    this.dataSource = new MatTableDataSource<any>(filteredResults);
 
     if (this.paginator) {
       this.dataSource.paginator = this.paginator;
     }
   }
 
-  aplicarFiltrosDesdeURL(queryParams: { [key: string]: any }) {
-    const valoresPredeterminados = {
-      fechaInicio: '',
-      fechaFin: '',
-      operacion: '',
-      entidad: '',
-      usuario: '',
+  applyFiltersFromURL(queryParams: { [key: string]: any }) {
+    const defaultValues = {
+      startDate: '',
+      endDate: '',
+      operation: '',
+      entity: '',
+      user: '',
     };
 
-    const valoresFormulario = { ...valoresPredeterminados, ...queryParams };
-    this.filtroForm.setValue(valoresFormulario);
-    this.aplicarFiltros();
+    const formValues = { ...defaultValues, ...queryParams };
+    this.filterForm.setValue(formValues);
+    this.applyFilters();
   }
 }
