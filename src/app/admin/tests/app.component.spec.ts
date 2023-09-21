@@ -16,10 +16,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'inv-portal'`, () => {
+  it(`should have as title 'sip-portal'`, () => {
     const fixture = TestBed.createComponent(AdminComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('inv-portal');
+    expect(app.title).toEqual('sip-portal');
   });
 
   it('should render title', () => {
@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'inv-portal app is running!'
+      'sip-portal app is running!'
     );
   });
 });
