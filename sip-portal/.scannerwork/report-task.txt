@@ -1,6 +1,0 @@
-projectKey=sip-portal
-serverUrl=http://localhost:9000
-serverVersion=10.1.0.73491
-dashboardUrl=http://localhost:9000/dashboard?id=sip-portal
-ceTaskId=AYqJ7sxCA669mcw-7-v4
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYqJ7sxCA669mcw-7-v4
