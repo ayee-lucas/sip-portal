@@ -1,0 +1,87 @@
+<div class="container mt-4">
+  <h1 class="display-4 text-center">Audit</h1>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <form
+      [formGroup]="filterForm"
+      (ngSubmit)="search()"
+      class="w-100 d-flex justify-content-between"
+    >
+      <div class="form-group">
+        <label for="startDate" class="mr-2">Start Date:</label>
+        <input
+          type="date"
+          id="startDate"
+          formControlName="startDate"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="endDate" class="ml-4 mr-2">End Date:</label>
+        <input
+          type="date"
+          id="endDate"
+          formControlName="endDate"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="operation" class="ml-4 mr-2">Operation:</label>
+        <input
+          type="text"
+          id="operation"
+          formControlName="operation"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="entity" class="ml-4 mr-2">Entity:</label>
+        <input
+          type="text"
+          id="entity"
+          formControlName="entity"
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="user" class="ml-4 mr-2">User:</label>
+        <input
+          type="text"
+          id="user"
+          formControlName="user"
+          class="form-control"
+        />
+      </div>
+
+      <div class="mb-3 d-flex">
+        <button
+          type="submit"
+          class="btn btn-outline-primary ml-4 rounded-circle btn-shadow btn-sm mr-auto"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          class="btn btn-outline-secondary ml-4 rounded-circle btn-shadow btn-sm ml-auto"
+          (click)="clearFilters()"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </form>
+  </nav>
+</div>
+<app-tabla
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+></app-tabla>
+<mat-paginator
+  #paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  class="fixed-bottom"
+></mat-paginator>
+
