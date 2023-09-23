@@ -21,7 +21,10 @@ module.exports = {
       secondary: '#366371',
       secondaryDark: '#9ecddb',
       onSecondary: '#ffffff',
-      onSecondaryDark: '#003441'
+      onSecondaryDark: '#003441',
+      error: '#d20017',
+      errorDark: '#fed6d5',
+      onErrorDarK: '#420001'
     }
   },
   plugins: []
