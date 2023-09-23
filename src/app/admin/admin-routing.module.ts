@@ -8,6 +8,11 @@ const routes: Routes = [
   {
     path: environment.ROUTE.audit,
     loadChildren: () => import('../audit/audit.module').then(m => m.AuditModule)
+  },
+  {
+    path: environment.ROUTE.operation,
+    loadChildren: () =>
+      import('../operation/operation.module').then(m => m.OperationModule)
   }
 ];
 
