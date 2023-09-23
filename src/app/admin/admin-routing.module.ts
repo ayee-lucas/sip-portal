@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../../environments/environment.development';
-import { AdminComponent } from './components/admin.component';
+import { FirstGlanceComponent } from './components/first-glance/first-glance.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'audit', pathMatch: 'full' },
+  { path: '', component: FirstGlanceComponent },
   {
     path: environment.ROUTE.audit,
     loadChildren: () => import('../audit/audit.module').then(m => m.AuditModule)
@@ -12,9 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AdminComponent],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
-  bootstrap: [AdminComponent]
+  exports: [RouterModule]
 })
 export class AdminRoutingModule {}
