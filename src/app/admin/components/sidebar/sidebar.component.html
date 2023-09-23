@@ -17,4 +17,12 @@
   >
     <mat-icon>view_list</mat-icon>
   </a>
+  <a
+    (click)="changeIndex(2)"
+    [ngClass]="index === 2 ? '!bg-onPrimaryDark' : ' '"
+    mat-icon-button
+    routerLink="/operation"
+  >
+    <mat-icon>supervisor_account</mat-icon>
+  </a>
 </aside>
