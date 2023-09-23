@@ -1,12 +1,17 @@
 import {
   AfterViewInit,
   Component,
+  Input,
+  OnInit,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { muckUsers, Users } from '../../mucks/data';
+import { User } from '../../mocks/data';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { FilterUserService } from '../../services/filter-user.service';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-table-users',
@@ -14,17 +19,44 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./table-users.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TableUsersComponent implements AfterViewInit {
+export class TableUsersComponent implements AfterViewInit, OnInit {
+  // Data Source Mock From Parent
+  @Input() mockUsers: User[] = [];
+
+  // Params From Parent
+  @Input() defaultParams!: Params;
+
   columns = ['id', 'date', 'entity', 'user', 'operation', 'sub'];
-  dataSource: MatTableDataSource<Users>;
+  dataSource!: MatTableDataSource<User>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor() {
-    this.dataSource = new MatTableDataSource(muckUsers.content);
+  @ViewChild(MatSort) paginatorSort!: MatSort;
+
+  constructor(private filterService: FilterUserService) {}
+
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource(this.mockUsers);
   }
 
   ngAfterViewInit() {
+    // Data Source Paginator
     this.dataSource.paginator = this.paginator;
+
+    // Data Source Sort Declarative
+    this.dataSource.sort = this.paginatorSort;
+
+    // Filter Observable Subscribe
+    this.filterService.filterObservable.subscribe(filter => {
+      this.applyFilter(filter);
+    });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }
