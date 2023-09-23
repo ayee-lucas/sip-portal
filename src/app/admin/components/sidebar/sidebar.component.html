@@ -3,7 +3,11 @@
 >
   <a
     (click)="changeIndex(0)"
-    [ngClass]="index === 0 ? '!bg-onPrimaryDark' : ' '"
+    [ngClass]="
+      index === 0
+        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
+        : ' '
+    "
     mat-icon-button
     routerLink="/"
   >
@@ -11,7 +15,11 @@
   </a>
   <a
     (click)="changeIndex(1)"
-    [ngClass]="index === 1 ? '!bg-onPrimaryDark' : ' '"
+    [ngClass]="
+      index === 1
+        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
+        : ' '
+    "
     mat-icon-button
     routerLink="/audit"
   >
@@ -19,7 +27,11 @@
   </a>
   <a
     (click)="changeIndex(2)"
-    [ngClass]="index === 2 ? '!bg-onPrimaryDark' : ' '"
+    [ngClass]="
+      index === 2
+        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
+        : ' '
+    "
     mat-icon-button
     routerLink="/operation"
   >
