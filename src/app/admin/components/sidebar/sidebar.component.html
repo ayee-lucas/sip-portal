@@ -1,0 +1,20 @@
+<aside
+  class="min-w-[6rem] bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5"
+>
+  <a
+    (click)="changeIndex(0)"
+    [ngClass]="index === 0 ? '!bg-onPrimaryDark' : ' '"
+    mat-icon-button
+    routerLink="/"
+  >
+    <mat-icon>apps</mat-icon>
+  </a>
+  <a
+    (click)="changeIndex(1)"
+    [ngClass]="index === 1 ? '!bg-onPrimaryDark' : ' '"
+    mat-icon-button
+    routerLink="/audit"
+  >
+    <mat-icon>view_list</mat-icon>
+  </a>
+</aside>
