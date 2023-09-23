@@ -11,11 +11,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { UsersSearchComponent } from './components/users-search/users-search.component';
 
 const routes: Routes = [{ path: '', component: AuditComponent }];
 
 @NgModule({
-  declarations: [AuditComponent, TableUsersComponent],
+  declarations: [AuditComponent, TableUsersComponent, UsersSearchComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
