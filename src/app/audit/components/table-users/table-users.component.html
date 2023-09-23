@@ -109,9 +109,16 @@
   <tr *matRowDef="let row; columns: columns" mat-row></tr>
 </table>
 
+<div
+  *ngIf="dataSource.filteredData.length === 0"
+  class="w-full py-16 text-center dark:bg-surfaceCDark dark:text-primaryDark text-xl font-light font-sans"
+>
+  No records found
+</div>
+
 <mat-paginator
   [pageSizeOptions]="[5, 10, 25, 100]"
-  [pageSize]="10"
+  [pageSize]="this.defaultParams['params'].size || 10"
   aria-label="Select page of users"
   class="text-white bg-surfaceC dark:bg-onPrimaryDark"
 ></mat-paginator>
