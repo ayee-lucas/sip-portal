@@ -1,4 +1,4 @@
-export type Users = {
+export type User = {
   identifier: string;
   date: string;
   entity: string;
@@ -7,7 +7,7 @@ export type Users = {
   id: number;
 };
 
-export const muckUsers = {
+export const mockUsers = {
   content: [
     {
       identifier: '133',
