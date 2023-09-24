@@ -1,4 +1,6 @@
-export const operationUserMock = {
+import { ResponseOperation } from '../types/response-type-operation';
+
+export const operationUserMock: ResponseOperation = {
   content: [
     {
       id: 17,
