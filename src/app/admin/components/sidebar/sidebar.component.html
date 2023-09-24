@@ -1,40 +1,34 @@
 <aside
-  class="min-w-[6rem] bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5"
+  class="min-w-[6rem] shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5"
 >
-  <a
-    (click)="changeIndex(0)"
-    [ngClass]="
-      index === 0
-        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
-        : ' '
-    "
-    mat-icon-button
-    routerLink="/"
-  >
-    <mat-icon>apps</mat-icon>
-  </a>
-  <a
-    (click)="changeIndex(1)"
-    [ngClass]="
-      index === 1
-        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
-        : ' '
-    "
-    mat-icon-button
-    routerLink="/audit"
-  >
-    <mat-icon>view_list</mat-icon>
-  </a>
-  <a
-    (click)="changeIndex(2)"
-    [ngClass]="
-      index === 2
-        ? '!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark'
-        : ' '
-    "
-    mat-icon-button
-    routerLink="/operation"
-  >
-    <mat-icon>supervisor_account</mat-icon>
-  </a>
+  <ul class="flex flex-col items-center gap-5">
+    <li>
+      <a
+        mat-icon-button
+        routerLink="/"
+        routerLinkActive="!bg-onSecondary !text-secondary dark:!bg-surfaceDark dark:!text-secondaryDark"
+      >
+        <mat-icon>apps</mat-icon>
+      </a>
+    </li>
+
+    <li>
+      <a
+        mat-icon-button
+        routerLink="/audit"
+        routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
+      >
+        <mat-icon>view_list</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a
+        mat-icon-button
+        routerLink="/operation"
+        routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
+      >
+        <mat-icon>supervisor_account</mat-icon>
+      </a>
+    </li>
+  </ul>
 </aside>
