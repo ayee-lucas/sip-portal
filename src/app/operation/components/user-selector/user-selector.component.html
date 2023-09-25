@@ -10,12 +10,26 @@
       Users
     </h1>
   </header>
-  <ul class="flex flex-col w-full h-full gap-3 py-5 px-3">
+  <ul class="flex flex-col w-full h-full gap-3 py-5 px-3 overflow-y-auto">
     <li
       *ngFor="let response of response$ | async"
-      class="w-full h-6 dark:bg-onPrimaryDark dark:text-primaryDark rounded-2xl"
+      class="w-full flex items-center gap-3 py-5 px-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-2xl transition-all hover:bg-surfaceC dark:hover:bg-surfaceCDark"
+      role="button"
     >
-      {{ response.name }}
+      <mat-icon class="min-w-fit px-2">supervised_user_circle</mat-icon>
+
+      <div class="flex flex-col">
+        <span class="text-lg">ID: {{ response.id }}</span>
+        <span class="text-md text-primary/80 dark:text-primaryDark/80">{{
+          response.name
+        }}</span>
+        <span class="text-sm text-primary/70 dark:text-primaryDark/70">{{
+          response.email
+        }}</span>
+        <span class="text-sm text-primary/70 dark:text-primaryDark/70"
+          >Status: {{ response.status }}</span
+        >
+      </div>
     </li>
   </ul>
 </aside>
