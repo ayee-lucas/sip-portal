@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserSelectorComponent } from './user-selector.component';
+import { UserSelectorComponent } from '../../operation/components/user-selector/user-selector.component';
 
 describe('UserSelectorComponent', () => {
   let component: UserSelectorComponent;

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserOperationService } from './user-operation.service';
+import { UserOperationService } from '../../operation/services/user-operation.service';
 
 describe('UserOperationService', () => {
   let service: UserOperationService;
