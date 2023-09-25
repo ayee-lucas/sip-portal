@@ -1,13 +1,21 @@
 <aside
-  class="h-full w-80 bg-onSurfaceDark dark:bg-onSurface border-r border-outline/40 dark:border-outlineDark/40 animate__animated animate__fadeInLeft animate__faster"
+  class="h-full flex flex-col w-80 bg-onSurfaceDark dark:bg-onSurface border-r border-outline/40 dark:border-outlineDark/40 animate__animated animate__fadeInLeft animate__faster"
 >
   <header
     class="w-full grid place-content-center text-center py-5 bg-surfaceBright dark:bg-surfaceBrightDark border-b border-outline/40 dark:border-outlineDark/40"
   >
     <h1
-      class="py-2 px-4 w-fit rounded-xl bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+      class="py-2 px-5 w-fit rounded-xl bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
     >
       Users
     </h1>
   </header>
+  <ul class="flex flex-col w-full h-full gap-3 py-5 px-3">
+    <li
+      *ngFor="let response of response$ | async"
+      class="w-full h-6 dark:bg-onPrimaryDark dark:text-primaryDark rounded-2xl"
+    >
+      {{ response.name }}
+    </li>
+  </ul>
 </aside>
