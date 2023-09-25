@@ -4,6 +4,10 @@ export type ResponseOperation = {
   totalPages: number;
 };
 
+export type ResponseOperationError = {
+  error: string;
+};
+
 export type ResponseOperationUser = {
   id: number;
   email: string;
