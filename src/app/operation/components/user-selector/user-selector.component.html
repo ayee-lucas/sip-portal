@@ -11,7 +11,7 @@
     </h1>
   </header>
 
-  <form>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     <label
       class="text-sm mb-3 font-medium text-primary dark:text-primaryDark sr-only"
       for="default-search"
@@ -27,21 +27,13 @@
           fill="none"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-          />
-        </svg>
+        ></svg>
       </div>
       <input
         class="block transition-all w-full p-4 pl-10 text-sm text-primary dark:text-primaryDark bg-surface dark:bg-surfaceDark dark:border-outlineDark placeholder-primary dark:placeholder-primaryDark/80 dark:text-white focus:outline-none focus:outline focus:outline-offset-0 focus:outline-1 focus:outline-primary focus:dark:outline-primaryDark"
         id="default-search"
         placeholder="Search Users"
-        required
+        formControlName="search"
         type="search"
       />
       <button
@@ -50,6 +42,12 @@
       >
         Search
       </button>
+    </div>
+    <div
+      *ngIf="searchForm.get('search')?.hasError('required')"
+      class="text-red-500 py-2 px-5 font-light w-fit rounded-xl text-onSurface dark:text-onSurfaceDark"
+    >
+      Search is required.
     </div>
   </form>
 
