@@ -1,18 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
-
-type FormUser = {
-  id: FormControl<string | null>;
-  start: FormControl<Date | null>;
-  end: FormControl<Date | null>;
-  entity: FormControl<string | null>;
-  email: FormControl<string | null>;
-  operation: FormControl<string | null>;
-  sub: FormControl<string | null>;
-};
 
 @Component({
   selector: 'app-users-search',
@@ -23,13 +13,19 @@ export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
   searchForm = new FormGroup({
-    id: new FormControl<string | null>(null),
+    id: new FormControl<string | null>(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(50)
+    ]),
     start: new FormControl(),
     end: new FormControl(),
-    entity: new FormControl<string | null>(null),
-    email: new FormControl<string | null>(null),
+    entity: new FormControl<string | null>(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.email]),
     operation: new FormControl<string | null>(null),
-    sub: new FormControl<string | null>(null)
+    sub: new FormControl<string | null>(null, [
+      Validators.pattern(/^[A-Za-z0-9]*$/) // Must contain only letters and numbers
+    ])
   });
 
   constructor(
@@ -41,13 +37,15 @@ export class UsersSearchComponent implements OnInit {
     this.patchForm();
   }
 
-  changeFilter(form: FormGroup<FormUser>) {
-    const filterValue = form.value.id;
+  changeFilter(form: FormGroup) {
+    if (form.valid) {
+      const filterValue = form.value.id;
 
-    this.queryService.updateParams(form.value);
+      this.queryService.updateParams(form.value);
 
-    if (filterValue) {
-      this.filterService.applyFilter(filterValue);
+      if (filterValue) {
+        this.filterService.applyFilter(filterValue);
+      }
     }
   }
 

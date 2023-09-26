@@ -89,6 +89,7 @@
   <div class="flex items-center gap-3">
     <button
       (click)="changeFilter(searchForm)"
+      [disabled]="!searchForm.valid"
       class="flex h-max items-center justify-center p-3 transition-all gap-3 rounded-2xl bg-surfaceC text-primary dark:bg-onPrimaryDark dark:text-primaryDark text-sm hover:bg-onPrimary hover:text-primary dark:hover:bg-surfaceCDark dark:hover:text-primaryDark"
       type="submit"
     >
