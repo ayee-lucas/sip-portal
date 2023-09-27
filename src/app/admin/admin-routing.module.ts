@@ -13,6 +13,11 @@ const routes: Routes = [
     path: environment.ROUTE.operation,
     loadChildren: () =>
       import('../operation/operation.module').then(m => m.OperationModule)
+  },
+  {
+    path: environment.ROUTE.security,
+    loadChildren: () =>
+      import('../security/security.module').then(m => m.SecurityModule)
   }
 ];
 
