@@ -1,6 +1,8 @@
 export const environment = {
   ROUTE: {
     audit: 'audit',
-    operation: 'operation'
+    operation: 'operation',
+    security: 'auth',
+    login: 'login'
   }
 };
