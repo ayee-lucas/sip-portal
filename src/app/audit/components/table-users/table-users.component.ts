@@ -20,10 +20,8 @@ import { Params } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class TableUsersComponent implements AfterViewInit, OnInit {
-  // Data Source Mock From Parent
   @Input() mockUsers: User[] = [];
 
-  // Params From Parent
   @Input() defaultParams!: Params;
 
   columns = ['id', 'date', 'entity', 'user', 'operation', 'sub'];
@@ -40,13 +38,10 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    // Data Source Paginator
     this.dataSource.paginator = this.paginator;
 
-    // Data Source Sort Declarative
     this.dataSource.sort = this.paginatorSort;
 
-    // Filter Observable Subscribe
     this.filterService.filterObservable.subscribe(filter => {
       this.applyFilter(filter);
     });
