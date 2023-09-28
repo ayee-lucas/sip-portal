@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
   title = 'sip-portal';
-  loggedIn = false;
+  // Mocks logged  in state
+  loggedIn = true;
 }

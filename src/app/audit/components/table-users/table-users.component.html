@@ -3,6 +3,11 @@
   class="rounded-xl bg-primary dark:bg-onPrimaryDark"
   mat-table
 >
+  <caption
+    class="w-full px-3 py-4 text-start montserrat text-onPrimary bg-primary dark:text-primaryDark dark:bg-onPrimaryDark"
+  >
+    Users Audit
+  </caption>
   <ng-container matColumnDef="id">
     <th
       *matHeaderCellDef
@@ -111,7 +116,7 @@
 
 <div
   *ngIf="dataSource.filteredData.length === 0"
-  class="w-full py-16 text-center dark:bg-surfaceCDark dark:text-primaryDark text-xl font-light font-sans"
+  class="w-full py-16 text-center font-sans text-xl font-light dark:bg-surfaceCDark dark:text-primaryDark"
 >
   No records found
 </div>
