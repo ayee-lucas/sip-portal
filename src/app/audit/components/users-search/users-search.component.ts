@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
+import { AuditForm } from '../types/audit-form.types';
 
 @Component({
   selector: 'app-users-search',
@@ -12,14 +13,14 @@ import { Params } from '@angular/router';
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
-  searchForm = new FormGroup({
+  searchForm = new FormGroup<AuditForm>({
     id: new FormControl<string | null>(null, [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(50)
     ]),
-    start: new FormControl(),
-    end: new FormControl(),
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
     entity: new FormControl<string | null>(null, [Validators.required]),
     email: new FormControl<string | null>(null, [Validators.email]),
     operation: new FormControl<string | null>(null),
@@ -37,7 +38,7 @@ export class UsersSearchComponent implements OnInit {
     this.patchForm();
   }
 
-  changeFilter(form: FormGroup) {
+  changeFilter(form: FormGroup<AuditForm>) {
     if (form.valid) {
       const filterValue = form.value.id;
 
