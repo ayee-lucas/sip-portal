@@ -10,10 +10,15 @@
       <span class="text-primary dark:text-primaryDark/50">Portal</span>
     </h1>
   </section>
-  <section class="grid h-full w-full place-items-center">
+  <section class="grid h-full w-full place-items-center min-w-max">
     <div
-      class="flex h-2/3 w-2/3 min-w-fit flex-col justify-center rounded-2xl border p-5 border-outlineDark/40"
+      class="relative flex h-2/3 w-2/3 flex-col justify-center rounded-2xl border p-5 border-outlineDark/40"
     >
+      <span
+        *ngIf="error"
+        class="animate__animated animate__fadeInUp animate__faster absolute top-10 inset-x-0 mx-20 text-center rounded-2xl px-5 py-2 text-error bg-errorDark dark:bg-onErrorDarK dark:text-errorDark"
+        >Check your credentials and try again
+      </span>
       <h1 class="my-5 text-center text-5xl font-semibold montserrat">
         Parking <span class="text-primary dark:text-primaryDark">Portal</span>
       </h1>
@@ -22,10 +27,6 @@
         [formGroup]="authForm"
         class="mt-6 px-20 montserrat"
       >
-        <span
-          class="text-error my-20 py-2 px-5 rounded-2xl bg-errorDark dark:bg-onErrorDarK dark:text-errorDark"
-          >Check your credentials and try again
-        </span>
         <div>
           <label class="block text-sm text-onSurface dark:text-onSurfaceDark/90"
             >Email Address</label
