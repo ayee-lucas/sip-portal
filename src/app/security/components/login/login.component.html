@@ -12,10 +12,10 @@
   </section>
   <section class="grid h-full w-full place-items-center">
     <div
-      class="flex h-2/3 w-2/3 flex-col justify-center rounded-2xl border p-5 border-outlineDark/40 min-w-fit"
+      class="flex h-2/3 w-2/3 min-w-fit flex-col justify-center rounded-2xl border p-5 border-outlineDark/40"
     >
       <h1 class="my-5 text-center text-5xl font-semibold montserrat">
-        Parking <span class="text-primaryDark">Portal</span>
+        Parking <span class="text-primary dark:text-primaryDark">Portal</span>
       </h1>
       <form
         (ngSubmit)="OnSubmit()"
@@ -29,7 +29,7 @@
           <input
             autocomplete
             autofocus
-            class="mt-2 w-full rounded-lg px-4 py-3 outline-none transition-all focus:bg-onPrimaryDark focus:outline-outlineDark focus:outline focus:outline-offset-0 dark:bg-onSurface"
+            class="mt-2 w-full rounded-lg px-4 py-3 outline-none transition-all focus:bg-onPrimary focus:outline-outline/70 focus:outline focus:outline-offset-0 dark:bg-onSurface focus:dark:bg-onPrimaryDark focus:dark:outline-outlineDark"
             formControlName="email"
             id="Email"
             name="email"
@@ -44,7 +44,7 @@
             >Password</label
           >
           <input
-            class="mt-2 w-full rounded-lg px-4 py-3 outline-none transition-all focus:bg-onPrimaryDark focus:outline-outlineDark focus:outline focus:outline-offset-0 dark:bg-onSurface"
+            class="mt-2 w-full rounded-lg px-4 py-3 outline-none transition-all focus:bg-onPrimary focus:outline-outline/70 focus:outline focus:outline-offset-0 dark:bg-onSurface focus:dark:bg-onPrimaryDark focus:dark:outline-outlineDark"
             formControlName="password"
             id="Password"
             minlength="6"
@@ -65,7 +65,7 @@
 
         <button
           [disabled]="authForm.invalid"
-          class="mt-6 block w-full rounded-lg px-4 py-3 font-semibold text-white transition-all hover:bg-onSurface hover:text-primaryDark focus:bg-surfaceBrightDark disabled:bg-surfaceBrightDark dark:bg-onPrimaryDark disabled:hover:bg-onErrorDarK disabled:hover:text-errorDark"
+          class="mt-6 block w-full rounded-lg px-4 py-3 font-semibold text-white transition-all bg-secondary text-onSecondary hover:bg-onPrimary hover:text-primary focus:bg-surfaceBrightDark disabled:text-onSurface disabled:dark:text-onSurfaceDark disabled:bg-surfaceC dark:bg-onPrimaryDark disabled:hover:bg-errorDark disabled:hover:text-error hover:dark:bg-onSurface hover:dark:text-primaryDark disabled:dark:bg-surfaceBrightDark disabled:dark:hover:bg-onErrorDarK disabled:dark:hover:text-errorDark"
           type="submit"
         >
           Log In
