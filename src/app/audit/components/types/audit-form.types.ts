@@ -1,10 +1,11 @@
-//types group en audit
-export interface AuditForm {
-  id: string | null;
-  start: Date | null;
-  end: Date | null;
-  entity: string | null;
-  email: string | null;
-  operation: string | null;
-  sub: string | null;
-}
+import { FormControl } from '@angular/forms';
+
+export type AuditForm = {
+  id: FormControl<string | null>;
+  start: FormControl<Date | null>;
+  end: FormControl<Date | null>;
+  entity: FormControl<string | null>;
+  email: FormControl<string | null>;
+  operation: FormControl<string | null>;
+  sub: FormControl<string | null>;
+};

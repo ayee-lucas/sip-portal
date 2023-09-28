@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
-import { AuditForm } from '../types/audit-form.types'; // Asegúrate de que la ruta sea correcta
+import { AuditForm } from '../types/audit-form.types';
 
 @Component({
   selector: 'app-users-search',
@@ -13,18 +13,18 @@ import { AuditForm } from '../types/audit-form.types'; // Asegúrate de que la r
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
-  searchForm = new FormGroup({
-    id: new FormControl<AuditForm['id']>(null, [
+  searchForm = new FormGroup<AuditForm>({
+    id: new FormControl<string | null>(null, [
       Validators.required,
       Validators.minLength(3),
       Validators.maxLength(50)
     ]),
-    start: new FormControl<AuditForm['start']>(null),
-    end: new FormControl<AuditForm['end']>(null),
-    entity: new FormControl<AuditForm['entity']>(null, [Validators.required]),
-    email: new FormControl<AuditForm['email']>(null, [Validators.email]),
-    operation: new FormControl<AuditForm['operation']>(null),
-    sub: new FormControl<AuditForm['sub']>(null, [
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+    entity: new FormControl<string | null>(null, [Validators.required]),
+    email: new FormControl<string | null>(null, [Validators.email]),
+    operation: new FormControl<string | null>(null),
+    sub: new FormControl<string | null>(null, [
       Validators.pattern(/^[A-Za-z0-9]*$/) // Must contain only letters and numbers
     ])
   });
@@ -38,7 +38,7 @@ export class UsersSearchComponent implements OnInit {
     this.patchForm();
   }
 
-  changeFilter(form: FormGroup) {
+  changeFilter(form: FormGroup<AuditForm>) {
     if (form.valid) {
       const filterValue = form.value.id;
 
