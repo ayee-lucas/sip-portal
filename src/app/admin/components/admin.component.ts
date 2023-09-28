@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../security/services/auth.service';
 import { Observable } from 'rxjs';
+import { AuthStatusService } from '../../security/services/auth-status.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +11,9 @@ export class AdminComponent implements OnInit {
   title = 'sip-portal';
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authStatusService: AuthStatusService) {}
 
   ngOnInit() {
-    this.isLoggedIn$ = this.authService.authStatus();
+    this.isLoggedIn$ = this.authStatusService.authStatus();
   }
 }
