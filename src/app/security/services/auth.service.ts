@@ -6,6 +6,7 @@ import {
 } from '../types/AuthResponseType';
 import { ResponseAuthMock } from '../mocks/ResponseAuthMock';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthStatusService } from './auth-status.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,10 @@ export class AuthService {
     AuthResponseType | AuthResponseErrorType
   >({ error: 'Unauthenticated' });
 
-  private isLoggedIn$ = new BehaviorSubject<boolean>(false);
-
-  constructor(private cookieService: CookieService) {}
+  constructor(
+    private cookieService: CookieService,
+    private authStatusService: AuthStatusService
+  ) {}
 
   login(
     email: string,
@@ -34,7 +36,7 @@ export class AuthService {
       .pipe(
         tap(res => {
           this.cookieService.set('token', res.token);
-          this.isLoggedIn$.next(true);
+          this.authStatusService.setAuthStatus(true);
         })
       )
       .subscribe(res => {
@@ -42,9 +44,5 @@ export class AuthService {
       });
 
     return this.authResponse$;
-  }
-
-  authStatus(): Observable<boolean> {
-    return this.isLoggedIn$;
   }
 }
