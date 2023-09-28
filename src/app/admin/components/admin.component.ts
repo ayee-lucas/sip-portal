@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
   title = 'sip-portal';
-  loggedIn = false;
+  loggedIn = true;
 }
