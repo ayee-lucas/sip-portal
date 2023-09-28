@@ -1,5 +1,5 @@
-<router-outlet name="security"></router-outlet>
-<div class="flex w-full items-center">
+<router-outlet *ngIf="!loggedIn" name="security"></router-outlet>
+<div *ngIf="loggedIn" class="flex w-full items-center">
   <app-sidebar></app-sidebar>
   <div class="w-full h-screen overflow-x-hidden overflow-y-auto">
     <router-outlet></router-outlet>
