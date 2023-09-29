@@ -7,8 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { canActivateDashboard } from '../security/guards/auth-guard';
 
-const routes: Routes = [{ path: '', component: OperationComponent }];
+const routes: Routes = [
+  {
+    path: '',
+    component: OperationComponent,
+    canActivate: [canActivateDashboard]
+  }
+];
 
 @NgModule({
   declarations: [OperationComponent, UserSelectorComponent],
