@@ -41,6 +41,12 @@ export class AuthService {
 
           this.cookieService.set('expiration', res.expiration.toString(), date);
 
+          this.cookieService.set(
+            'authorities',
+            JSON.stringify(res.authorities),
+            date
+          );
+
           this.authStatusService.setAuthStatus(true);
         })
       )
