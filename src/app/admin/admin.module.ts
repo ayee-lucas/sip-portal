@@ -8,6 +8,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FirstGlanceComponent } from './components/first-glance/first-glance.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
@@ -17,7 +18,8 @@ import { FirstGlanceComponent } from './components/first-glance/first-glance.com
     BrowserAnimationsModule,
     CommonModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ],
   bootstrap: [AdminComponent]
 })
