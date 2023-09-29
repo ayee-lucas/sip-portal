@@ -24,7 +24,7 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
 
   @Input() defaultParams!: Params;
 
-  columns = ['id', 'date', 'entity', 'user', 'operation', 'sub'];
+  columns = ['identifier', 'date', 'entity', 'user', 'operation', 'id']; // Cambio de 'id' a 'identifier'
   dataSource!: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
