@@ -36,6 +36,7 @@ export class AuthService {
       .pipe(
         tap(res => {
           this.cookieService.set('token', res.token);
+          const date = new Date(res.expiration);
           this.authStatusService.setAuthStatus(true);
         })
       )
