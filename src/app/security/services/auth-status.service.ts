@@ -41,4 +41,12 @@ export class AuthStatusService {
     this.setAuthStatus(true);
     return this.isLoggedIn$;
   }
+
+  private resetStatus() {
+    this.cookieService.deleteAll();
+
+    this.router.navigate([environment.ROUTE.security]);
+
+    this.setAuthStatus(false);
+  }
 }
