@@ -8,4 +8,8 @@ import { AuthStatusService } from '../../../security/services/auth-status.servic
 })
 export class SidebarComponent {
   constructor(private authStatusService: AuthStatusService) {}
+
+  logout() {
+    this.authStatusService.logout();
+  }
 }
