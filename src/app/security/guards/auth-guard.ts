@@ -3,7 +3,19 @@ import { inject } from '@angular/core';
 import { AuthStatusService } from '../services/auth-status.service';
 
 export const canActivateDashboard: CanActivateFn = () => {
-  return inject(AuthStatusService).authStatus();
+  const router = inject(Router);
+
+  const isLoggedIn$ = inject(AuthStatusService).authStatus();
+
+  isLoggedIn$
+    .subscribe(res => {
+      if (!res) {
+        router.navigate(['/auth']);
+      }
+    })
+    .unsubscribe();
+
+  return true;
 };
 
 export const canActivateLogin: CanActivateFn = () => {
@@ -11,17 +23,13 @@ export const canActivateLogin: CanActivateFn = () => {
 
   const isLoggedIn$ = inject(AuthStatusService).authStatus();
 
-  let isLoggedIn = false;
-
   isLoggedIn$
     .subscribe(res => {
-      isLoggedIn = res;
+      if (res) {
+        router.navigate(['']);
+      }
     })
     .unsubscribe();
-
-  if (isLoggedIn) {
-    router.navigate(['']);
-  }
 
   return true;
 };
