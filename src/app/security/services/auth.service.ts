@@ -6,6 +6,7 @@ import {
 } from '../types/AuthResponseType';
 import { ResponseAuthMock } from '../mocks/ResponseAuthMock';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 import { AuthStatusService } from './auth-status.service';
 
 @Injectable({
@@ -18,7 +19,8 @@ export class AuthService {
 
   constructor(
     private cookieService: CookieService,
-    private authStatusService: AuthStatusService
+    private authStatus: AuthStatusService,
+    private router: Router
   ) {}
 
   login(
@@ -47,7 +49,8 @@ export class AuthService {
             date
           );
 
-          this.authStatusService.setAuthStatus(true);
+          this.authStatus.setAuthStatus(true);
+          this.router.navigate(['']);
         })
       )
       .subscribe(res => {
