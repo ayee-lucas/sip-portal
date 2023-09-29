@@ -38,6 +38,7 @@ export class AuthStatusService {
       return this.isLoggedIn$;
     }
 
+    this.setAuthStatus(true);
     return this.isLoggedIn$;
   }
 }
