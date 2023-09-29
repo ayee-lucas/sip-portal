@@ -23,8 +23,7 @@ export class AuthStatusService {
     const { expiration, token } = this.cookieService.getAll();
 
     if (!expiration || !token) {
-      this.resetStatus();
-
+      this.cookieService.deleteAll();
       return this.isLoggedIn$;
     }
 
