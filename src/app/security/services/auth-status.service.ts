@@ -20,10 +20,22 @@ export class AuthStatusService {
   }
 
   authStatus(): Observable<boolean> {
-    const expiration = this.cookieService.get('expiration');
+    const { expiration, token } = this.cookieService.getAll();
 
-    if (!expiration) {
-      this.cookieService.deleteAll();
+    if (!expiration || !token) {
+      this.resetStatus();
+
+      return this.isLoggedIn$;
+    }
+
+    const date = new Date(Number(expiration));
+
+    const dateNow = new Date();
+
+    if (dateNow > date) {
+      this.resetStatus();
+
+      return this.isLoggedIn$;
     }
 
     return this.isLoggedIn$;
