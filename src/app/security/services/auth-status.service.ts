@@ -42,6 +42,11 @@ export class AuthStatusService {
     return this.isLoggedIn$;
   }
 
+  logout() {
+    this.cookieService.deleteAll();
+    this.resetStatus();
+  }
+
   private resetStatus() {
     this.cookieService.deleteAll();
 
