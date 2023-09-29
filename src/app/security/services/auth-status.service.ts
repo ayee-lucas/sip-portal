@@ -10,7 +10,10 @@ import { environment } from '../../../environments/environment.development';
 export class AuthStatusService {
   private isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private cookieService: CookieService) {}
+  constructor(
+    private cookieService: CookieService,
+    private router: Router
+  ) {}
 
   setAuthStatus(status: boolean) {
     this.isLoggedIn$.next(status);
