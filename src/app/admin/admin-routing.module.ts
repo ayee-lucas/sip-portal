@@ -2,17 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from '../../environments/environment.development';
 import { FirstGlanceComponent } from './components/first-glance/first-glance.component';
+import { canActivateDashboard } from '../security/guards/auth-guard';
 
 const routes: Routes = [
-  { path: '', component: FirstGlanceComponent },
+  {
+    path: '',
+    component: FirstGlanceComponent,
+    canActivate: [canActivateDashboard]
+  },
   {
     path: environment.ROUTE.audit,
-    loadChildren: () => import('../audit/audit.module').then(m => m.AuditModule)
+    loadChildren: () =>
+      import('../audit/audit.module').then(m => m.AuditModule),
+    canActivate: [canActivateDashboard]
   },
   {
     path: environment.ROUTE.operation,
     loadChildren: () =>
-      import('../operation/operation.module').then(m => m.OperationModule)
+      import('../operation/operation.module').then(m => m.OperationModule),
+
+    canActivate: [canActivateDashboard]
   },
   {
     path: environment.ROUTE.security,
