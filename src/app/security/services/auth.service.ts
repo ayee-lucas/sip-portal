@@ -35,8 +35,12 @@ export class AuthService {
     mockResponse
       .pipe(
         tap(res => {
-          this.cookieService.set('token', res.token);
           const date = new Date(res.expiration);
+
+          this.cookieService.set('token', res.token, date);
+
+          this.cookieService.set('expiration', res.expiration.toString(), date);
+
           this.authStatusService.setAuthStatus(true);
         })
       )
