@@ -1,9 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
-import { AuditForm } from '../../types/audit-form.types';
+
+export type AuditForm = {
+  identifier: string | null;
+  start: Date | null;
+  end: Date | null;
+  entity: string | null;
+  email: string | null;
+  operation: string | null;
+  id: string | null;
+};
 
 @Component({
   selector: 'app-users-search',
@@ -13,32 +22,32 @@ import { AuditForm } from '../../types/audit-form.types';
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
-  searchForm = new FormGroup<AuditForm>({
-    identifier: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(50)
-    ]),
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-    entity: new FormControl<string | null>(null, [Validators.required]),
-    email: new FormControl<string | null>(null, [Validators.email]),
-    operation: new FormControl<string | null>(null),
-    id: new FormControl<string | null>(null, [
-      Validators.pattern(/^[A-Za-z0-9]*$/)
-    ])
-  });
+  searchForm: FormGroup;
 
   constructor(
     private filterService: FilterUserService,
-    private queryService: AuditQueryService
-  ) {}
+    private queryService: AuditQueryService,
+    private formBuilder: FormBuilder
+  ) {
+    this.searchForm = this.formBuilder.group({
+      identifier: [
+        null,
+        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
+      ],
+      start: [null],
+      end: [null],
+      entity: [null, Validators.required],
+      email: [null, Validators.email],
+      operation: [null],
+      id: [null, [Validators.pattern(/^[A-Za-z0-9]*$/)]]
+    });
+  }
 
   ngOnInit() {
     this.patchForm();
   }
 
-  changeFilter(form: FormGroup<AuditForm>) {
+  changeFilter(form: FormGroup) {
     if (form.valid) {
       const filterValue = form.value.identifier;
 

@@ -30,10 +30,11 @@
       <mat-date-range-picker #picker></mat-date-range-picker>
 
       <mat-error
-        *ngIf="searchForm.controls.start.hasError('matStartDateInvalid')"
+        *ngIf="searchForm.controls['start']?.hasError('matStartDateInvalid')"
         >Invalid start date
       </mat-error>
-      <mat-error *ngIf="searchForm.controls.end.hasError('matEndDateInvalid')"
+      <mat-error
+        *ngIf="searchForm.controls['end'].hasError('matEndDateInvalid')"
         >Invalid end date
       </mat-error>
     </mat-form-field>
