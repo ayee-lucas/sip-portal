@@ -1,18 +1,28 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors
+} from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
-export type AuditForm = {
-  identifier: string | null;
-  start: Date | null;
-  end: Date | null;
-  entity: string | null;
-  email: string | null;
-  operation: string | null;
-  id: string | null;
-};
+function dateNotInFutureValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const selectedDate = new Date(control.value);
+  const currentDate = new Date();
+
+  if (selectedDate > currentDate) {
+    return { futureDate: true }; // Add an error called 'futureDate' if the date is future
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-users-search',
@@ -30,16 +40,17 @@ export class UsersSearchComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.searchForm = this.formBuilder.group({
-      identifier: [
-        null,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(50)]
-      ],
-      start: [null],
-      end: [null],
-      entity: [null, Validators.required],
-      email: [null, Validators.email],
-      operation: [null],
-      id: [null, [Validators.pattern(/^[A-Za-z0-9]*$/)]]
+      identifier: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]),
+      start: new FormControl('', [dateNotInFutureValidator]),
+      end: new FormControl('', [dateNotInFutureValidator]),
+      entity: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      operation: new FormControl(''),
+      id: new FormControl('', [Validators.pattern(/^[A-Za-z0-9]*$/)])
     });
   }
 
