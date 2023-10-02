@@ -1,16 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-
-type LoginFormType = {
-  email: FormControl<string | null>;
-  password: FormControl<string | null>;
-};
+import { LoginFormType } from '../../types/AuthResponseType';
 
 @Component({
   selector: 'app-login',
