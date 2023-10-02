@@ -33,7 +33,7 @@ function dateNotInFutureValidator(
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
-  searchForm: FormGroup;
+  searchForm!: FormGroup<AuditForm>;
 
   constructor(
     private filterService: FilterUserService,
