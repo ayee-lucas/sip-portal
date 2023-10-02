@@ -42,6 +42,7 @@ export class UsersSearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.buildForm();
     this.patchForm();
   }
 
