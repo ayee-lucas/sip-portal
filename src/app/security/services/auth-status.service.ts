@@ -42,6 +42,10 @@ export class AuthStatusService {
     this.resetStatus();
   }
 
+  private setAuthStatus(status: boolean) {
+    this.isLoggedIn$.next(status);
+  }
+
   private resetStatus() {
     this.cookieService.deleteAll();
 
