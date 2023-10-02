@@ -15,10 +15,6 @@ export class AuthStatusService {
     private router: Router
   ) {}
 
-  setAuthStatus(status: boolean) {
-    this.isLoggedIn$.next(status);
-  }
-
   authStatus(): Observable<boolean> {
     const { expiration, token } = this.cookieService.getAll();
 
@@ -44,6 +40,10 @@ export class AuthStatusService {
   logout() {
     this.cookieService.deleteAll();
     this.resetStatus();
+  }
+
+  private setAuthStatus(status: boolean) {
+    this.isLoggedIn$.next(status);
   }
 
   private resetStatus() {
