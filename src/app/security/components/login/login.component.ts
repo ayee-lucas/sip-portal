@@ -34,8 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   OnSubmit(): void {
-    console.log(this.authForm.value);
-
     if (!this.authForm.value.email) {
       this.error = 'Invalid Email';
       return;
