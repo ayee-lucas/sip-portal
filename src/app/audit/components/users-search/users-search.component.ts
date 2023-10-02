@@ -63,7 +63,7 @@ export class UsersSearchComponent implements OnInit {
     this.queryService.clearParams();
   }
 
-  patchForm() {
+  private patchForm() {
     this.searchForm.patchValue({
       ...this.defaultParams['params'],
       start: new Date(this.defaultParams['params'].start),
