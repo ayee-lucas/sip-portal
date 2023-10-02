@@ -38,22 +38,8 @@ export class UsersSearchComponent implements OnInit {
   constructor(
     private filterService: FilterUserService,
     private queryService: AuditQueryService,
-    private formBuilder: FormBuilder
-  ) {
-    this.searchForm = this.formBuilder.group({
-      identifier: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(50)
-      ]),
-      start: new FormControl('', [dateNotInFutureValidator]),
-      end: new FormControl('', [dateNotInFutureValidator]),
-      entity: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.email),
-      operation: new FormControl(''),
-      id: new FormControl('', [Validators.pattern(/^[A-Za-z0-9]*$/)])
-    });
-  }
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.patchForm();
