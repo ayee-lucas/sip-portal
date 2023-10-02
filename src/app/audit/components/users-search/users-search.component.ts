@@ -1,9 +1,29 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators
+} from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
 import { AuditForm } from '../../types/audit-form.types';
+
+function dateNotInFutureValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const selectedDate = new Date(control.value);
+  const currentDate = new Date();
+
+  if (selectedDate > currentDate) {
+    return { futureDate: true }; // Add an error called 'futureDate' if the date is future
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-users-search',
@@ -13,32 +33,20 @@ import { AuditForm } from '../../types/audit-form.types';
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;
 
-  searchForm = new FormGroup<AuditForm>({
-    identifier: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(50)
-    ]),
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-    entity: new FormControl<string | null>(null, [Validators.required]),
-    email: new FormControl<string | null>(null, [Validators.email]),
-    operation: new FormControl<string | null>(null),
-    id: new FormControl<string | null>(null, [
-      Validators.pattern(/^[A-Za-z0-9]*$/)
-    ])
-  });
+  searchForm!: FormGroup<AuditForm>;
 
   constructor(
     private filterService: FilterUserService,
-    private queryService: AuditQueryService
+    private queryService: AuditQueryService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
+    this.buildForm();
     this.patchForm();
   }
 
-  changeFilter(form: FormGroup<AuditForm>) {
+  changeFilter(form: FormGroup) {
     if (form.valid) {
       const filterValue = form.value.identifier;
 
@@ -55,12 +63,28 @@ export class UsersSearchComponent implements OnInit {
     this.queryService.clearParams();
   }
 
-  patchForm() {
+  private patchForm() {
     this.searchForm.patchValue({
       ...this.defaultParams['params'],
       start: new Date(this.defaultParams['params'].start),
       end: new Date(this.defaultParams['params'].end),
       identifier: this.defaultParams['params'].id
+    });
+  }
+
+  private buildForm() {
+    this.searchForm = this.fb.group({
+      identifier: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]),
+      start: new FormControl(new Date(), [dateNotInFutureValidator]),
+      end: new FormControl(new Date(), [dateNotInFutureValidator]),
+      entity: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      operation: new FormControl(''),
+      id: new FormControl('', [Validators.pattern(/^[A-Za-z0-9]*$/)])
     });
   }
 }
