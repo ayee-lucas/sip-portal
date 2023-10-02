@@ -49,7 +49,7 @@ export class AuthService {
             date
           );
 
-          this.authStatus.setAuthStatus(true);
+          this.authStatus.authStatus();
           this.router.navigate(['']);
         })
       )
