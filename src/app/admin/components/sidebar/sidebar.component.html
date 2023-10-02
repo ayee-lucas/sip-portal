@@ -5,16 +5,26 @@
     <li>
       <a
         mat-icon-button
+        matTooltip="Home"
         routerLink="/"
         routerLinkActive="!bg-onSecondary !text-secondary dark:!bg-surfaceDark dark:!text-secondaryDark"
+        matTooltipTemplate="#tooltipTemplate"
       >
         <mat-icon>apps</mat-icon>
       </a>
+
+      <ng-template #tooltipTemplate>
+        <div class="tooltip">
+          <img src="/assets/images/home-icon.png" alt="Home icon" />
+          <p>This is the home page.</p>
+        </div>
+      </ng-template>
     </li>
 
     <li>
       <a
         mat-icon-button
+        matTooltip="Audit"
         routerLink="/audit"
         routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
       >
@@ -24,6 +34,7 @@
     <li>
       <a
         mat-icon-button
+        matTooltip="Operations"
         routerLink="/operation"
         routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
       >
@@ -33,8 +44,8 @@
     <li class="mt-auto">
       <button
         (click)="logout()"
-        class="transition-all p-3 rounded-full grid place-items-center bg-surface text-error hover:bg-errorDark dark:text-errorDark dark:bg-surfaceDark dark:hover:text-error dark:hover:bg-onErrorDarK"
         matTooltip="Logout"
+        class="transition-all p-3 rounded-full grid place-items-center bg-surface text-error hover:bg-errorDark dark:text-errorDark dark:bg-surfaceDark dark:hover:text-error dark:hover:bg-onErrorDarK"
       >
         <mat-icon>keyboard_return</mat-icon>
       </button>
