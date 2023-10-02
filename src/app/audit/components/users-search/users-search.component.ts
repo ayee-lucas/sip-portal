@@ -1,15 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
-  Validators,
   AbstractControl,
-  ValidationErrors
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  Validators
 } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { AuditForm } from '../../types/audit-form.types';
 
 function dateNotInFutureValidator(
   control: AbstractControl
