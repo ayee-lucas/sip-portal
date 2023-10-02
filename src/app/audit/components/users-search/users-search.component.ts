@@ -71,4 +71,20 @@ export class UsersSearchComponent implements OnInit {
       identifier: this.defaultParams['params'].id
     });
   }
+
+  private buildForm() {
+    this.searchForm = this.fb.group({
+      identifier: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50)
+      ]),
+      start: new FormControl(new Date(), [dateNotInFutureValidator]),
+      end: new FormControl(new Date(), [dateNotInFutureValidator]),
+      entity: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email),
+      operation: new FormControl(''),
+      id: new FormControl('', [Validators.pattern(/^[A-Za-z0-9]*$/)])
+    });
+  }
 }
