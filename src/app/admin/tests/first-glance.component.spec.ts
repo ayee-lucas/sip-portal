@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FirstGlanceComponent } from './first-glance.component';
+import { FirstGlanceComponent } from '../components/first-glance/first-glance.component';
 
 describe('FirstGlanceComponent', () => {
   let component: FirstGlanceComponent;

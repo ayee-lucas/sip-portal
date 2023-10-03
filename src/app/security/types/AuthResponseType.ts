@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 export type AuthResponseType = {
   token: string;
   expiration: number;
@@ -6,4 +7,9 @@ export type AuthResponseType = {
 
 export type AuthResponseErrorType = {
   error: string;
+};
+
+export type LoginFormType = {
+  email: FormControl<string | null>;
+  password: FormControl<string | null>;
 };
