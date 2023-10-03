@@ -17,9 +17,9 @@ const routes: Routes = [
     canActivate: [canActivateDashboard]
   },
   {
-    path: environment.ROUTE.operation,
+    path: environment.ROUTE.users,
     loadChildren: () =>
-      import('../operation/operation.module').then(m => m.OperationModule),
+      import('../users/users.module').then(m => m.UsersModule),
 
     canActivate: [canActivateDashboard]
   },
