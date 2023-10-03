@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OperationComponent } from './components/operation.component';
+import { UsersComponent } from './components/users.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserSelectorComponent } from './components/user-selector/user-selector.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,12 +11,12 @@ import { MatInputModule } from '@angular/material/input';
 const routes: Routes = [
   {
     path: '',
-    component: OperationComponent
+    component: UsersComponent
   }
 ];
 
 @NgModule({
-  declarations: [OperationComponent, UserSelectorComponent],
+  declarations: [UsersComponent, UserSelectorComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -26,6 +26,6 @@ const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule
   ],
-  bootstrap: [OperationComponent]
+  bootstrap: [UsersComponent]
 })
-export class OperationModule {}
+export class UsersModule {}

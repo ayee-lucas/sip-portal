@@ -3,9 +3,9 @@ import { ResponseOperationUser } from '../types/response-type-operation';
 
 @Component({
   selector: 'app-components',
-  templateUrl: './operation.component.html',
-  styleUrls: ['./operation.component.scss']
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class OperationComponent {
+export class UsersComponent {
   userSelected: ResponseOperationUser | undefined = undefined;
 }
