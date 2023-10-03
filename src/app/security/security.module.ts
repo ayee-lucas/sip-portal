@@ -10,13 +10,11 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    outlet: 'security',
     canActivate: [canActivateLogin]
   },
   {
     path: 'recover',
     component: PasswordRecoveryComponent,
-    outlet: 'security',
     canActivate: [canActivateLogin]
   }
 ];
