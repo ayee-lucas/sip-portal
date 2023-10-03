@@ -1,9 +1,5 @@
-<router-outlet
-  *ngIf="(isLoggedIn$ | async) === false"
-  name="security"
-></router-outlet>
-<div *ngIf="isLoggedIn$ | async" class="flex w-full items-center">
-  <app-sidebar></app-sidebar>
+<div class="flex w-full items-center">
+  <app-sidebar *ngIf="isLoggedIn$ | async"></app-sidebar>
   <div class="w-full h-screen overflow-x-hidden overflow-y-auto">
     <router-outlet></router-outlet>
   </div>
