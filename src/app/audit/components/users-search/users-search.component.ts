@@ -1,29 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
-  ValidationErrors,
   Validators
 } from '@angular/forms';
 import { FilterUserService } from '../../services/filter-user.service';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
 import { AuditForm } from '../../types/audit-form.types';
-
-function dateNotInFutureValidator(
-  control: AbstractControl
-): ValidationErrors | null {
-  const selectedDate = new Date(control.value);
-  const currentDate = new Date();
-
-  if (selectedDate > currentDate) {
-    return { futureDate: true }; // Add an error called 'futureDate' if the date is future
-  }
-
-  return null;
-}
+import { dateNotInFutureValidator } from '../../../validators/date-validators';
 
 @Component({
   selector: 'app-users-search',
