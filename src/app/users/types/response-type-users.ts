@@ -1,6 +1,9 @@
-export type ResponseUser = ResponseUserSuccess | ResponseUserError | [];
+export type ResponseUser =
+  | ResponseUserSuccess
+  | ResponseUserError
+  | ResponseLoading;
 
-type ResponseUserError = {
+export type ResponseUserError = {
   error: {
     errorCode: number;
     errorType: string;
@@ -9,7 +12,11 @@ type ResponseUserError = {
   };
 };
 
-type ResponseUserSuccess = {
+export type ResponseLoading = {
+  loading: boolean;
+};
+
+export type ResponseUserSuccess = {
   content: User[];
   pageable: Pageable;
   totalElements: number;
@@ -23,7 +30,7 @@ type ResponseUserSuccess = {
   empty: boolean;
 };
 
-type User = {
+export type User = {
   userId: number;
   names: string;
   lastNames: string;
