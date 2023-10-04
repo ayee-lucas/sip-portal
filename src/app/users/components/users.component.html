@@ -22,9 +22,19 @@
         </button>
       </header>
 
-      <app-user-selector
-        [responseUser]="data.users?.content"
-      ></app-user-selector>
+      <div class="w-full h-full overflow-y-auto mostly-customized-scrollbar">
+        <app-user-selector
+          [responseUser]="data.users?.content"
+        ></app-user-selector>
+      </div>
+      <div class="w-full flex items-center justify-between p-10">
+        <button (click)="previousPage()">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button (click)="nextPage()">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
     </aside>
 
     <div class="h-full w-full overflow-y-auto">

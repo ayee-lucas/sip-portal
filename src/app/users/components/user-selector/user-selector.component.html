@@ -32,7 +32,7 @@
   </div>
 </form>
 
-<ul class="flex h-full w-full flex-col gap-3 overflow-y-auto px-3 py-5">
+<ul class="flex h-full w-full flex-col gap-3 px-3 py-5">
   <ng-container *ngIf="responseUser; else loading">
     <li
       *ngFor="let user of responseUser; trackBy: tracking"
