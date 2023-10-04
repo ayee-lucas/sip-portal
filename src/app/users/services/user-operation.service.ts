@@ -4,6 +4,7 @@ import { ResponseUser, ResponseUserError } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { LoadingSpinnerService } from '../../admin/services/loading-spinner.service';
+import { AuditQueryService } from '../../query/services/audit-query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,33 @@ export class UserOperationService {
 
   constructor(
     private http: HttpClient,
-    private loadingSpinnerService: LoadingSpinnerService
+    private loadingSpinnerService: LoadingSpinnerService,
+    private queryService: AuditQueryService
   ) {
     this.loadingSpinnerService.setLoading(true);
   }
 
   init() {
+    const url = new URL(environment.SERVER_PATH.GET_USERS);
+
+    const params = this.queryService.getParams();
+
+    if (!params['params'].page || !params['params'].size) {
+      this.queryService.updateParams({ page: 1, size: 10 });
+    }
+
+    Object.keys(params['params']).forEach(key => {
+      url.searchParams.append(key, params['params'][key]);
+    });
+
+    const page = url.searchParams.get('page');
+
+    if (page) {
+      url.searchParams.set('page', (+page - 1).toString());
+    }
+
     this.http
-      .get<ResponseUser>(environment.SERVER_PATH.GET_USERS)
+      .get<ResponseUser>(url.toString())
       .pipe(
         catchError(err => {
           console.log('Error: ', err);
