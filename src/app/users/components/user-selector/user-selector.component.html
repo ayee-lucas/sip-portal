@@ -1,78 +1,65 @@
-<aside
-  class="h-full flex flex-col w-80 bg-onSurfaceDark dark:bg-onSurface border-r border-outline/40 dark:border-outlineDark/40 animate__animated animate__fadeInLeft animate__faster"
->
-  <header
-    class="w-full grid place-content-center text-center py-5 bg-surfaceBright dark:bg-surfaceBrightDark border-b border-outline/40 dark:border-outlineDark/40"
+<form (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+  <label
+    class="sr-only mb-3 text-sm font-medium text-primary dark:text-primaryDark"
+    for="default-search"
+    >Search</label
   >
-    <h1
-      class="py-2 px-5 font-light w-fit rounded-xl text-onSurface dark:text-onSurfaceDark"
-    >
-      USERS
-    </h1>
-  </header>
-
-  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <label
-      class="text-sm mb-3 font-medium text-primary dark:text-primaryDark sr-only"
-      for="default-search"
-      >Search</label
-    >
-    <div class="relative">
-      <div
-        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
-      >
-        <svg
-          aria-hidden="true"
-          class="w-4 h-4 text-gray-500 dark:text-gray-400"
-          fill="none"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        ></svg>
-      </div>
-      <input
-        class="block transition-all w-full p-4 pl-10 text-sm text-primary dark:text-primaryDark bg-surface dark:bg-surfaceDark dark:border-outlineDark placeholder-primary dark:placeholder-primaryDark/80 dark:text-white focus:outline-none focus:outline focus:outline-offset-0 focus:outline-1 focus:outline-primary focus:dark:outline-primaryDark"
-        id="default-search"
-        placeholder="Search Users"
-        formControlName="search"
-        type="search"
-      />
-      <button
-        class="text-primary transition-all absolute right-2.5 bottom-2.5 bg-onPrimary dark:text-primaryDark hover:bg-surfaceC focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-onPrimaryDark dark:hover:bg-onSurface dark:focus:ring-blue-800"
-        type="submit"
-      >
-        Search
-      </button>
-    </div>
+  <div class="relative">
     <div
-      *ngIf="searchForm.get('search')?.hasError('required')"
-      class="text-red-500 py-2 px-5 font-light w-fit rounded-xl text-onSurface dark:text-onSurfaceDark"
+      class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
     >
-      Search is required.
+      <svg
+        aria-hidden="true"
+        class="h-4 w-4 text-gray-500 dark:text-gray-400"
+        fill="none"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      ></svg>
     </div>
-  </form>
+    <input
+      class="block w-full p-4 pl-10 text-sm transition-all text-primary bg-surface placeholder-primary focus:outline-primary focus:outline-none focus:outline focus:outline-1 focus:outline-offset-0 dark:text-primaryDark dark:bg-surfaceDark dark:border-outlineDark dark:placeholder-primaryDark/80 dark:text-white focus:dark:outline-primaryDark"
+      formControlName="search"
+      id="default-search"
+      placeholder="Search Users By Id"
+      type="search"
+    />
+    <button
+      class="absolute rounded-lg px-4 py-2 text-sm font-medium transition-all text-primary right-2.5 bottom-2.5 bg-onPrimary hover:bg-surfaceC focus:outline-none focus:ring-4 focus:ring-blue-300 dark:text-primaryDark dark:bg-onPrimaryDark dark:hover:bg-onSurface dark:focus:ring-blue-800"
+      type="submit"
+    >
+      Search
+    </button>
+  </div>
+</form>
 
-  <ul class="flex flex-col w-full h-full gap-3 py-5 px-3 overflow-y-auto">
+<ul class="flex h-full w-full flex-col gap-3 overflow-y-auto px-3 py-5">
+  <ng-container *ngIf="responseUser; else loading">
     <li
-      *ngFor="let response of response$ | async"
-      class="w-full flex items-center gap-3 py-3 px-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-2xl transition-all hover:bg-surfaceC dark:hover:bg-surfaceCDark"
+      *ngFor="let user of responseUser; trackBy: tracking"
+      class="flex w-full items-center gap-3 rounded-2xl px-3 py-3 transition-all bg-onPrimary text-primary hover:bg-surfaceC dark:bg-onPrimaryDark dark:text-primaryDark dark:hover:bg-surfaceCDark"
       role="button"
     >
       <mat-icon class="min-w-fit px-2">supervised_user_circle</mat-icon>
 
       <div class="flex flex-col overflow-hidden">
-        <span class="text-lg">ID: {{ response.id }}</span>
+        <span class="text-lg">ID: {{ user.userId }}</span>
         <span
-          class="text-md transition-all text-primary/80 dark:text-primaryDark/80 truncate hover:whitespace-normal"
-          >Name: {{ response.name }}</span
+          class="truncate transition-all text-md text-primary/80 hover:whitespace-normal dark:text-primaryDark/80"
+          >Name: {{ user.names }}</span
         >
         <span
-          class="text-sm transition-all text-primary/70 dark:text-primaryDark/70 truncate hover:whitespace-normal"
-          >Email: {{ response.email }}</span
+          class="truncate text-sm transition-all text-primary/70 hover:whitespace-normal dark:text-primaryDark/70"
+          >Email: {{ user.email }}</span
         >
         <span class="text-sm text-primary/70 dark:text-primaryDark/70"
-          >Status: {{ response.status }}</span
+          >Status: {{ user.status }}</span
         >
       </div>
     </li>
-  </ul>
-</aside>
+  </ng-container>
+  <ng-template #loading>
+    <div class="w-full h-full grid place-items-center">
+      <span class="animate-bounce text-3xl">.</span>
+    </div>
+  </ng-template>
+</ul>
