@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder and Validators
-import { UserOperationService } from '../../services/user-operation.service';
-import { Observable } from 'rxjs';
-import { ResponseOperationUser } from '../../types/response-type-operation';
+import { User } from '../../types/response-type-users';
 
 @Component({
   selector: 'app-user-selector',
@@ -10,21 +8,15 @@ import { ResponseOperationUser } from '../../types/response-type-operation';
   styleUrls: ['./user-selector.component.scss']
 })
 export class UserSelectorComponent implements OnInit {
-  response$!: Observable<ResponseOperationUser[]>;
-  searchForm: FormGroup;
+  @Input() responseUser!: User[] | undefined;
+  searchForm!: FormGroup;
 
-  constructor(
-    private operationService: UserOperationService,
-    private formBuilder: FormBuilder
-  ) {
-    this.searchForm = this.formBuilder.group({
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    this.searchForm = this.fb.group({
       search: ['', [Validators.required]] // Add a required validator
     });
-  }
-
-  ngOnInit(): void {
-    this.response$ = this.operationService.getUsers();
-    this.operationService.init();
   }
 
   onSubmit() {
@@ -32,5 +24,9 @@ export class UserSelectorComponent implements OnInit {
       const searchValue = this.searchForm.value.search;
       console.log('Searching for:', searchValue);
     }
+  }
+
+  tracking(index: number, item: User) {
+    return item.userId;
   }
 }

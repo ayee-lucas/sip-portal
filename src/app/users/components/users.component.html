@@ -1,22 +1,49 @@
-<main class="h-full w-full flex">
-  <app-user-selector></app-user-selector>
-  <div class="w-full h-full overflow-y-auto">
-    <header
-      class="p-4 w-full h-fit animate__animated animate__fadeIn overflow-y-auto"
+<main class="flex h-full w-full">
+  <ng-container *ngIf="{ users: responseUser$ | async } as data">
+    <aside
+      class="flex h-full w-96 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40"
     >
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-32 pb-3 px-4"
+      <header
+        class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-surfaceBrightDark dark:border-outlineDark/40"
       >
-        <h1 class="text-6xl font-semibold w-fit rounded-2xl">Operation</h1>
-      </div>
-    </header>
-    <section class="w-full py-16 flex flex-col items-center justify-center">
-      <h1
-        *ngIf="!userSelected"
-        class="absolute bottom-8 text-sm font-light text-onSurface dark:text-onSurfaceDark"
+        <h1
+          class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
+        >
+          List
+        </h1>
+
+        <button
+          (click)="refresh()"
+          [disabled]="!data.users?.content"
+          class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
+          matTooltip="Refresh"
+        >
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </header>
+
+      <app-user-selector
+        [responseUser]="data.users?.content"
+      ></app-user-selector>
+    </aside>
+
+    <div class="h-full w-full overflow-y-auto">
+      <header
+        class="h-fit w-full overflow-y-auto p-4 animate__animated animate__fadeIn"
       >
-        Select an user to show details
-      </h1>
-    </section>
-  </div>
+        <div
+          class="rounded-2xl px-4 pt-32 pb-3 bg-surfaceC text-onSurface dark:bg-surfaceCDark dark:text-onSurfaceDark"
+        >
+          <h1 class="w-fit rounded-2xl text-6xl font-semibold">Operation</h1>
+        </div>
+      </header>
+      <section class="flex w-full flex-col items-center justify-center py-16">
+        <h1
+          class="absolute bottom-8 text-sm font-light text-onSurface dark:text-onSurfaceDark"
+        >
+          Select an user to show details
+        </h1>
+      </section>
+    </div>
+  </ng-container>
 </main>

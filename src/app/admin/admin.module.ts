@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FirstGlanceComponent } from './components/first-glance/first-glance.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
@@ -17,9 +19,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AdminRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   bootstrap: [AdminComponent]
 })
