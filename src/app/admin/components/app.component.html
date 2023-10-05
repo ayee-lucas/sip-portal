@@ -1,8 +1,20 @@
 <div class="flex w-full items-center">
   <app-sidebar *ngIf="isLoggedIn$ | async"></app-sidebar>
-  <div class="w-full h-screen overflow-x-hidden overflow-y-auto">
+  <div class="h-screen w-full overflow-y-auto overflow-x-hidden">
     <router-outlet></router-outlet>
   </div>
 
-  <block-ui message="Hold on"> </block-ui>
+  <block-ui [template]="blockTemplate"></block-ui>
+
+  <ng-template
+    #blockTemplate
+    class="fixed inset-0 grid place-items-center transition-all z-[998] bg-surfaceCDark/30 animate__animated animate__fadeIn"
+  >
+    <div class="absolute inset-0 z-50 grid place-items-center backdrop-blur">
+      <div class="flex flex-col items-center justify-center gap-3 text-white">
+        <mat-spinner color="accent" diameter="50"></mat-spinner>
+        <h1 class="font-light tracking-wider montserrat">Hold tight!</h1>
+      </div>
+    </div>
+  </ng-template>
 </div>
