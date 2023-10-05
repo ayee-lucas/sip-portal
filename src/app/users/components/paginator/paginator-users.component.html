@@ -1,0 +1,18 @@
+<ng-container *ngIf="responsePage; else loading">
+  <mat-paginator
+    (page)="pageHandler($event)"
+    [length]="responsePage.totalElements"
+    [pageIndex]="responsePage.number"
+    [pageSizeOptions]="options"
+    [pageSize]="responsePage.size"
+    class="pb-2.5 !bg-surfaceBright dark:!bg-surfaceBrightDark"
+  ></mat-paginator>
+</ng-container>
+
+<ng-template #loading>
+  <div class="animate-pulse">
+    <div
+      class="h-4 w-10 rounded bg-surfaceBright dark:bg-surfaceBrightDark/50"
+    ></div>
+  </div>
+</ng-template>
