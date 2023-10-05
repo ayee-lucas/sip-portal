@@ -33,10 +33,6 @@ export class UsersComponent implements OnInit {
     this.requestUsers(this.params);
   }
 
-  refresh() {
-    this.userOperationService.refresh();
-  }
-
   requestUsers(params: Params) {
     this.responseUser$ = this.userOperationService.getUsers().pipe(
       map(data => {
@@ -55,27 +51,8 @@ export class UsersComponent implements OnInit {
     this.userOperationService.init(params['params']);
   }
 
-  nextPage() {
-    let page = this.queryService.getParams()['params'].page;
-
-    page++;
-
-    this.queryService.updateParams({ page: page });
-
-    this.userOperationService.init({ ...this.params['params'], page: page });
-  }
-
-  previousPage() {
-    let page = this.queryService.getParams()['params'].page;
-
-    if (page <= 0) {
-      return;
-    }
-
-    page--;
-
-    this.queryService.updateParams({ page: page });
-
-    this.userOperationService.init({ ...this.params['params'], page: page });
+  refresh() {
+    this.userOperationService.refresh();
+    this.requestUsers(this.params);
   }
 }
