@@ -11,6 +11,8 @@ import { FirstGlanceComponent } from './components/first-glance/first-glance.com
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BlockUIModule } from 'ng-block-ui';
+import { BlockUIHttpModule } from 'ng-block-ui/http';
 
 @NgModule({
   declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
@@ -23,7 +25,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    BlockUIModule.forRoot(),
+    BlockUIHttpModule.forRoot()
   ],
   bootstrap: [AdminComponent]
 })
