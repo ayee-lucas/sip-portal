@@ -19,9 +19,13 @@ export class AuditQueryService {
   }
 
   updateParams(params: Params) {
+    const currentParams = this.getParams();
+
+    const mergedParams = { ...currentParams['params'], ...params };
+
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: params,
+      queryParams: mergedParams,
       queryParamsHandling: 'merge'
     });
   }
