@@ -46,7 +46,7 @@ type Sort = {
   unsorted: boolean;
 };
 
-type Pageable = {
+export type Pageable = {
   sort: Sort;
   offset: number;
   pageNumber: number;
