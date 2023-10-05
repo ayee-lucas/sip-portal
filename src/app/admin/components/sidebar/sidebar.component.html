@@ -33,9 +33,10 @@
     </li>
     <li>
       <a
+        [queryParams]="{ page: 1, size: 10 }"
+        [routerLink]="['/users']"
         mat-icon-button
         matTooltip="Operations"
-        routerLink="/users"
         routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
       >
         <mat-icon>supervisor_account</mat-icon>
