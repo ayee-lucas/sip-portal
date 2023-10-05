@@ -3,6 +3,7 @@ import { UserOperationService } from '../services/user-operation.service';
 import { map, Observable } from 'rxjs';
 import { ResponseUserSuccess } from '../types/response-type-users';
 import { AuditQueryService } from '../../query/services/audit-query.service';
+import { Params } from '@angular/router';
 
 @Component({
   selector: 'app-components',
@@ -11,18 +12,32 @@ import { AuditQueryService } from '../../query/services/audit-query.service';
 })
 export class UsersComponent implements OnInit {
   responseUser$!: Observable<ResponseUserSuccess>;
-  private page: number;
+  params!: Params;
 
   constructor(
     private userOperationService: UserOperationService,
     private queryService: AuditQueryService
-  ) {
-    const params = this.queryService.getParams();
-
-    this.page = Number(params['params'].page);
-  }
+  ) {}
 
   ngOnInit() {
+    this.params = this.queryService.getParams();
+
+    if (!this.params['params'].page) {
+      this.queryService.updateParams({ page: 0 });
+    }
+
+    if (!this.params['params'].size) {
+      this.queryService.updateParams({ size: 10 });
+    }
+
+    this.requestUsers(this.params);
+  }
+
+  refresh() {
+    this.userOperationService.refresh();
+  }
+
+  requestUsers(params: Params) {
     this.responseUser$ = this.userOperationService.getUsers().pipe(
       map(data => {
         if ('loading' in data) {
@@ -37,26 +52,30 @@ export class UsersComponent implements OnInit {
       })
     );
 
-    this.userOperationService.init();
-  }
-
-  refresh() {
-    this.userOperationService.refresh();
+    this.userOperationService.init(params['params']);
   }
 
   nextPage() {
-    this.queryService.updateParams({ page: this.page++ });
+    let page = this.queryService.getParams()['params'].page;
 
-    this.userOperationService.refresh();
+    page++;
 
-    this.userOperationService.init();
+    this.queryService.updateParams({ page: page });
+
+    this.userOperationService.init({ ...this.params['params'], page: page });
   }
 
   previousPage() {
-    this.queryService.updateParams({ page: this.page-- });
+    let page = this.queryService.getParams()['params'].page;
 
-    this.userOperationService.refresh();
+    if (page <= 0) {
+      return;
+    }
 
-    console.log(this.page);
+    page--;
+
+    this.queryService.updateParams({ page: page });
+
+    this.userOperationService.init({ ...this.params['params'], page: page });
   }
 }

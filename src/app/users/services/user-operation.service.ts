@@ -3,8 +3,7 @@ import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import { ResponseUser, ResponseUserError } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { LoadingSpinnerService } from '../../admin/services/loading-spinner.service';
-import { AuditQueryService } from '../../query/services/audit-query.service';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,32 +11,14 @@ import { AuditQueryService } from '../../query/services/audit-query.service';
 export class UserOperationService {
   private userResponse$ = new BehaviorSubject<ResponseUser>({ loading: true });
 
-  constructor(
-    private http: HttpClient,
-    private loadingSpinnerService: LoadingSpinnerService,
-    private queryService: AuditQueryService
-  ) {
-    this.loadingSpinnerService.setLoading(true);
-  }
+  constructor(private http: HttpClient) {}
 
-  init() {
+  init(params: Params) {
     const url = new URL(environment.SERVER_PATH.GET_USERS);
 
-    const params = this.queryService.getParams();
-
-    if (!params['params'].page || !params['params'].size) {
-      this.queryService.updateParams({ page: 1, size: 10 });
-    }
-
-    Object.keys(params['params']).forEach(key => {
-      url.searchParams.append(key, params['params'][key]);
+    Object.keys(params).forEach(key => {
+      url.searchParams.append(key, params[key]);
     });
-
-    const page = url.searchParams.get('page');
-
-    if (page) {
-      url.searchParams.set('page', (+page - 1).toString());
-    }
 
     this.http
       .get<ResponseUser>(url.toString())
@@ -57,7 +38,6 @@ export class UserOperationService {
         })
       )
       .subscribe(data => {
-        this.loadingSpinnerService.setLoading(false);
         this.userResponse$.next(data);
       });
   }
