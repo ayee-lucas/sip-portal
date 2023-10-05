@@ -1,0 +1,78 @@
+<aside
+  class="h-full flex flex-col w-80 bg-onSurfaceDark dark:bg-onSurface border-r border-outline/40 dark:border-outlineDark/40 animate__animated animate__fadeInLeft animate__faster"
+>
+  <header
+    class="w-full grid place-content-center text-center py-5 bg-surfaceBright dark:bg-surfaceBrightDark border-b border-outline/40 dark:border-outlineDark/40"
+  >
+    <h1
+      class="py-2 px-5 font-light w-fit rounded-xl text-onSurface dark:text-onSurfaceDark"
+    >
+      USERS
+    </h1>
+  </header>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <label
+      class="text-sm mb-3 font-medium text-primary dark:text-primaryDark sr-only"
+      for="default-search"
+      >Search</label
+    >
+    <div class="relative">
+      <div
+        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+      >
+        <svg
+          aria-hidden="true"
+          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          fill="none"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        ></svg>
+      </div>
+      <input
+        class="block transition-all w-full p-4 pl-10 text-sm text-primary dark:text-primaryDark bg-surface dark:bg-surfaceDark dark:border-outlineDark placeholder-primary dark:placeholder-primaryDark/80 dark:text-white focus:outline-none focus:outline focus:outline-offset-0 focus:outline-1 focus:outline-primary focus:dark:outline-primaryDark"
+        id="default-search"
+        placeholder="Search Users"
+        formControlName="search"
+        type="search"
+      />
+      <button
+        class="text-primary transition-all absolute right-2.5 bottom-2.5 bg-onPrimary dark:text-primaryDark hover:bg-surfaceC focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-onPrimaryDark dark:hover:bg-onSurface dark:focus:ring-blue-800"
+        type="submit"
+      >
+        Search
+      </button>
+    </div>
+    <div
+      *ngIf="searchForm.get('search')?.hasError('required')"
+      class="text-red-500 py-2 px-5 font-light w-fit rounded-xl text-onSurface dark:text-onSurfaceDark"
+    >
+      Search is required.
+    </div>
+  </form>
+
+  <ul class="flex flex-col w-full h-full gap-3 py-5 px-3 overflow-y-auto">
+    <li
+      *ngFor="let response of response$ | async"
+      class="w-full flex items-center gap-3 py-3 px-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-2xl transition-all hover:bg-surfaceC dark:hover:bg-surfaceCDark"
+      role="button"
+    >
+      <mat-icon class="min-w-fit px-2">supervised_user_circle</mat-icon>
+
+      <div class="flex flex-col overflow-hidden">
+        <span class="text-lg">ID: {{ response.id }}</span>
+        <span
+          class="text-md transition-all text-primary/80 dark:text-primaryDark/80 truncate hover:whitespace-normal"
+          >Name: {{ response.name }}</span
+        >
+        <span
+          class="text-sm transition-all text-primary/70 dark:text-primaryDark/70 truncate hover:whitespace-normal"
+          >Email: {{ response.email }}</span
+        >
+        <span class="text-sm text-primary/70 dark:text-primaryDark/70"
+          >Status: {{ response.status }}</span
+        >
+      </div>
+    </li>
+  </ul>
+</aside>

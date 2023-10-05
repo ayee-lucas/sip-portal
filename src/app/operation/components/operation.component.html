@@ -1,0 +1,22 @@
+<main class="h-full w-full flex">
+  <app-user-selector></app-user-selector>
+  <div class="w-full h-full overflow-y-auto">
+    <header
+      class="p-4 w-full h-fit animate__animated animate__fadeIn overflow-y-auto"
+    >
+      <div
+        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-32 pb-3 px-4"
+      >
+        <h1 class="text-6xl font-semibold w-fit rounded-2xl">Operation</h1>
+      </div>
+    </header>
+    <section class="w-full py-16 flex flex-col items-center justify-center">
+      <h1
+        *ngIf="!userSelected"
+        class="absolute bottom-8 text-sm font-light text-onSurface dark:text-onSurfaceDark"
+      >
+        Select an user to show details
+      </h1>
+    </section>
+  </div>
+</main>
