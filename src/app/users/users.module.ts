@@ -9,6 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PaginatorUsersComponent } from './components/paginator/paginator-users.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes: Routes = [
   {
@@ -18,7 +22,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [UsersComponent, UserSelectorComponent],
+  declarations: [
+    UsersComponent,
+    UserSelectorComponent,
+    PaginatorUsersComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -28,7 +36,10 @@ const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatPaginatorModule
   ],
   bootstrap: [UsersComponent]
 })
