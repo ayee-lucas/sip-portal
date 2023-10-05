@@ -4,10 +4,5 @@
     <router-outlet></router-outlet>
   </div>
 
-  <div
-    *ngIf="isLoding$ | async"
-    class="fixed bottom-10 right-10 rounded-xl p-3 bg-surfaceC dark:bg-surfaceCDark"
-  >
-    <mat-spinner diameter="40"></mat-spinner>
-  </div>
+  <block-ui message="Hold on"> </block-ui>
 </div>
