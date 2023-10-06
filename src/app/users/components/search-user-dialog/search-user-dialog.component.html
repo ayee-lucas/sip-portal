@@ -1,0 +1,97 @@
+<section
+  class="fixed top-[10%] bottom-[10%] right-60 left-60 rounded-xl bg-surface animate__animated animate__backInUp animate__fast dark:bg-surfaceDark"
+>
+  <header
+    class="flex items-center justify-between border-b px-10 py-4 border-b-outline dark:border-b-outlineDark"
+  >
+    <h1 class="text-3xl font-bold">User</h1>
+
+    <button
+      (click)="onNoClick()"
+      class="bg-surfaceDark dark:bg-surface"
+      mat-icon-button
+      matTooltip="Close"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+
+  <ng-container *ngIf="user$ | async as user; else loading">
+    <ng-container *ngIf="isUser(user)">
+      <section class="grid h-full w-full place-items-center">
+        <div class="flex h-1/2 w-1/2 flex-col items-center justify-start">
+          <div class="text-sm">
+            <svg
+              height="100"
+              viewBox="0 0 1024 1024"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M288 320a224 224 0 1 0 448 0a224 224 0 1 0-448 0zm544 608H160a32 32 0 0 1-32-32v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 0 1-32 32z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="mt-5 flex flex-col gap-2 items-center justify-center border-t-2 pt-5 border-outline dark:border-outlineDark"
+          >
+            <h1 class="text-2xl font-bold">
+              {{ user.names }} {{ user.lastNames }}
+            </h1>
+            <h2 class="text-xl opacity-80">
+              {{ user.email }}
+            </h2>
+
+            <h3
+              *ngIf="user.status; else deactivated"
+              class="rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+            >
+              Active
+            </h3>
+
+            <ng-template #deactivated>
+              <h3
+                class="rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK"
+              >
+                Deactivated
+              </h3>
+            </ng-template>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+
+    <ng-container *ngIf="!isUser(user)">
+      <section
+        class="flex h-full w-full flex-col items-center justify-center gap-5 text-2xl text-error"
+      >
+        <svg
+          height="48"
+          viewBox="0 0 48 48"
+          width="48"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <mask id="ipSError0">
+            <path
+              clip-rule="evenodd"
+              d="m6 11l5-5l13 13L37 6l5 5l-13 13l13 13l-5 5l-13-13l-13 13l-5-5l13-13L6 11Z"
+              fill="#fff"
+              fill-rule="evenodd"
+              stroke="#fff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="4"
+            />
+          </mask>
+          <path d="M0 0h48v48H0z" fill="currentColor" mask="url(#ipSError0)" />
+        </svg>
+
+        {{ user.error.description }}
+      </section>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #loading> loading </ng-template>
+</section>
