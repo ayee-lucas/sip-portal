@@ -30,6 +30,21 @@ export class AuditQueryService {
     });
   }
 
+  deleteParam(param: string) {
+    const currentParams = this.getParams();
+
+    if (!currentParams['params'][param]) return;
+
+    const updatedParams = { ...currentParams['params'] };
+
+    delete updatedParams[param];
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: updatedParams
+    });
+  }
+
   clearParams() {
     this.router.navigate([], {
       relativeTo: this.route,
