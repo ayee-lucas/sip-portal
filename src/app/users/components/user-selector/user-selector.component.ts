@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder and Validators
 import { User } from '../../types/response-type-users';
+import { AuditQueryService } from '../../../query/services/audit-query.service';
+import { Observable } from 'rxjs';
+import { SelectedUserService } from '../../services/selected-user.service';
 
 @Component({
   selector: 'app-user-selector',
@@ -9,24 +11,30 @@ import { User } from '../../types/response-type-users';
 })
 export class UserSelectorComponent implements OnInit {
   @Input() responseUser!: User[] | undefined;
-  searchForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  userSelected$!: Observable<User | null>;
+
+  constructor(
+    private queryService: AuditQueryService,
+    private selectedUserService: SelectedUserService
+  ) {}
 
   ngOnInit() {
-    this.searchForm = this.fb.group({
-      search: ['', [Validators.required]] // Add a required validator
-    });
-  }
-
-  onSubmit() {
-    if (this.searchForm.valid) {
-      const searchValue = this.searchForm.value.search;
-      console.log('Searching for:', searchValue);
-    }
+    this.userSelected$ = this.selectedUserService.getUserSelected();
   }
 
   tracking(index: number, item: User) {
     return item.userId;
+  }
+
+  selectUser(user: User) {
+    this.queryService.updateParams({
+      selected: user.userId,
+      name: user.names,
+      lastName: user.lastNames,
+      email: user.email,
+      status: user.status
+    });
+    this.selectedUserService.setUserSelected(user);
   }
 }
