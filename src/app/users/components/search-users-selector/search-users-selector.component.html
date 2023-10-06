@@ -1,0 +1,33 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="searchForm">
+  <label
+    class="sr-only mb-3 text-sm font-medium text-primary dark:text-primaryDark"
+    for="default-search"
+    >Search</label
+  >
+  <div class="relative">
+    <div
+      class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="h-4 w-4 text-gray-500 dark:text-gray-400"
+        fill="none"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      ></svg>
+    </div>
+    <input
+      class="block w-full px-4 py-6 text-sm transition-all text-primary bg-surface placeholder-primary focus:outline-primary focus:outline-none focus:outline focus:outline-1 focus:outline-offset-0 dark:text-primaryDark dark:bg-surfaceDark dark:border-outlineDark dark:placeholder-primaryDark/80 dark:text-white focus:dark:outline-primaryDark/40"
+      formControlName="search"
+      id="default-search"
+      placeholder="Search Users By Id"
+      type="search"
+    />
+    <button
+      class="absolute rounded-lg px-4 py-2 text-sm font-medium transition-all text-primary right-2.5 bottom-3.5 bg-onPrimary hover:bg-surfaceC focus:outline-none focus:ring-4 focus:ring-blue-300 dark:text-primaryDark dark:bg-onPrimaryDark dark:hover:bg-onSurface dark:focus:ring-blue-800"
+      type="submit"
+    >
+      Search
+    </button>
+  </div>
+</form>
