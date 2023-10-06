@@ -20,8 +20,20 @@ export class UserOperationService {
       url.searchParams.append(key, params[key]);
     });
 
+    this.requestUsers(url.toString());
+  }
+
+  getUsers(): Observable<ResponseUser> {
+    return this.userResponse$;
+  }
+
+  refresh() {
+    this.userResponse$.next({ loading: true });
+  }
+
+  private requestUsers(url: string) {
     this.http
-      .get<ResponseUser>(url.toString())
+      .get<ResponseUser>(url)
       .pipe(
         catchError(err => {
           console.log('Error: ', err);
@@ -40,13 +52,5 @@ export class UserOperationService {
       .subscribe(data => {
         this.userResponse$.next(data);
       });
-  }
-
-  getUsers(): Observable<ResponseUser> {
-    return this.userResponse$;
-  }
-
-  refresh() {
-    this.userResponse$.next({ loading: true });
   }
 }
