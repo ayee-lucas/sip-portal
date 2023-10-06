@@ -13,6 +13,11 @@ import { PaginatorUsersComponent } from './components/paginator/paginator-users.
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SearchUsersSelectorComponent } from './components/search-users-selector/search-users-selector.component';
+import { SearchUserDialogComponent } from './components/search-user-dialog/search-user-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UserOperationsComponent } from './components/user-operations/user-operations.component';
+import { UserActionsComponent } from './components/user-actions/user-actions.component';
 
 const routes: Routes = [
   {
@@ -25,7 +30,11 @@ const routes: Routes = [
   declarations: [
     UsersComponent,
     UserSelectorComponent,
-    PaginatorUsersComponent
+    PaginatorUsersComponent,
+    SearchUsersSelectorComponent,
+    SearchUserDialogComponent,
+    UserOperationsComponent,
+    UserActionsComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +48,8 @@ const routes: Routes = [
     MatTooltipModule,
     MatButtonModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   bootstrap: [UsersComponent]
 })
