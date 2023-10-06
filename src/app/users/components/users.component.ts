@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { ResponseUserSuccess } from '../types/response-type-users';
 import { AuditQueryService } from '../../query/services/audit-query.service';
 import { Params } from '@angular/router';
+import { User } from '../../audit/mocks/data';
 
 @Component({
   selector: 'app-components',
@@ -14,6 +15,8 @@ export class UsersComponent implements OnInit {
   responseUser$!: Observable<ResponseUserSuccess>;
   params!: Params;
 
+  userSelected: User | null = null;
+
   constructor(
     private userOperationService: UserOperationService,
     private queryService: AuditQueryService
@@ -23,17 +26,23 @@ export class UsersComponent implements OnInit {
     this.params = this.queryService.getParams();
 
     if (!this.params['params'].page) {
-      this.queryService.updateParams({ page: 0 });
+      this.queryService.updateParams({ ...this.params['params'], page: 0 });
     }
 
     if (!this.params['params'].size) {
-      this.queryService.updateParams({ size: 10 });
+      this.queryService.updateParams({ ...this.params['params'], size: 10 });
     }
 
     this.requestUsers(this.params);
   }
 
-  requestUsers(params: Params) {
+  refresh() {
+    this.queryService.clearParams();
+    this.userOperationService.refresh();
+    this.requestUsers(this.params);
+  }
+
+  private requestUsers(params: Params) {
     this.responseUser$ = this.userOperationService.getUsers().pipe(
       map(data => {
         if ('loading' in data) {
@@ -49,10 +58,5 @@ export class UsersComponent implements OnInit {
     );
 
     this.userOperationService.init(params['params']);
-  }
-
-  refresh() {
-    this.userOperationService.refresh();
-    this.requestUsers(this.params);
   }
 }
