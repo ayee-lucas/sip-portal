@@ -22,6 +22,8 @@
         </button>
       </header>
 
+      <app-search-users-selector></app-search-users-selector>
+
       <div class="w-full h-full overflow-y-auto mostly-customized-scrollbar">
         <app-user-selector
           [responseUser]="data.users?.content"
@@ -30,24 +32,9 @@
 
       <app-paginator-users [responsePage]="data.users"></app-paginator-users>
     </aside>
-
-    <div class="h-full w-full overflow-y-auto">
-      <header
-        class="h-fit w-full overflow-y-auto p-4 animate__animated animate__fadeIn"
-      >
-        <div
-          class="rounded-2xl px-4 pt-32 pb-3 bg-surfaceC text-onSurface dark:bg-surfaceCDark dark:text-onSurfaceDark"
-        >
-          <h1 class="w-fit rounded-2xl text-6xl font-semibold">Operation</h1>
-        </div>
-      </header>
-      <section class="flex w-full flex-col items-center justify-center py-16">
-        <h1
-          class="absolute bottom-8 text-sm font-light text-onSurface dark:text-onSurfaceDark"
-        >
-          Select an user to show details
-        </h1>
-      </section>
-    </div>
   </ng-container>
+
+  <div class="w-full h-full">
+    <app-user-operations></app-user-operations>
+  </div>
 </main>
