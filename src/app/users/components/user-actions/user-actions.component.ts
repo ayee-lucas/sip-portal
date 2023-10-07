@@ -7,13 +7,15 @@ import {
   Validators
 } from '@angular/forms';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
-import { Params } from '@angular/router';
+import { UserUpdateService } from '../../services/user-update.service';
+import { SelectedUserService } from '../../services/selected-user.service';
 
 type UpdateUserForm = {
-  name: FormControl<string | null>;
-  lastName: FormControl<string | null>;
-  email: FormControl<string | null>;
-  status: FormControl<boolean | null>;
+  name: FormControl<string>;
+  lastName: FormControl<string>;
+  email: FormControl<string>;
+  status: FormControl<boolean>;
+  profile: FormControl<number>;
 };
 
 @Component({
@@ -22,11 +24,9 @@ type UpdateUserForm = {
   styleUrls: ['./user-actions.component.scss']
 })
 export class UserActionsComponent implements OnInit {
-  @Input() selectedUser!: User;
-
   updateUserForm!: FormGroup<UpdateUserForm>;
 
-  params: Params;
+  @Input() selectedUser!: User;
 
   selectOptions = [
     { value: true, label: 'Active' },
@@ -35,10 +35,10 @@ export class UserActionsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private queryService: AuditQueryService
-  ) {
-    this.params = this.queryService.getParams();
-  }
+    private queryService: AuditQueryService,
+    private selectedUserService: SelectedUserService,
+    private updateUserService: UserUpdateService
+  ) {}
 
   ngOnInit() {
     this.buildUpdateUserForm();
@@ -46,24 +46,42 @@ export class UserActionsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.updateUserForm.valid) {
-      console.log(this.updateUserForm.value);
+    if (this.updateUserForm.invalid) {
+      return;
     }
+
+    const formValue = this.updateUserForm.getRawValue();
+
+    const data: User = {
+      userId: this.selectedUser.userId,
+      names: formValue.name,
+      lastNames: formValue.lastName,
+      email: formValue.email,
+      status: formValue.status,
+      profileId: formValue.profile
+    };
+
+    this.selectedUserService.setUserSelected(data);
+
+    this.updateUserService.init(data);
   }
 
-  private buildUpdateUserForm() {
-    this.updateUserForm = this.fb.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.email],
-      status: [false, Validators.required]
+  patchForm() {
+    const params = this.queryService.getParams();
+
+    this.updateUserForm.patchValue({
+      ...params['params'],
+      status: params['params'].status === 'true'
     });
   }
 
-  private patchForm() {
-    this.updateUserForm.patchValue({
-      ...this.params['params'],
-      status: this.params['params'].status === 'true'
+  private buildUpdateUserForm() {
+    this.updateUserForm = this.fb.nonNullable.group({
+      name: [this.selectedUser.names, Validators.required],
+      lastName: [this.selectedUser.lastNames, Validators.required],
+      email: [this.selectedUser.email, [Validators.email, Validators.required]],
+      status: [this.selectedUser.status, Validators.required],
+      profile: [this.selectedUser.profileId, Validators.required]
     });
   }
 }
