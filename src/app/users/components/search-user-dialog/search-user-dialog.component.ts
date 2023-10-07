@@ -8,7 +8,7 @@ import { _isUser } from '../../../shared/utils/TypeGuards';
 import { SelectedUserService } from '../../services/selected-user.service';
 
 type SearchUserDialogComponentData = {
-  search: any;
+  search: string;
 };
 
 @Component({
