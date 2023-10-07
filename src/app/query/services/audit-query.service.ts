@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuditQueryService {
-  _params!: Params;
+  private _params!: Params;
 
   constructor(
     private router: Router,
@@ -16,6 +16,13 @@ export class AuditQueryService {
     });
 
     return this._params;
+  }
+
+  setParams(params: Params) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params
+    });
   }
 
   updateParams(params: Params) {
