@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
@@ -27,8 +29,10 @@ import { BlockUIHttpModule } from 'ng-block-ui/http';
     MatTooltipModule,
     MatProgressSpinnerModule,
     BlockUIModule.forRoot(),
-    BlockUIHttpModule.forRoot()
+    BlockUIHttpModule.forRoot(),
+    ToastModule
   ],
-  bootstrap: [AdminComponent]
+  bootstrap: [AdminComponent],
+  providers: [MessageService]
 })
 export class AdminModule {}
