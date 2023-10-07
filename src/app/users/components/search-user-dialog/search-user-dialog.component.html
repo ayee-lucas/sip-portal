@@ -59,6 +59,13 @@
               </h3>
             </ng-template>
           </div>
+          <button
+            (click)="selectUser(user)"
+            class="transition-all mt-4 px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+            type="submit"
+          >
+            Show details User
+          </button>
         </div>
       </section>
     </ng-container>
@@ -93,5 +100,5 @@
     </ng-container>
   </ng-container>
 
-  <ng-template #loading> loading </ng-template>
+  <ng-template #loading> loading</ng-template>
 </section>
