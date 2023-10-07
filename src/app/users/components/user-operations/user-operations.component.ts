@@ -17,8 +17,6 @@ export class UserOperationsComponent implements OnInit, OnDestroy {
 
   userParamLoaded$!: Observable<User | ResponseUserError>;
 
-  newUser = false;
-
   params: Params;
   /** @internal */ isUser = _isUser;
   private userSubscription$!: Subscription;
@@ -71,16 +69,8 @@ export class UserOperationsComponent implements OnInit, OnDestroy {
 
   subscribeToSelectedUser() {
     this.userSubscription$ = this.userParamLoaded$.subscribe(data => {
-      this.selectedUserService.setUserSelected(data as User | null);
-
-      if (_isUser(data)) {
-        this.queryService.updateParams({
-          selected: data.userId,
-          name: data.names,
-          lastName: data.lastNames,
-          email: data.email,
-          status: data.status
-        });
+      if (this.isUser(data)) {
+        this.selectedUserService.setUserSelected(data);
       }
 
       this.userSelected$ = this.selectedUserService.getUserSelected();
