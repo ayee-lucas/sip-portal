@@ -5,6 +5,7 @@ import { UserSelectorSearchService } from '../../services/user-selector-search.s
 import { map, Observable } from 'rxjs';
 import { ResponseUserError, User } from '../../types/response-type-users';
 import { _isUser } from '../../../shared/utils/TypeGuards';
+import { SelectedUserService } from '../../services/selected-user.service';
 
 type SearchUserDialogComponentData = {
   search: any;
@@ -23,6 +24,7 @@ export class SearchUserDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<SearchUserDialogComponent>,
     private queryService: AuditQueryService,
     private userSearchService: UserSelectorSearchService,
+    private selectedUserService: SelectedUserService,
     @Inject(MAT_DIALOG_DATA) public data: SearchUserDialogComponentData
   ) {}
 
@@ -31,6 +33,11 @@ export class SearchUserDialogComponent implements OnInit {
   }
 
   onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  selectUser(user: User) {
+    this.selectedUserService.setUserSelected(user);
     this.dialogRef.close();
   }
 
