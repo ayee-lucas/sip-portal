@@ -4,6 +4,7 @@ import { ResponseUser, ResponseUserError } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Params } from '@angular/router';
+import { AuditQueryService } from '../../query/services/audit-query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,10 @@ import { Params } from '@angular/router';
 export class UserOperationService {
   private userResponse$ = new BehaviorSubject<ResponseUser>({ loading: true });
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private queryService: AuditQueryService
+  ) {}
 
   init(params: Params) {
     const url = new URL(environment.SERVER_PATH.GET_USERS);
@@ -29,6 +33,10 @@ export class UserOperationService {
 
   refresh() {
     this.userResponse$.next({ loading: true });
+
+    const params = this.queryService.getParams();
+
+    this.init(params['params']);
   }
 
   private requestUsers(url: string) {
