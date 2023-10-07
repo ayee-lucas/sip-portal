@@ -35,7 +35,7 @@ export type User = {
   names: string;
   lastNames: string;
   email: string;
-  password: string;
+  password?: string;
   status: boolean;
   profileId: number;
 };
