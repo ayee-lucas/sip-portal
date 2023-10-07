@@ -7,6 +7,8 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { AddUserService } from '../../services/add-user.service';
+import { User } from '../../types/response-type-users';
 
 export type NewUserForm = {
   name: FormControl<string | null>;
@@ -35,7 +37,8 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private queryService: AuditQueryService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private addUserService: AddUserService
   ) {}
 
   ngOnInit() {
@@ -71,7 +74,24 @@ export class NewUserComponent implements OnInit {
       return;
     }
 
-    console.log(this.newUserForm.value);
+    const { name, lastName, email, status, profileId } = this.newUserForm.value;
+
+    console.log(name, lastName, email, status, profileId);
+
+    if (!name || !lastName || !email || status == null || !profileId) {
+      return;
+    }
+
+    const data: User = {
+      userId: 0,
+      names: name,
+      lastNames: lastName,
+      email: email,
+      status: status,
+      profileId: profileId
+    };
+
+    this.addUserService.init(data);
   }
 
   private buildForm() {
