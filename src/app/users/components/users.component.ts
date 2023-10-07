@@ -33,13 +33,18 @@ export class UsersComponent implements OnInit {
       this.queryService.updateParams({ ...this.params['params'], size: 10 });
     }
 
+    if (!this.params['params'].sort) {
+      this.queryService.updateParams({
+        ...this.params['params'],
+        sort: 'userId'
+      });
+    }
+
     this.requestUsers(this.params);
   }
 
   refresh() {
-    this.queryService.clearParams();
     this.userOperationService.refresh();
-    this.requestUsers(this.params);
   }
 
   private requestUsers(params: Params) {
