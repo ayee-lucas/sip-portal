@@ -77,30 +77,30 @@
   >
     <div class="flex w-full items-center justify-start gap-3">
       <mat-form-field appearance="outline" class="w-full">
-        <mat-label> Name </mat-label>
+        <mat-label> Name</mat-label>
         <input
+          [formControl]="updateUserForm.controls.name"
           [value]="selectedUser.names"
-          formControlName="name"
           matInput
           placeholder="Name"
         />
-        <mat-hint> User's name </mat-hint>
+        <mat-hint> User's name</mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-full">
-        <mat-label> Last name </mat-label>
+        <mat-label> Last name</mat-label>
         <input
           [value]="selectedUser.lastNames"
           formControlName="lastName"
           matInput
           placeholder="Last name"
         />
-        <mat-hint> User's Last name </mat-hint>
+        <mat-hint> User's Last name</mat-hint>
       </mat-form-field>
     </div>
     <div class="flex w-full items-center justify-start gap-3">
       <mat-form-field appearance="outline" class="w-full">
-        <mat-label> Email </mat-label>
+        <mat-label> Email</mat-label>
         <input
           [value]="selectedUser.email"
           class="w-2/3"
@@ -108,10 +108,21 @@
           matInput
           placeholder="Email"
         />
-        <mat-hint> User's email </mat-hint>
+        <mat-hint> User's email</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-1/3">
+        <mat-label> Profile</mat-label>
+        <input
+          [valueAsNumber]="selectedUser.profileId.toString()"
+          class="w-2/3"
+          formControlName="profile"
+          matInput
+          placeholder="Profile"
+        />
+        <mat-hint> User's profile id</mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label> Status </mat-label>
+        <mat-label> Status</mat-label>
         <mat-select [(value)]="selectedUser.status" formControlName="status">
           <mat-option>-</mat-option>
           <mat-option
@@ -133,10 +144,10 @@
       </button>
 
       <button
-        (click)="updateUserForm.reset()"
-        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl"
+        (click)="patchForm()"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
       >
-        Clear
+        Reset
       </button>
     </div>
   </form>
