@@ -7,7 +7,7 @@ import {
 } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
-import { AuditQueryService } from '../../query/services/audit-query.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class UserSelectorSearchService {
 
   constructor(
     private http: HttpClient,
-    private queryService: AuditQueryService
+    private messageService: MessageService
   ) {}
 
   init(id: number) {
@@ -42,6 +42,12 @@ export class UserSelectorSearchService {
           if ('error' in err) {
             const errorObj = err.error;
 
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: errorObj.error.description
+            });
+
             return of(errorObj);
           }
 
@@ -53,6 +59,12 @@ export class UserSelectorSearchService {
               description: 'Failed to retrieve data'
             }
           };
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: data.error.description
+          });
 
           return of(data);
         })
