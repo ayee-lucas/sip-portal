@@ -18,6 +18,8 @@ import { SearchUserDialogComponent } from './components/search-user-dialog/searc
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserOperationsComponent } from './components/user-operations/user-operations.component';
 import { UserActionsComponent } from './components/user-actions/user-actions.component';
+import { ToastModule } from 'primeng/toast';
+import { NewUserComponent } from './components/new-user/new-user.component';
 
 const routes: Routes = [
   {
@@ -34,7 +36,8 @@ const routes: Routes = [
     SearchUsersSelectorComponent,
     SearchUserDialogComponent,
     UserOperationsComponent,
-    UserActionsComponent
+    UserActionsComponent,
+    NewUserComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +52,8 @@ const routes: Routes = [
     MatButtonModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    ToastModule
   ],
   bootstrap: [UsersComponent]
 })
