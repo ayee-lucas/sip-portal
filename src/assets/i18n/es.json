@@ -19,7 +19,7 @@
   "filters": {
     "id": "ID",
     "idPlaceholder": "123..",
-    "dateRange": "Introduzca un rango de fechas",
+    "dateRange": "Rango de fechas",
     "startDate": "Fecha de inicio",
     "endDate": "Fecha de fin",
     "dateHint": "MM/DD/YYYY – MM/DD/YYYY",
@@ -46,5 +46,25 @@
     "sub": "Sub",
     "noRecordsFound": "No se encontraron registros",
     "selectPageOfUsers": "Seleccionar página de usuarios"
+  },
+
+  "auth": {
+    "parkingAdminPortal": "Portal de Administración de Estacionamiento",
+    "portal": "Portal",
+    "checkCredentials": "Verifica tus credenciales e intenta nuevamente",
+    "parkingPortal": "Portal de Estacionamiento",
+    "emailAddress": "Dirección de correo electrónico",
+    "enterEmailAddress": "Ingresa tu correo electrónico",
+    "password": "Contraseña",
+    "enterPassword": "Ingresa tu contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar sesión"
+  },
+  "forgotPassword": {
+    "title": "¿Olvidaste tu contraseña?",
+    "description": "Te enviaremos un correo electrónico con el código para recuperar tu contraseña.",
+    "emailLabel": "Dirección de correo electrónico",
+    "enterEmailPlaceholder": "Ingresa tu dirección de correo electrónico",
+    "recoverButton": "Recuperar Contraseña"
   }
 }

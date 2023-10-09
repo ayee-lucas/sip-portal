@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LoginFormType } from '../../types/AuthResponseType';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +15,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private TranslateService: TranslateService
+  ) {
+    this.TranslateService.setDefaultLang('es');
+    this.TranslateService.use('es');
+  }
 
   ngOnInit(): void {
     this.authForm = this.fb.group({
