@@ -9,14 +9,14 @@
         <h1
           class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
         >
-          List
+          {{ 'list.title' | translate }}
         </h1>
 
         <button
           (click)="refresh()"
           [disabled]="!data.users?.content"
           class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
-          matTooltip="Refresh"
+          matTooltip="{{ 'list.refreshTooltip' | translate }}"
         >
           <mat-icon>refresh</mat-icon>
         </button>

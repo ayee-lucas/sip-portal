@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchUserDialogComponent } from './search-user-dialog.component';
+import { SearchUserDialogComponent } from '../components/search-user-dialog/search-user-dialog.component';
 
 describe('SearchUserDialogComponent', () => {
   let component: SearchUserDialogComponent;

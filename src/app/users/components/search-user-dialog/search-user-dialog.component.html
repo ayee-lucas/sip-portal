@@ -4,13 +4,13 @@
   <header
     class="flex items-center justify-between border-b px-10 py-4 border-b-outline dark:border-b-outlineDark"
   >
-    <h1 class="text-3xl font-bold">User</h1>
+    <h1 class="text-3xl font-bold">{{ 'user.title' | translate }}</h1>
 
     <button
       (click)="onNoClick()"
       class="bg-surfaceDark dark:bg-surface"
       mat-icon-button
-      matTooltip="Close"
+      matTooltip="{{ 'user.close' | translate }}"
     >
       <mat-icon>close</mat-icon>
     </button>
@@ -48,14 +48,14 @@
               *ngIf="user.status; else deactivated"
               class="rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
             >
-              Active
+              {{ 'user.active' | translate }}
             </h3>
 
             <ng-template #deactivated>
               <h3
                 class="rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK"
               >
-                Deactivated
+                {{ 'user.deactivated' | translate }}
               </h3>
             </ng-template>
           </div>
@@ -64,7 +64,7 @@
             class="transition-all mt-4 px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
             type="submit"
           >
-            Show details User
+            {{ 'user.showDetails' | translate }}
           </button>
         </div>
       </section>
@@ -95,10 +95,10 @@
           <path d="M0 0h48v48H0z" fill="currentColor" mask="url(#ipSError0)" />
         </svg>
 
-        {{ user.error.description }}
+        {{ user.error.description | translate }}
       </section>
     </ng-container>
   </ng-container>
 
-  <ng-template #loading> loading</ng-template>
+  <ng-template #loading> {{ 'user.loading' | translate }}</ng-template>
 </section>

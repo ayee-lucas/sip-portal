@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SearchUserDialogComponent } from '../search-user-dialog/search-user-dialog.component';
 import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search-users-selector',
@@ -18,9 +19,12 @@ export class SearchUsersSelectorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private queryService: AuditQueryService
+    private queryService: AuditQueryService,
+    private translate: TranslateService
   ) {
     this.params = this.queryService.getParams();
+    this.translate.setDefaultLang('es');
+    this.translate.use('es');
   }
 
   ngOnInit() {

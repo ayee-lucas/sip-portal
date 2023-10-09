@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchUsersSelectorComponent } from './search-users-selector.component';
+import { SearchUsersSelectorComponent } from '../components/search-users-selector/search-users-selector.component';
 
 describe('SearchUsersSelectorComponent', () => {
   let component: SearchUsersSelectorComponent;

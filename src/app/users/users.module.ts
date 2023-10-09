@@ -20,6 +20,13 @@ import { UserOperationsComponent } from './components/user-operations/user-opera
 import { UserActionsComponent } from './components/user-actions/user-actions.component';
 import { ToastModule } from 'primeng/toast';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
+  new TranslateHttpLoader(http, environment.refTranslate, '.json');
 
 const routes: Routes = [
   {
@@ -53,7 +60,14 @@ const routes: Routes = [
     MatSelectModule,
     MatPaginatorModule,
     MatDialogModule,
-    ToastModule
+    ToastModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [UsersComponent]
 })

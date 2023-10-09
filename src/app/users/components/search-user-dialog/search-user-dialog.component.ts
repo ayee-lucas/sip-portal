@@ -6,6 +6,7 @@ import { map, Observable } from 'rxjs';
 import { ResponseUserError, User } from '../../types/response-type-users';
 import { _isUser } from '../../../shared/utils/TypeGuards';
 import { SelectedUserService } from '../../services/selected-user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 type SearchUserDialogComponentData = {
   search: string;
@@ -25,6 +26,7 @@ export class SearchUserDialogComponent implements OnInit {
     private queryService: AuditQueryService,
     private userSearchService: UserSelectorSearchService,
     private selectedUserService: SelectedUserService,
+    private translate: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: SearchUserDialogComponentData
   ) {}
 

@@ -5,6 +5,7 @@ import { ResponseUserSuccess } from '../types/response-type-users';
 import { AuditQueryService } from '../../query/services/audit-query.service';
 import { Params } from '@angular/router';
 import { User } from '../../audit/mocks/data';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-components',
@@ -19,8 +20,12 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userOperationService: UserOperationService,
-    private queryService: AuditQueryService
-  ) {}
+    private queryService: AuditQueryService,
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang('es');
+    translate.use('es');
+  }
 
   ngOnInit() {
     this.params = this.queryService.getParams();

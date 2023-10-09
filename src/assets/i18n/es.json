@@ -66,5 +66,101 @@
     "emailLabel": "Dirección de correo electrónico",
     "enterEmailPlaceholder": "Ingresa tu dirección de correo electrónico",
     "recoverButton": "Recuperar Contraseña"
+  },
+  "newuser": {
+    "New User": "Nuevo Usuario",
+    "checkCredentials": "Verifica tus credenciales",
+    "emailAddress": "Dirección de correo electrónico",
+    "enterEmailAddress": "Ingresa tu dirección de correo electrónico",
+    "password": "Contraseña",
+    "enterPassword": "Ingresa tu contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "login": "Iniciar sesión",
+    "newUser": "Nuevo Usuario",
+    "name": "Nombre",
+    "lastName": "Apellido",
+    "email": "Correo electrónico",
+    "profileId": "ID de perfil",
+    "status": "Estado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "addUser": "Agregar Usuario",
+    "reset": "Restablecer",
+    "preview": "Vista previa",
+    "enter a name": "Ingrese un nombre",
+    "enter a last name": "Ingrese un apellido",
+    "enter a username": "Ingrese un nombre de usuario",
+    "profile": "Perfil",
+    "enter a profile": "Ingrese un perfil",
+    "Users profile id": "ID de perfil del usuario",
+    "users account status": "Estado de la cuenta"
+  },
+
+  "user": {
+    "title": "Usuario",
+    "close": "Cerrar",
+    "active": "Activo",
+    "deactivated": "Desactivado",
+    "showDetails": "Mostrar detalles del usuario",
+    "loading": "Cargando",
+    "error.description": "Error: No se pudo cargar el usuario."
+  },
+
+  "search": {
+    "label": "Buscar",
+    "placeholder": "Buscar usuarios por ID",
+    "button": "Buscar"
+  },
+
+  "updateUser": {
+    "title": "Actualizar Usuario",
+    "close": "Cerrar",
+    "active": "Activo",
+    "deactivated": "Desactivado",
+    "userDetails": "Detalles del Usuario",
+    "table": {
+      "id": "ID",
+      "name": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo Electrónico",
+      "status": "Estado",
+      "profileId": "ID de Perfil"
+    },
+    "formUser": "Formulario de Usuario:",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Nombre",
+      "nameHint": "Nombre del usuario",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "Apellido",
+      "lastNameHint": "Apellido del usuario",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "Correo Electrónico",
+      "emailHint": "Correo Electrónico del usuario",
+      "profile": "Perfil",
+      "profilePlaceholder": "Perfil",
+      "profileHint": "ID de Perfil del usuario",
+      "status": "Estado de la Cuenta",
+      "statusHint": "Estado de la cuenta del usuario",
+      "updateButton": "Actualizar Usuario",
+      "resetButton": "Restablecer"
+    }
+  },
+
+  "operations": {
+    "title": "Usuarios",
+    "manageUsers": "Administra tus usuarios aquí. Puedes agregar, editar y eliminar usuarios desde aquí.",
+    "addUsers": "Agregar Usuarios",
+    "clickToAddUser": "Haz clic en el botón '+' para agregar un nuevo usuario",
+    "updateUsers": "Actualizar Usuarios",
+    "selectUserToUpdate": "Selecciona un usuario a la izquierda para actualizarlo",
+    "searchUsers": "Buscar Usuarios",
+    "enteranid": "Ingresa un ID y presiona el botón de búsqueda para mostrar el usuario",
+    "loggedInAsAdmin": "Has iniciado sesión como administrador",
+    "yourinformation": "Tu información"
+  },
+  "list": {
+    "title": "Lista",
+    "refreshTooltip": "Actualizar"
   }
 }

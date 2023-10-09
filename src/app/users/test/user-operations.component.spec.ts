@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserOperationsComponent } from './user-operations.component';
+import { UserOperationsComponent } from '../components/user-operations/user-operations.component';
 
 describe('UserOperationsComponent', () => {
   let component: UserOperationsComponent;

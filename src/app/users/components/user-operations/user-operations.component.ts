@@ -6,6 +6,7 @@ import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
 import { UserSelectorSearchService } from '../../services/user-selector-search.service';
 import { _isUser } from '../../../shared/utils/TypeGuards';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-operations',
@@ -24,9 +25,12 @@ export class UserOperationsComponent implements OnInit, OnDestroy {
   constructor(
     private selectedUserService: SelectedUserService,
     private userSearchService: UserSelectorSearchService,
-    private queryService: AuditQueryService
+    private queryService: AuditQueryService,
+    private translate: TranslateService
   ) {
     this.params = this.queryService.getParams();
+    this.translate.setDefaultLang('es');
+    this.translate.use('es');
   }
 
   ngOnInit() {
