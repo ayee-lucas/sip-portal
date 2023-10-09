@@ -1,0 +1,50 @@
+{
+  "first": {
+    "title": "Portal de Estacionamiento"
+  },
+  "sidebar": {
+    "home": "Inicio",
+    "audit": "Auditoría",
+    "operations": "Operaciones",
+    "logout": "Cerrar sesión",
+    "homeDescription": "Esta es la página de inicio."
+  },
+  "block": {
+    "holdTight": "¡Espere un momento!"
+  },
+  "audit": {
+    "header": "Auditoría",
+    "filters": "Filtros"
+  },
+  "filters": {
+    "id": "ID",
+    "idPlaceholder": "123..",
+    "dateRange": "Introduzca un rango de fechas",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de fin",
+    "dateHint": "MM/DD/YYYY – MM/DD/YYYY",
+    "invalidStartDate": "Fecha de inicio no válida",
+    "invalidEndDate": "Fecha de fin no válida",
+    "entity": "Entidad",
+    "entityPlaceholder": "I...",
+    "userEmail": "Correo electrónico del usuario",
+    "emailPlaceholder": "jhon@gmail.com",
+    "operation": "Operación",
+    "operationPlaceholder": "costs...",
+    "sub": "Sub",
+    "subPlaceholder": "302...",
+    "search": "Buscar",
+    "clear": "Limpiar"
+  },
+  "table": {
+    "usersAudit": "Auditoría de Usuarios",
+    "id": "ID",
+    "date": "Fecha",
+    "entity": "Entidad",
+    "user": "Usuario",
+    "operation": "Operación",
+    "sub": "Sub",
+    "noRecordsFound": "No se encontraron registros",
+    "selectPageOfUsers": "Seleccionar página de usuarios"
+  }
+}

@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../mocks/data';
 import { AuditQueryService } from '../../query/services/audit-query.service';
 import { Params } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-audit',
@@ -15,8 +16,12 @@ export class AuditComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private queryService: AuditQueryService
-  ) {}
+    private queryService: AuditQueryService,
+    private TranslateService: TranslateService
+  ) {
+    this.TranslateService.setDefaultLang('es');
+    this.TranslateService.use('es');
+  }
 
   ngOnInit() {
     this.getUsers();

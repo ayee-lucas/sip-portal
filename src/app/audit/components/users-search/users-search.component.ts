@@ -10,6 +10,7 @@ import { AuditQueryService } from '../../../query/services/audit-query.service';
 import { Params } from '@angular/router';
 import { AuditForm } from '../../types/audit-form.types';
 import { dateNotInFutureValidator } from '../../../validators/date-validators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-search',
@@ -24,8 +25,12 @@ export class UsersSearchComponent implements OnInit {
   constructor(
     private filterService: FilterUserService,
     private queryService: AuditQueryService,
-    private fb: FormBuilder
-  ) {}
+    private fb: FormBuilder,
+    private TranslateService: TranslateService
+  ) {
+    this.TranslateService.setDefaultLang('es');
+    this.TranslateService.use('es');
+  }
 
   ngOnInit() {
     this.buildForm();

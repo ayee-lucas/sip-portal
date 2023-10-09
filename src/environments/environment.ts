@@ -1,3 +1,3 @@
 export const environment = {
-  refTranslate: 'assets/i18n/'
+  refTranslate: './assets/i18n/'
 };

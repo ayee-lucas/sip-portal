@@ -6,7 +6,9 @@
   <caption
     class="w-full px-3 py-4 text-start montserrat text-onPrimary bg-primary dark:text-primaryDark dark:bg-onPrimaryDark"
   >
-    Users Audit
+    {{
+      'table.usersAudit' | translate
+    }}
   </caption>
   <ng-container matColumnDef="identifier">
     <!-- Cambio de 'id' a 'identifier' -->
@@ -15,7 +17,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl bg-onPrimary dark:bg-onPrimaryDark"
       mat-header-cell
     >
-      ID
+      {{ 'table.id' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -32,7 +34,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
       mat-header-cell
     >
-      Date
+      {{ 'table.date' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -49,7 +51,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
       mat-header-cell
     >
-      Entity
+      {{ 'table.entity' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -66,7 +68,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
       mat-header-cell
     >
-      User
+      {{ 'table.user' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -83,7 +85,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
       mat-header-cell
     >
-      Operation
+      {{ 'table.operation' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -101,7 +103,7 @@
       class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
       mat-header-cell
     >
-      Sub
+      {{ 'table.sub' | translate }}
     </th>
     <td
       *matCellDef="let element"
@@ -120,12 +122,12 @@
   *ngIf="dataSource.filteredData.length === 0"
   class="w-full py-16 text-center font-sans text-xl font-light dark:bg-surfaceCDark dark:text-primaryDark"
 >
-  No records found
+  {{ 'table.noRecordsFound' | translate }}
 </div>
 
 <mat-paginator
   [pageSizeOptions]="[5, 10, 25, 100]"
   [pageSize]="this.defaultParams['params'].size || 10"
-  aria-label="Select page of users"
+  [attr.aria-label]="'table.selectPageOfUsers' | translate"
   class="text-white bg-surfaceC dark:bg-onPrimaryDark"
 ></mat-paginator>

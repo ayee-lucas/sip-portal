@@ -12,6 +12,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { UsersSearchComponent } from './components/users-search/users-search.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
+  new TranslateHttpLoader(http, environment.refTranslate, '.json');
 
 const routes: Routes = [{ path: '', component: AuditComponent }];
 
@@ -27,7 +34,14 @@ const routes: Routes = [{ path: '', component: AuditComponent }];
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [RouterModule]
 })
