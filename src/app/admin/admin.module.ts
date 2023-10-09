@@ -15,6 +15,13 @@ import { BlockUIModule } from 'ng-block-ui';
 import { BlockUIHttpModule } from 'ng-block-ui/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
+  new TranslateHttpLoader(http, environment.refTranslate, '.json');
 
 @NgModule({
   declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
@@ -30,7 +37,15 @@ import { MessageService } from 'primeng/api';
     MatProgressSpinnerModule,
     BlockUIModule.forRoot(),
     BlockUIHttpModule.forRoot(),
-    ToastModule
+    ToastModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   bootstrap: [AdminComponent],
   providers: [MessageService]

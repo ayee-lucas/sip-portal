@@ -1,1 +1,3 @@
-export const environment = {};
+export const environment = {
+  refTranslate: 'assets/i18n/'
+};
