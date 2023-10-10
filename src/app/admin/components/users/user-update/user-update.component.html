@@ -1,0 +1,168 @@
+<section class="flex w-full flex-col gap-7 p-8">
+  <header
+    class="w-full border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
+  >
+    <h1 class="font-light montserrat">{{ 'updateUser.title' | translate }}</h1>
+  </header>
+
+  <h2 class="font-light montserrat text-lg font-semibold">
+    {{ 'updateUser.userDetails' | translate }}:
+  </h2>
+
+  <div
+    class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
+  >
+    <table
+      class="table-auto w-full montserrat font-light bg-surfaceC dark:bg-surfaceCDark rounded-b-lg p-10"
+    >
+      <caption>
+        {{
+          'updateUser.table.caption' | translate
+        }}
+      </caption>
+      <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
+        <tr>
+          <th class="px-4 py-2">{{ 'updateUser.table.id' | translate }}</th>
+          <th class="px-4 py-2">{{ 'updateUser.table.name' | translate }}</th>
+          <th class="px-4 py-2">
+            {{ 'updateUser.table.lastName' | translate }}
+          </th>
+          <th class="px-4 py-2">{{ 'updateUser.table.email' | translate }}</th>
+          <th class="px-4 py-2">{{ 'updateUser.table.status' | translate }}</th>
+          <th class="px-4 py-2">
+            {{ 'updateUser.table.profileId' | translate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            class="border-r text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedUser.userId }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedUser.names }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedUser.lastNames }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedUser.email }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            <span
+              [className]="
+                selectedUser.status
+                  ? 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark'
+                  : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
+              "
+            >
+              {{ selectedUser.status ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td
+            class="border-l text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedUser.profileId }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="font-light montserrat text-lg">
+    {{ 'updateUser.formUser' | translate }}:
+  </h2>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="updateUserForm"
+    class="flex w-full flex-col items-start justify-start space-y-3"
+  >
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ 'updateUser.form.name' | translate }}</mat-label>
+        <input
+          [formControl]="updateUserForm.controls.name"
+          [value]="selectedUser.names"
+          matInput
+          placeholder="{{ 'updateUser.form.namePlaceholder' | translate }}"
+        />
+        <mat-hint>{{ 'updateUser.form.nameHint' | translate }}</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ 'updateUser.form.lastName' | translate }}</mat-label>
+        <input
+          [value]="selectedUser.lastNames"
+          formControlName="lastName"
+          matInput
+          placeholder="{{ 'updateUser.form.lastNamePlaceholder' | translate }}"
+        />
+        <mat-hint>{{ 'updateUser.form.lastNameHint' | translate }}</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>{{ 'updateUser.form.email' | translate }}</mat-label>
+        <input
+          [value]="selectedUser.email"
+          class="w-2/3"
+          formControlName="email"
+          matInput
+          placeholder="{{ 'updateUser.form.emailPlaceholder' | translate }}"
+        />
+        <mat-hint>{{ 'updateUser.form.emailHint' | translate }}</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-1/3">
+        <mat-label>{{ 'updateUser.form.profile' | translate }}</mat-label>
+        <input
+          [valueAsNumber]="selectedUser.profileId.toString()"
+          class="w-2/3"
+          formControlName="profile"
+          matInput
+          placeholder="{{ 'updateUser.form.profilePlaceholder' | translate }}"
+        />
+        <mat-hint>{{ 'updateUser.form.profileHint' | translate }}</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'updateUser.form.status' | translate }}</mat-label>
+
+        <mat-select [(value)]="selectedUser.status" formControlName="status">
+          <mat-option>-</mat-option>
+          <mat-option
+            *ngFor="let option of selectOptions"
+            [value]="option.value"
+            >{{ option.label }}</mat-option
+          >
+        </mat-select>
+        <mat-hint>{{ 'updateUser.form.statusHint' | translate }}</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="w-full flex items-center gap-4">
+      <button
+        [disabled]="!updateUserForm.valid"
+        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+        type="submit"
+      >
+        {{ 'updateUser.form.updateButton' | translate }}
+      </button>
+
+      <button
+        (click)="patchForm()"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+      >
+        {{ 'updateUser.form.resetButton' | translate }}
+      </button>
+    </div>
+  </form>
+</section>

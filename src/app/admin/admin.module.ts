@@ -1,38 +1,75 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { AdminRoutingModule } from './admin-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AdminComponent } from './components/admin.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 import { FirstGlanceComponent } from './components/first-glance/first-glance.component';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '../../environments/environment';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { RouterModule, Routes } from '@angular/router';
+import { UsersComponent } from './components/users/users.component';
+import { MatIconModule } from '@angular/material/icon';
+import { SearchUsersSelectorComponent } from './components/users/search-users-selector/search-users-selector.component';
+import { UserSelectorComponent } from './components/users/user-selector/user-selector.component';
+import { PaginatorUsersComponent } from './components/users/paginator/paginator-users.component';
+import { UserNewComponent } from './components/users/user-new/user-new.component';
+import { UserUpdateComponent } from './components/users/user-update/user-update.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { HttpClientModule } from '@angular/common/http';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { BlockUIModule } from 'ng-block-ui';
-import { BlockUIHttpModule } from 'ng-block-ui/http';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { SearchUserDialogComponent } from './components/users/search-user-dialog/search-user-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { UserWrapperComponent } from './components/users/user-wrapper/user-wrapper.component';
+
+export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
+  new TranslateHttpLoader(http, environment.refTranslate, '.json');
+
+const routes: Routes = [
+  {
+    path: '',
+    component: FirstGlanceComponent
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  }
+];
 
 @NgModule({
-  declarations: [AdminComponent, SidebarComponent, FirstGlanceComponent],
-  imports: [
-    BrowserModule,
-    AdminRoutingModule,
-    BrowserAnimationsModule,
-    CommonModule,
-    HttpClientModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    BlockUIModule.forRoot(),
-    BlockUIHttpModule.forRoot(),
-    ToastModule
+  declarations: [
+    FirstGlanceComponent,
+    UsersComponent,
+    SearchUserDialogComponent,
+    SearchUsersSelectorComponent,
+    PaginatorUsersComponent,
+    UserNewComponent,
+    UserSelectorComponent,
+    UserUpdateComponent,
+    UserWrapperComponent
   ],
-  bootstrap: [AdminComponent],
-  providers: [MessageService]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    MatIconModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule
+  ],
+  bootstrap: [FirstGlanceComponent]
 })
 export class AdminModule {}

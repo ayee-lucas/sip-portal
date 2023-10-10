@@ -12,5 +12,6 @@ export const environment = {
   },
   SERVER_PATH: {
     GET_USERS: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + USER_PREFIX
-  }
+  },
+  refTranslate: './assets/i18n/'
 };

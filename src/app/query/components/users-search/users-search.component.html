@@ -1,0 +1,131 @@
+<!---- Filters ---->
+
+<form
+  [formGroup]="searchForm"
+  class="w-full h-44 flex flex-col-reverse gap-3 items-end justify-end"
+>
+  <div class="w-full flex items-center justify-between">
+    <!---- Id search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.id' | translate }}</mat-label>
+      <input
+        #input
+        formControlName="identifier"
+        matInput
+        placeholder="{{ 'filters.idPlaceholder' | translate }}"
+      />
+      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
+        >perm_identity</mat-icon
+      >
+    </mat-form-field>
+
+    <!---- Date search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.dateRange' | translate }}</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input
+          formControlName="start"
+          matStartDate
+          placeholder="{{ 'filters.startDate' | translate }}"
+        />
+        <input
+          formControlName="end"
+          matEndDate
+          placeholder="{{ 'filters.endDate' | translate }}"
+        />
+      </mat-date-range-input>
+      <mat-hint>{{ 'filters.dateHint' | translate }}</mat-hint>
+      <mat-datepicker-toggle
+        [for]="picker"
+        class="text-primary dark:text-primaryDark"
+        matIconSuffix
+      ></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error
+        *ngIf="searchForm.controls.start.hasError('matStartDateInvalid')"
+        >{{ 'filters.invalidStartDate' | translate }}</mat-error
+      >
+      <mat-error
+        *ngIf="searchForm.controls.end.hasError('matEndDateInvalid')"
+        >{{ 'filters.invalidEndDate' | translate }}</mat-error
+      >
+    </mat-form-field>
+
+    <!---- Entity search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.entity' | translate }}</mat-label>
+      <input
+        #input
+        formControlName="entity"
+        matInput
+        placeholder="{{ 'filters.entityPlaceholder' | translate }}"
+      />
+      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
+        >bar_chart</mat-icon
+      >
+    </mat-form-field>
+
+    <!---- Email search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.userEmail' | translate }}</mat-label>
+      <input
+        #input
+        formControlName="email"
+        matInput
+        placeholder="{{ 'filters.emailPlaceholder' | translate }}"
+      />
+      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
+        >alternate_email</mat-icon
+      >
+    </mat-form-field>
+
+    <!---- Operation search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.operation' | translate }}</mat-label>
+      <input
+        #input
+        formControlName="operation"
+        matInput
+        placeholder="{{ 'filters.operationPlaceholder' | translate }}"
+      />
+      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
+        >format_list_numbered</mat-icon
+      >
+    </mat-form-field>
+
+    <!---- Sub search ---->
+    <mat-form-field appearance="outline">
+      <mat-label>{{ 'filters.sub' | translate }}</mat-label>
+      <input
+        #input
+        formControlName="id"
+        matInput
+        placeholder="{{ 'filters.subPlaceholder' | translate }}"
+      />
+      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
+        >scatter_plot</mat-icon
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <button
+      (click)="changeFilter(searchForm)"
+      [disabled]="!searchForm.valid"
+      class="flex h-max items-center justify-center p-3 transition-all gap-3 rounded-2xl bg-surfaceC text-primary dark:bg-onPrimaryDark dark:text-primaryDark text-sm hover:bg-onPrimary hover:text-primary dark:hover:bg-surfaceCDark dark:hover:text-primaryDark"
+      type="submit"
+    >
+      <span>{{ 'filters.search' | translate }}</span>
+      <mat-icon fontIcon="search"></mat-icon>
+    </button>
+    <button
+      (click)="clearFilter()"
+      class="flex h-max items-center gap-3 p-3 transition-all shadow-inner rounded-2xl bg-surfaceC text-error dark:bg-onErrorDarK dark:text-errorDark text-sm hover:bg-errorDark hover:text-error dark:hover:bg-surfaceCDark dark:hover:text-error hover:after:content-['{{
+        'filters.clear' | translate
+      }}']"
+    >
+      <mat-icon fontIcon="cancel"></mat-icon>
+    </button>
+  </div>
+</form>

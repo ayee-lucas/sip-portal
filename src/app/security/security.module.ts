@@ -5,6 +5,13 @@ import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { canActivateLogin } from './guards/auth-guard';
 import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
+  new TranslateHttpLoader(http, environment.refTranslate, '.json');
 
 const routes: Routes = [
   {
@@ -21,7 +28,18 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [LoginComponent, PasswordRecoveryComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
+  ],
   exports: [RouterModule],
   bootstrap: [LoginComponent]
 })
