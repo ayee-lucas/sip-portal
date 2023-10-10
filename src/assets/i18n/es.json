@@ -92,7 +92,10 @@
     "profile": "Perfil",
     "enter a profile": "Ingrese un perfil",
     "Users profile id": "ID de perfil del usuario",
-    "users account status": "Estado de la cuenta"
+    "users account status": "Estado de la cuenta",
+    "table": {
+      "caption": "Nuevo Usuario"
+    }
   },
   "user": {
     "title": "Usuario",
@@ -115,6 +118,7 @@
     "deactivated": "Desactivado",
     "userDetails": "Detalles del Usuario",
     "table": {
+      "caption": "Update",
       "id": "ID",
       "name": "Nombre",
       "lastName": "Apellido",
