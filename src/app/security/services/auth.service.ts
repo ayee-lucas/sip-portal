@@ -27,7 +27,7 @@ export class AuthService {
     email: string,
     password: string
   ): Observable<AuthResponseType | AuthResponseErrorType> {
-    if (email !== 'admin@admin' || password !== 'admin123') {
+    if (email !== 'core@core' || password !== 'admin123') {
       this.authResponse$.next({ error: 'Invalid credentials' });
       return this.authResponse$;
     }

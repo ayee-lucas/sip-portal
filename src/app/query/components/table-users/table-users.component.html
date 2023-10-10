@@ -1,0 +1,133 @@
+<table
+  [dataSource]="dataSource"
+  class="rounded-xl bg-primary dark:bg-onPrimaryDark"
+  mat-table
+>
+  <caption
+    class="w-full px-3 py-4 text-start montserrat text-onPrimary bg-primary dark:text-primaryDark dark:bg-onPrimaryDark"
+  >
+    {{
+      'table.usersAudit' | translate
+    }}
+  </caption>
+  <ng-container matColumnDef="identifier">
+    <!-- Cambio de 'id' a 'identifier' -->
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl rounded-t-none bg-onPrimary dark:bg-onPrimaryDark"
+      mat-header-cell
+    >
+      {{ 'table.id' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.identifier }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+      mat-header-cell
+    >
+      {{ 'table.date' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.date | date: 'medium' }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="entity">
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+      mat-header-cell
+    >
+      {{ 'table.entity' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.entity }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="user">
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+      mat-header-cell
+    >
+      {{ 'table.user' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.user }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="operation">
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+      mat-header-cell
+    >
+      {{ 'table.operation' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.operation }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="id">
+    <!-- Cambio de 'sub' a 'id' -->
+    <th
+      *matHeaderCellDef
+      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+      mat-header-cell
+    >
+      {{ 'table.sub' | translate }}
+    </th>
+    <td
+      *matCellDef="let element"
+      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+      mat-cell
+    >
+      {{ element.id }}
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="columns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: columns" mat-row></tr>
+</table>
+
+<div
+  *ngIf="dataSource.filteredData.length === 0"
+  class="w-full py-16 text-center font-sans text-xl font-light dark:bg-surfaceCDark dark:text-primaryDark"
+>
+  {{ 'table.noRecordsFound' | translate }}
+</div>
+
+<mat-paginator
+  [attr.aria-label]="'table.selectPageOfUsers' | translate"
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageSize]="this.defaultParams['params'].size || 10"
+  class="text-white bg-surfaceC dark:bg-onPrimaryDark"
+></mat-paginator>

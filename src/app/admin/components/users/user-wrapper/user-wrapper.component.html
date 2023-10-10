@@ -1,0 +1,161 @@
+<div class="h-full w-full overflow-y-auto">
+  <header
+    class="h-fit w-full overflow-y-auto p-4 animate__animated animate__fadeIn"
+  >
+    <div
+      class="rounded-2xl px-4 pt-32 pb-3 bg-surfaceC text-onSurface dark:bg-surfaceCDark dark:text-onSurfaceDark"
+    >
+      <h1 class="w-fit rounded-2xl text-6xl font-semibold">
+        {{ 'operations.title' | translate }}
+      </h1>
+    </div>
+  </header>
+
+  <app-user-new></app-user-new>
+
+  <ng-container *ngIf="userSelected$ | async as user; else info">
+    <ng-container *ngIf="isUser(user)">
+      <section class="w-full">
+        <app-user-update [selectedUser]="user" class="w-full"></app-user-update>
+      </section>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #info>
+    <section class="flex h-2/3 w-full flex-col gap-5 p-4">
+      <h1
+        class="border-b pb-4 text-xl font-light montserrat border-outline dark:border-outlineDark/50"
+      >
+        {{ 'operations.manageUsers' | translate }}
+      </h1>
+
+      <div
+        class="grid h-full w-full grid-cols-2 grid-rows-2 gap-4 rounded-xl py-10"
+      >
+        <div
+          class="h-full w-full rounded-xl border p-4 pr-10 border-outline dark:border-outlineDark"
+        >
+          <h1
+            class="w-full border-b pb-4 text-xl montserrat border-outlineDark/50"
+          >
+            {{ 'operations.addUsers' | translate }}
+          </h1>
+          <div
+            class="mt-8 flex w-full items-center justify-between text-lg font-light"
+          >
+            <p>{{ 'operations.clickToAddUser' | translate }}</p>
+            <div
+              class="rounded-full p-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+            >
+              <svg
+                height="60"
+                viewBox="0 0 24 24"
+                width="60"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M19 17v2H7v-2s0-4 6-4s6 4 6 4m-3-9a3 3 0 1 0-3 3a3 3 0 0 0 3-3m3.2 5.06A5.6 5.6 0 0 1 21 17v2h3v-2s0-3.45-4.8-3.94M18 5a2.91 2.91 0 0 0-.89.14a5 5 0 0 1 0 5.72A2.91 2.91 0 0 0 18 11a3 3 0 0 0 0-6M8 10H5V7H3v3H0v2h3v3h2v-3h3Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-full w-full rounded-xl border p-4 border-outline dark:border-outlineDark"
+        >
+          <h1
+            class="w-full border-b pb-4 text-xl montserrat border-outlineDark/50"
+          >
+            {{ 'operations.updateUsers' | translate }}
+          </h1>
+          <div
+            class="mt-8 flex w-full items-center justify-between text-lg font-light"
+          >
+            <p>{{ 'operations.selectUserToUpdate' | translate }}</p>
+            <div
+              class="rounded-full p-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+            >
+              <svg
+                height="60"
+                viewBox="0 0 24 24"
+                width="60"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m21.7 13.35l-1 1l-2.05-2.05l1-1a.55.55 0 0 1 .77 0l1.28 1.28c.21.21.21.56 0 .77M12 18.94l6.06-6.06l2.05 2.05L14.06 21H12v-2.06M12 14c-4.42 0-8 1.79-8 4v2h6v-1.89l4-4c-.66-.08-1.33-.11-2-.11m0-10a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-full w-full rounded-xl border p-4 border-outline dark:border-outlineDark"
+        >
+          <h1
+            class="w-full border-b pb-4 text-xl montserrat border-outlineDark/50"
+          >
+            {{ 'operations.searchUsers' | translate }}
+          </h1>
+          <div
+            class="mt-8 flex w-full items-center justify-between text-lg font-light"
+          >
+            <p>{{ 'operations.enteranid' | translate }}</p>
+            <div
+              class="rounded-full p-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+            >
+              <svg
+                height="60"
+                viewBox="0 0 24 24"
+                width="60"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 13a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3a3 3 0 0 0-3 3m11 6.59V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12c.45 0 .85-.15 1.19-.4l-4.43-4.43c-.8.52-1.76.83-2.76.83a5 5 0 0 1-5-5a5 5 0 0 1 5-5a5 5 0 0 1 5 5c0 1-.31 1.96-.83 2.75L20 19.59Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-full w-full rounded-xl border p-4 border-outline dark:border-outlineDark"
+        >
+          <h1
+            class="w-full border-b pb-4 text-xl montserrat border-outlineDark/50"
+          >
+            {{ 'operations.loggedInAsAdmin' | translate }}
+          </h1>
+          <div
+            class="mt-8 flex w-full items-center justify-between text-lg font-light"
+          >
+            <p>{{ 'operations.yourinformation' | translate }}</p>
+            <div
+              class="rounded-full p-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+            >
+              <svg
+                height="60"
+                viewBox="0 0 32 32"
+                width="60"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 22a4 4 0 1 0-4-4a4 4 0 0 0 4 4zm0-6a2 2 0 1 1-2 2a2 2 0 0 1 2-2zM14 6h4v2h-4z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M24 2H8a2.002 2.002 0 0 0-2 2v24a2.002 2.002 0 0 0 2 2h16a2.003 2.003 0 0 0 2-2V4a2.002 2.002 0 0 0-2-2Zm-4 26h-8v-2a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Zm2 0v-2a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3v2H8V4h16v24Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </ng-template>
+</div>

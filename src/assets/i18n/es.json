@@ -12,7 +12,7 @@
   "block": {
     "holdTight": "¡Espere un momento!"
   },
-  "audit": {
+  "query": {
     "header": "Auditoría",
     "filters": "Filtros"
   },
@@ -47,7 +47,6 @@
     "noRecordsFound": "No se encontraron registros",
     "selectPageOfUsers": "Seleccionar página de usuarios"
   },
-
   "auth": {
     "parkingAdminPortal": "Portal de Administración de Estacionamiento",
     "portal": "Portal",
@@ -95,7 +94,6 @@
     "Users profile id": "ID de perfil del usuario",
     "users account status": "Estado de la cuenta"
   },
-
   "user": {
     "title": "Usuario",
     "close": "Cerrar",
@@ -105,13 +103,11 @@
     "loading": "Cargando",
     "error.description": "Error: No se pudo cargar el usuario."
   },
-
   "search": {
     "label": "Buscar",
     "placeholder": "Buscar usuarios por ID",
     "button": "Buscar"
   },
-
   "updateUser": {
     "title": "Actualizar Usuario",
     "close": "Cerrar",
@@ -146,7 +142,6 @@
       "resetButton": "Restablecer"
     }
   },
-
   "operations": {
     "title": "Usuarios",
     "manageUsers": "Administra tus usuarios aquí. Puedes agregar, editar y eliminar usuarios desde aquí.",

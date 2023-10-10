@@ -1,4 +1,4 @@
-import { ResponseUserError, User } from '../../users/types/response-type-users';
+import { ResponseUserError, User } from '../../admin/types/response-type-users';
 
 export function _isUser(t: User | ResponseUserError): t is User {
   if ('error' in t) return false;

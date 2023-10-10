@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { QueryService } from '../services/query.service';
+import { UserUpdateService } from '../services/user-update.service';
 
-describe('AuditQueryService', () => {
-  let service: QueryService;
+describe('UserUpdateService', () => {
+  let service: UserUpdateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(QueryService);
+    service = TestBed.inject(UserUpdateService);
   });
 
   it('should be created', () => {
