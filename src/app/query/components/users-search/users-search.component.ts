@@ -14,8 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-search',
-  templateUrl: './users-search.component.html',
-  styleUrls: ['./users-search.component.scss']
+  templateUrl: './users-search.component.html'
 })
 export class UsersSearchComponent implements OnInit {
   @Input() defaultParams!: Params;

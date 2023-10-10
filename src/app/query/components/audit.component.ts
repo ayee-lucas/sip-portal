@@ -7,8 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-query',
-  templateUrl: './audit.component.html',
-  styleUrls: ['./audit.component.scss']
+  templateUrl: './audit.component.html'
 })
 export class AuditComponent implements OnInit {
   data: User[] = [];

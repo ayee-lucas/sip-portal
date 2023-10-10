@@ -17,7 +17,6 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-table-users',
   templateUrl: './table-users.component.html',
-  styleUrls: ['./table-users.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class TableUsersComponent implements AfterViewInit, OnInit {
