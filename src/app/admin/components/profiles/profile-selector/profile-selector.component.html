@@ -5,12 +5,12 @@
       class="relative w-full rounded-xl bg-surface dark:bg-surfaceDark before:content-[''] before:absolute before:top-0 before:bottom-0 before:dark:bg-primaryDark/80 before:bg-primary before:w-3 before:rounded-l-xl"
       role="button"
     >
-      <div class="flex flex-col p-4 ml-3">
-        <span class="text-xl">ID: {{ profile.profileId }}</span>
+      <div class="flex flex-col p-2 ml-3">
+        <span class="text-onSurface/80 dark:text-onSurfaceDark/80"
+          >ID: {{ profile.profileId }}</span
+        >
 
-        <span class="text-lg text-onSurface/80 dark:text-onSurfaceDark/80">
-          Nombre: {{ profile.name }}
-        </span>
+        <span class="text-lg"> Nombre: {{ profile.name }} </span>
 
         <span class="text-onSurface/70 dark:text-onSurfaceDark/70">
           Descripcion: {{ profile.description_profile }}
