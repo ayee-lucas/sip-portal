@@ -2,6 +2,7 @@ const ROOT_PATH = 'http://localhost:8082';
 const PORTAL_PREFIX = '/sip-services';
 const API_PREFIX = '/api';
 const USER_PREFIX = '/user';
+const PROFILE_PREFIX = '/profile';
 
 export const environment = {
   ROUTE: {
@@ -11,7 +12,8 @@ export const environment = {
     login: 'login'
   },
   SERVER_PATH: {
-    GET_USERS: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + USER_PREFIX
+    USERS: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + USER_PREFIX,
+    PROFILES: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + PROFILE_PREFIX
   },
   refTranslate: './assets/i18n/'
 };
