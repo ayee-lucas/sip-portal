@@ -8,6 +8,10 @@ import {
 import { Observable } from 'rxjs';
 import { Profile } from '../../../types/response-type-profiles';
 import { ProfileSelectorSearchService } from '../../../services/profile-selector-search.service';
+import {
+  _isProfile,
+  _isProfileResponseError
+} from '../../../../shared/utils/TypeGuards';
 
 @Component({
   selector: 'app-search-profile-dialog',
@@ -15,6 +19,10 @@ import { ProfileSelectorSearchService } from '../../../services/profile-selector
 })
 export class SearchProfileDialogComponent implements OnInit {
   profile$!: Observable<Profile | ResponseError | ResponseLoading>;
+
+  /** @internal */ isError = _isProfileResponseError;
+
+  /** @internal */ isProfile = _isProfile;
 
   constructor(
     public dialogRef: MatDialogRef<SearchProfileDialogComponent>,
