@@ -45,6 +45,17 @@
         <mat-icon>supervisor_account</mat-icon>
       </a>
     </li>
+    <li>
+      <a
+        [matTooltip]="'Perfiles'"
+        [queryParams]="{ page: 0, size: 10, sort: 'profileId' }"
+        [routerLink]="['/profiles']"
+        mat-icon-button
+        routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
+      >
+        <mat-icon>assignment_ind</mat-icon>
+      </a>
+    </li>
     <li class="mt-auto">
       <button
         (click)="logout()"
