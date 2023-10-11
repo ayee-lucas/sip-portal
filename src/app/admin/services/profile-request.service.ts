@@ -35,7 +35,6 @@ export class ProfileRequestService {
   }
 
   private requestProfiles(url: string) {
-    console.log(url);
     this.http
       .get<ResponseProfile>(url)
       .pipe(
