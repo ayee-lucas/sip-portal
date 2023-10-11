@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
 import {
+  ResponseError,
   ResponseLoading,
-  ResponseUserError,
   User
 } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
@@ -14,7 +14,7 @@ import { MessageService } from 'primeng/api';
 })
 export class UserSelectorSearchService {
   private singleUser$ = new BehaviorSubject<
-    User | ResponseUserError | ResponseLoading
+    User | ResponseError | ResponseLoading
   >({ loading: true });
 
   constructor(
@@ -23,20 +23,20 @@ export class UserSelectorSearchService {
   ) {}
 
   init(id: number) {
-    const url = new URL(`${environment.SERVER_PATH.GET_USERS}/{id}`);
+    const url = new URL(`${environment.SERVER_PATH.USERS}/{id}`);
 
     url.searchParams.set('id', id.toString());
 
     this.requestUser(url.toString());
   }
 
-  getUser(): Observable<User | ResponseUserError | ResponseLoading> {
+  getUser(): Observable<User | ResponseError | ResponseLoading> {
     return this.singleUser$;
   }
 
   private requestUser(url: string) {
     this.http
-      .get<User | ResponseUserError>(url)
+      .get<User | ResponseError>(url)
       .pipe(
         catchError(err => {
           if ('error' in err) {
@@ -51,7 +51,7 @@ export class UserSelectorSearchService {
             return of(errorObj);
           }
 
-          const data: ResponseUserError = {
+          const data: ResponseError = {
             error: {
               errorCode: 0,
               errorType: 'FATAL_ERROR',
