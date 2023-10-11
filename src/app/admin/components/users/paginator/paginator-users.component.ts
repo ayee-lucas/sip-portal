@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { UserOperationService } from '../../../services/user-operation.service';
 import { QueryService } from '../../../../query/services/query.service';
-import { Params } from '@angular/router';
 import { ResponseUserSuccess } from '../../../types/response-type-users';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -9,9 +8,8 @@ import { PageEvent } from '@angular/material/paginator';
   selector: 'app-paginator-users',
   templateUrl: './paginator-users.component.html'
 })
-export class PaginatorUsersComponent implements OnInit {
+export class PaginatorUsersComponent {
   @Input() responsePage!: ResponseUserSuccess | null;
-  params!: Params;
 
   options = [5, 10, 15, 20];
 
@@ -20,18 +18,15 @@ export class PaginatorUsersComponent implements OnInit {
     private userOperationService: UserOperationService
   ) {}
 
-  ngOnInit() {
-    this.params = this.queryService.getParams();
-  }
-
   pageHandler(e: PageEvent) {
+    const params = this.queryService.getParams();
+
     this.queryService.updateParams({ size: e.pageSize, page: e.pageIndex });
+
     this.userOperationService.init({
-      ...this.params['params'],
+      sort: params['params'].sort,
       page: e.pageIndex,
       size: e.pageSize
     });
-
-    console.log(e);
   }
 }

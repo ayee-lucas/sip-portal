@@ -9,7 +9,7 @@
         <h1
           class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
         >
-          List
+          Perfiles
         </h1>
 
         <button
@@ -20,12 +20,17 @@
         </button>
       </header>
 
+      <app-search-profile></app-search-profile>
+
       <ng-container *ngIf="isProfileSuccess(response); else loading">
         <div class="overflow-y-auto pr-4">
           <app-profile-selector
             [profiles]="response.content"
           ></app-profile-selector>
         </div>
+        <app-paginator-profiles
+          [responsePage]="response"
+        ></app-paginator-profiles>
       </ng-container>
 
       <ng-template #loading>

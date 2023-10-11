@@ -1,4 +1,8 @@
-import { ResponseError, ResponseLoading } from './response-type-users';
+import {
+  Pageable,
+  ResponseError,
+  ResponseLoading
+} from './response-type-users';
 
 export type ResponseProfile =
   | ResponseProfileSuccess
@@ -16,15 +20,6 @@ type Sort = {
   sorted: boolean;
   empty: boolean;
   unsorted: boolean;
-};
-
-type Pageable = {
-  sort: Sort;
-  pageNumber: number;
-  pageSize: number;
-  offset: number;
-  paged: boolean;
-  unpaged: boolean;
 };
 
 export type ResponseProfileSuccess = {
