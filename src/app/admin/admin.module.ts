@@ -28,6 +28,7 @@ import { ProfileSelectorComponent } from './components/profiles/profile-selector
 import { SearchProfileComponent } from './components/profiles/search-profile/search-profile.component';
 import { PaginatorProfilesComponent } from './components/paginator-profiles/paginator-profiles.component';
 import { SearchProfileDialogComponent } from './components/profiles/search-profile-dialog/search-profile-dialog.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -83,7 +84,8 @@ const routes: Routes = [
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatProgressBarModule
   ],
   bootstrap: [FirstGlanceComponent]
 })
