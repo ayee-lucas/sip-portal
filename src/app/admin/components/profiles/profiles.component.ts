@@ -24,6 +24,6 @@ export class ProfilesComponent implements OnInit {
 
     this.profiles$ = this.profileRequest.getProfiles();
 
-    this.profileRequest.init(params);
+    this.profileRequest.init(params['params']);
   }
 }
