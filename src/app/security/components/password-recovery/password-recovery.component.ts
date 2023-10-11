@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,13 +7,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class PasswordRecoveryComponent {
   constructor(
-    private TranslateService: TranslateService,
-    private router: Router
+    private TranslateService: TranslateService
   ) {
     this.TranslateService.setDefaultLang('es');
     this.TranslateService.use('es');
-  }
-  goToChangePassword() {
-    this.router.navigate(['auth/change']);
   }
 }
