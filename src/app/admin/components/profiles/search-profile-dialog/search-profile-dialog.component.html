@@ -1,3 +1,32 @@
-<h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
-  Perfil Encontrado
-</h1>
+<ng-container *ngIf="profile$ | async as profile">
+  <ng-container *ngIf="isProfile(profile); else loading">
+    <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
+      Perfil Encontrado
+    </h1>
+    <div class="!bg-surface dark:!bg-surfaceDark w-full" mat-dialog-content>
+      <div class="pt-4 w-full">
+        <h1 class="text-xl">Name: {{ profile.name }}</h1>
+      </div>
+    </div>
+
+    <mat-dialog-actions class="!bg-surface dark:!bg-surfaceDark w-full">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+      <button [mat-dialog-close]="true" mat-button>Delete</button>
+    </mat-dialog-actions>
+  </ng-container>
+
+  <ng-container *ngIf="isError(profile)">
+    <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
+      Perfil No Encontrado
+    </h1>
+
+    {{ profile.error.description }}
+  </ng-container>
+
+  <ng-template #loading>
+    <div mat-dialog-content>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+  </ng-template>
+</ng-container>
