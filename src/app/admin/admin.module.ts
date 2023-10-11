@@ -23,6 +23,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserWrapperComponent } from './components/users/user-wrapper/user-wrapper.component';
+import { ProfilesComponent } from './components/profiles/profiles.component';
+import { ProfileSelectorComponent } from './components/profiles/profile-selector/profile-selector.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -35,6 +37,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'profiles',
+    component: ProfilesComponent
   }
 ];
 
@@ -48,7 +54,9 @@ const routes: Routes = [
     UserNewComponent,
     UserSelectorComponent,
     UserUpdateComponent,
-    UserWrapperComponent
+    UserWrapperComponent,
+    ProfilesComponent,
+    ProfileSelectorComponent
   ],
   imports: [
     CommonModule,
