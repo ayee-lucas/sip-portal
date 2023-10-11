@@ -1,9 +1,9 @@
 export type ResponseUser =
   | ResponseUserSuccess
-  | ResponseUserError
+  | ResponseError
   | ResponseLoading;
 
-export type ResponseUserError = {
+export type ResponseError = {
   error: {
     errorCode: number;
     errorType: string;
