@@ -8,10 +8,14 @@
   </header>
   <section class="p-4">
     <div>
-      <h1 class="text-4xl font-semibold w-fit rounded-2xl text-center text-primaryDark mb-4">Welcome</h1>
+      <h1
+        class="text-4xl font-semibold bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block"
+      >
+      {{ 'first.welcome' | translate }}
+      </h1>
     </div>
     <h2 class="text-primaryDark text-2xl font-semibold mb-4 text-center">
-      Quick Access
+      {{ 'first.quickAcceses' | translate }}
     </h2>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -19,75 +23,41 @@
         class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
       >
         <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          Parking Lots
+          {{ 'first.parkingLots' | translate }}
         </h2>
-        <ul class="list-disc pl-4 hidden text-primary">
-          <li>Code</li>
-          <li>Name</li>
-          <li>Address</li>
-          <li>Phone</li>
-          <li>Custodian</li>
-          <li>Status</li>
-        </ul>
       </div>
 
       <div
         class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
       >
         <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          Rates
+          {{ 'first.rates' | translate }}
         </h2>
-        <ul class="list-disc pl-4 hidden text-primary">
-          <li>Name</li>
-          <li>Day</li>
-          <li>Start Time</li>
-          <li>End Time</li>
-          <li>Price</li>
-          <li>Status</li>
-        </ul>
       </div>
 
       <div
         class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
       >
         <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          Operational Part for Registering a New Entry
+          {{ 'first.registerEntry' | translate }}
         </h2>
-        <ul class="list-disc pl-4 hidden text-primary">
-          <li>Automated Date and Time</li>
-          <li>License Plate</li>
-          <li>Select Rate</li>
-        </ul>
       </div>
 
       <div
         class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
       >
         <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          Operational Part for Charging an Entry
+          {{ 'first.chargeEntry' | translate }}
         </h2>
-        <ul class="list-disc pl-4 hidden text-primary">
-          <li>Select Vehicle by License Plate</li>
-          <li>Enter Exit Time</li>
-          <li>Calculate Rate</li>
-          <li>Release Parking Space</li>
-        </ul>
       </div>
 
       <div
         class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
       >
         <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          Report
+          {{ 'first.reports' | translate }}
         </h2>
         <ul class="list-disc pl-4 hidden text-primary">
-          <li>Report of Parking Charges by Date</li>
-          <ul class="list-disc pl-4 hidden text-primary">
-            <li>License Plate</li>
-            <li>Entry Date</li>
-            <li>Exit Date</li>
-            <li>Amount</li>
-          </ul>
         </ul>
       </div>
     </div>

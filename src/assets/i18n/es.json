@@ -1,6 +1,13 @@
 {
   "first": {
-    "title": "Portal de Estacionamiento"
+    "title": "Portal de Estacionamiento",
+    "welcome": "Bienvenido",
+    "quickAcceses": "Accesos rápidos",
+    "parkingLots": "Lotes de estacionamiento",
+    "rates": "Tarifas",
+    "registerEntry": "Parte operativa para registrar una nueva entrada",
+    "chargeEntry": "Parte operativa para cobrar una entrada",
+    "reports": "Reportes"
   },
   "sidebar": {
     "home": "Inicio",
