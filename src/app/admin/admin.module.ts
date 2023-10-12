@@ -29,6 +29,9 @@ import { SearchProfileComponent } from './components/profiles/search-profile/sea
 import { PaginatorProfilesComponent } from './components/paginator-profiles/paginator-profiles.component';
 import { NgOptimizedImage } from '@angular/common'
 
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
 
@@ -83,7 +86,9 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatProgressBarModule
+
   ],
   bootstrap: [FirstGlanceComponent]
 })
