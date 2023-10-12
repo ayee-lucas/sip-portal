@@ -3,7 +3,7 @@
     (click)="openModal()"
     class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
   >
-    <span>{{ 'newuser.newUser' | translate }}</span>
+    <span>{{ 'newUser.form.newUser' | translate }}</span>
     <mat-icon>add_circle</mat-icon>
   </button>
 </div>
@@ -28,7 +28,7 @@
       <h1
         class="border-b p-8 text-3xl font-bold border-outline dark:border-outline/50"
       >
-        {{ 'newuser.New User' | translate }}
+        {{ 'newUser.form.newUser' | translate }}
       </h1>
 
       <button
@@ -45,48 +45,50 @@
       <form (ngSubmit)="onSubmit()" [formGroup]="newUserForm" class="space-y-4">
         <div class="flex w-full items-center gap-3">
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'newuser.name' | translate }}</mat-label>
+            <mat-label>{{ 'newUser.form.name' | translate }}</mat-label>
             <input
               [formControl]="newUserForm.controls.name"
               matInput
               placeholder="Name"
             />
-            <mat-hint>{{ 'newuser.enter a name' | translate }}</mat-hint>
+            <mat-hint>{{ 'newUser.form.enterName' | translate }}</mat-hint>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'newuser.lastName' | translate }}</mat-label>
+            <mat-label>{{ 'newUser.form.lastName' | translate }}</mat-label>
             <input
               [formControl]="newUserForm.controls.lastName"
               matInput
               placeholder="Username"
             />
-            <mat-hint>{{ 'newuser.enter a last name' | translate }}</mat-hint>
+            <mat-hint>{{ 'newUser.form.enterLastName' | translate }}</mat-hint>
           </mat-form-field>
         </div>
 
         <div class="flex w-full items-center gap-2">
           <mat-form-field appearance="outline" class="w-full">
-            <mat-label>{{ 'newuser.email' | translate }}</mat-label>
+            <mat-label>{{ 'newUser.form.email' | translate }}</mat-label>
             <input
               [formControl]="newUserForm.controls.email"
               matInput
               placeholder="Email"
             />
-            <mat-hint>{{ 'newuser.enterEmailAddress' | translate }}</mat-hint>
+            <mat-hint>{{
+              'newUser.form.enterEmailAddress' | translate
+            }}</mat-hint>
           </mat-form-field>
           <mat-form-field appearance="outline" class="w-1/3">
-            <mat-label> {{ 'newuser.profile' | translate }}</mat-label>
+            <mat-label> {{ 'newUser.form.profile' | translate }}</mat-label>
             <input
               [formControl]="newUserForm.controls.profileId"
               class="w-2/3"
               matInput
               placeholder="Profile"
             />
-            <mat-hint>{{ 'newuser.Users profile id' | translate }}</mat-hint>
+            <mat-hint>{{ 'newUser.form.usersProfileId' | translate }}</mat-hint>
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>{{ 'newuser.status' | translate }}</mat-label>
+            <mat-label>{{ 'newUser.form.status' | translate }}</mat-label>
             <mat-select
               [(value)]="selectOptions[0].value"
               [formControl]="newUserForm.controls.status"
@@ -99,7 +101,7 @@
               >
             </mat-select>
             <mat-hint>{{
-              'newuser.users account status' | translate
+              'newUser.form.usersAccountStatus' | translate
             }}</mat-hint>
           </mat-form-field>
         </div>
@@ -109,14 +111,14 @@
             class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
             type="submit"
           >
-            {{ 'newuser.addUser' | translate }}
+            {{ 'newUser.form.addUser' | translate }}
           </button>
 
           <button
             (click)="newUserForm.reset()"
             class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
           >
-            {{ 'newuser.reset' | translate }}
+            {{ 'newUser.form.reset' | translate }}
           </button>
         </div>
       </form>
@@ -124,7 +126,7 @@
       <h1
         class="mt-9 text-xl font-semibold mb-5 border-b border-outline dark:border-outlineDark/50"
       >
-        {{ 'newuser.preview' | translate }}
+        {{ 'newUser.form.preview' | translate }}
       </h1>
 
       <div
@@ -135,16 +137,20 @@
         >
           <caption>
             {{
-              'newuser.table.caption' | translate
+              'newUser.table.caption' | translate
             }}
           </caption>
           <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
             <tr>
-              <th class="px-4 py-2">{{ 'newuser.name' | translate }}</th>
-              <th class="px-4 py-2">{{ 'newuser.lastName' | translate }}</th>
-              <th class="px-4 py-2">{{ 'newuser.email' | translate }}</th>
-              <th class="px-4 py-2">{{ 'newuser.status' | translate }}</th>
-              <th class="px-4 py-2">{{ 'newuser.profileId' | translate }}</th>
+              <th class="px-4 py-2">{{ 'newUser.form.name' | translate }}</th>
+              <th class="px-4 py-2">
+                {{ 'newUser.form.lastName' | translate }}
+              </th>
+              <th class="px-4 py-2">{{ 'newUser.form.email' | translate }}</th>
+              <th class="px-4 py-2">{{ 'newUser.form.status' | translate }}</th>
+              <th class="px-4 py-2">
+                {{ 'newUser.form.profileId' | translate }}
+              </th>
             </tr>
           </thead>
           <tbody>
