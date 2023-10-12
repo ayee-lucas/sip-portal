@@ -1,64 +1,75 @@
 <main class="w-full h-screen p-4 animate__animated animate__fadeIn">
-  <header
-    class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-32 pb-3 px-4"
-  >
-    <h1 class="text-6xl font-semibold w-fit rounded-2xl">
-      {{ 'first.title' | translate }}
-    </h1>
-  </header>
   <section class="p-4">
     <div>
       <h1
         class="text-4xl font-semibold bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block"
       >
-      {{ 'first.welcome' | translate }}
+        {{ 'first.welcome' | translate }}
       </h1>
     </div>
-    <h2 class="text-primaryDark text-2xl font-semibold mb-4 text-center">
+    <h1 class="text-primaryDark text-2xl font-semibold mb-4 text-center">
       {{ 'first.quickAcceses' | translate }}
-    </h2>
+    </h1>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
-      >
-        <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          {{ 'first.parkingLots' | translate }}
-        </h2>
+      <div class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105">
+        <div class="max-w-xs mx-auto sm:max-w-sm lg:max-w-xs xl:max-w-sm"> <!-- Contenedor para la imagen -->
+          <img src="https://i.pinimg.com/originals/aa/c4/79/aac47997d1f700b9dbd0af658368120e.jpg" class="w-full h-32 sm:h-40 lg:h-32 xl:h-40 object-cover" alt="Descripción de la imagen">
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-primaryDark text-xl font-semibold mb-4 cursor-pointer">{{ 'first.parkingLots' | translate }}</div>
+          <p class="text-gray-700 text-base">
+            {{ 'first.parkingLotsDescription' | translate }}
+          </p>
+        </div>
       </div>
 
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
-      >
-        <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          {{ 'first.rates' | translate }}
-        </h2>
+      <div class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105">
+        <div class="max-w-xs mx-auto sm:max-w-sm lg:max-w-xs xl:max-w-sm"> <!-- Contenedor para la imagen -->
+          <img src="https://microdata.es/wp-content/uploads/tarifas-1-e1562842291800.png" class="w-full h-32 sm:h-40 lg:h-32 xl:h-40 object-cover" alt="Descripción de la imagen">
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-primaryDark text-xl font-semibold mb-4 cursor-pointer">{{ 'first.rates' | translate }}</div>
+          <p class="text-gray-700 text-base">
+            {{ 'first.parkingFeesDescription' | translate }}
+          </p>
+        </div>
       </div>
 
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
-      >
-        <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          {{ 'first.registerEntry' | translate }}
-        </h2>
+      <div class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105">
+        <div class="max-w-xs mx-auto sm:max-w-sm lg:max-w-xs xl:max-w-sm"> <!-- Contenedor para la imagen -->
+          <img src="https://previews.123rf.com/images/rosadu/rosadu1607/rosadu160700029/61521256-l%C3%A1piz-y-la-libreta-de-registros-importantes.jpg" class="w-full h-32 sm:h-40 lg:h-32 xl:h-40 object-cover" alt="Descripción de la imagen">
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-primaryDark text-xl font-semibold mb-4 cursor-pointer">{{ 'first.registerEntry' | translate }}</div>
+          <p class="text-gray-700 text-base">
+            {{ 'first.register' | translate }}
+          </p>
+        </div>
       </div>
 
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
-      >
-        <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          {{ 'first.chargeEntry' | translate }}
-        </h2>
+      <div class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105">
+        <div class="max-w-xs mx-auto sm:max-w-sm lg:max-w-xs xl:max-w-sm"> <!-- Contenedor para la imagen -->
+          <img src="https://media.istockphoto.com/id/1171263734/es/vector/puerta-de-barrera-de-seguridad-del-coche-ilustraci%C3%B3n-de-dise%C3%B1o-de-icono-moderno-vectorial.jpg?s=612x612&w=0&k=20&c=cBIFextU4WUqMspHY9bjEjD5FSsyyL6nBF6Bitayl9g=" class="w-full h-32 sm:h-40 lg:h-32 xl:h-40 object-cover" alt="Descripción de la imagen">
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-primaryDark text-xl font-semibold mb-4 cursor-pointer">{{ 'first.chargeEntry' | translate }}</div>
+          <p class="text-gray-700 text-base">
+            {{ 'first.charge' | translate }}
+          </p>
+        </div>
       </div>
 
-      <div
-        class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105"
-      >
-        <h2 class="text-primaryDark text-xl font-semibold mb-4 cursor-pointer">
-          {{ 'first.reports' | translate }}
-        </h2>
-        <ul class="list-disc pl-4 hidden text-primary">
-        </ul>
+      <div class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark shadow-md rounded-lg p-4 transform transition-transform hover:scale-105">
+        <div class="max-w-xs mx-auto sm:max-w-sm lg:max-w-xs xl:max-w-sm"> <!-- Contenedor para la imagen -->
+          <img src="https://contenthub-static.grammarly.com/blog/wp-content/uploads/2021/12/how-to-write-a-report.jpeg" class="w-full h-32 sm:h-40 lg:h-32 xl:h-40 object-cover" alt="Descripción de la imagen">
+        </div>
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-primaryDark text-xl font-semibold mb-4 cursor-pointer">{{ 'first.reports' | translate }}</div>
+          <p class="text-gray-700 text-base">
+            {{ 'first.reportsDescription' | translate }}
+          </p>
+        </div>
       </div>
     </div>
   </section>

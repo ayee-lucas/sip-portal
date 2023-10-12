@@ -7,7 +7,12 @@
     "rates": "Tarifas",
     "registerEntry": "Parte operativa para registrar una nueva entrada",
     "chargeEntry": "Parte operativa para cobrar una entrada",
-    "reports": "Reportes"
+    "reports": "Reportes",
+    "parkingLotsDescription": "Espacios de estacionamiento diseñados para detenerse rápidamente en áreas de alto tráfico, como aeropuertos y centros comerciales.",
+    "parkingFeesDescription": "Las tarifas de estacionamiento varían según la duración de tu estadía.",
+    "register": "Registre de manera sencilla la entrada de vehículos a las instalaciones de estacionamiento mediante nuestro proceso de registro eficiente.",
+    "charge": "Cobrar una entrada es un proceso sencillo que se puede realizar en pocos pasos. Garantice una gestión eficaz y la seguridad del lugar.",
+    "reportsDescription": "Los reportes son una herramienta que le permite al administrador visualizar la información de los usuarios y las operaciones realizadas en el sistema."
   },
   "sidebar": {
     "home": "Inicio",
