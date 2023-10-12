@@ -1,0 +1,51 @@
+<main class="h-full flex w-full animate__animated animate__fadeIn">
+  <ng-container *ngIf="profiles$ | async as response">
+    <aside
+      class="flex h-full w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden"
+    >
+      <header
+        class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-onSurface/90 dark:border-outlineDark/40"
+      >
+        <h1
+          class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
+        >
+          Perfiles
+        </h1>
+
+        <button
+          class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
+          matTooltip="{{ 'list.refreshTooltip' | translate }}"
+        >
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </header>
+
+      <app-search-profile></app-search-profile>
+
+      <ng-container *ngIf="isProfileSuccess(response); else loading">
+        <div class="overflow-y-auto pr-4">
+          <app-profile-selector
+            [profiles]="response.content"
+          ></app-profile-selector>
+        </div>
+        <app-paginator-profiles
+          [responsePage]="response"
+        ></app-paginator-profiles>
+      </ng-container>
+
+      <ng-template #loading>
+        <div class="grid h-full w-full place-items-center">
+          <span class="animate-bounce text-3xl">.</span>
+        </div>
+      </ng-template>
+    </aside>
+  </ng-container>
+
+  <div class="w-full p-4">
+    <header
+      class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-32 pb-3 px-4"
+    >
+      <h1 class="text-6xl font-semibold w-fit rounded-2xl">Profile</h1>
+    </header>
+  </div>
+</main>

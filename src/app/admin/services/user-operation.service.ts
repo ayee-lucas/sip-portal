@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import { ResponseUser, ResponseUserError } from '../types/response-type-users';
+import { ResponseError, ResponseUser } from '../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment.development';
 import { Params } from '@angular/router';
@@ -18,7 +18,7 @@ export class UserOperationService {
   ) {}
 
   init(params: Params) {
-    const url = new URL(environment.SERVER_PATH.GET_USERS);
+    const url = new URL(environment.SERVER_PATH.USERS);
 
     Object.keys(params).forEach(key => {
       url.searchParams.append(key, params[key]);
@@ -45,7 +45,7 @@ export class UserOperationService {
       .pipe(
         catchError(err => {
           console.log('Error: ', err);
-          const data: ResponseUserError = {
+          const data: ResponseError = {
             error: {
               errorCode: 0,
               errorType: 'FATAL_ERROR',

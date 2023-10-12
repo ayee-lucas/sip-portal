@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { QueryService } from '../../../../query/services/query.service';
 import { UserSelectorSearchService } from '../../../services/user-selector-search.service';
 import { map, Observable } from 'rxjs';
-import { ResponseUserError, User } from '../../../types/response-type-users';
+import { ResponseError, User } from '../../../types/response-type-users';
 import { _isUser } from '../../../../shared/utils/TypeGuards';
 import { UserSelectorService } from '../../../services/user-selector.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,7 @@ type SearchUserDialogComponentData = {
   templateUrl: './search-user-dialog.component.html'
 })
 export class SearchUserDialogComponent implements OnInit {
-  user$!: Observable<User | ResponseUserError>;
+  user$!: Observable<User | ResponseError>;
   /** @internal */ isUser = _isUser;
 
   constructor(
@@ -47,7 +47,7 @@ export class SearchUserDialogComponent implements OnInit {
 
     this.user$ = this.userSearchService.getUser().pipe(
       map(data => {
-        return data as User | ResponseUserError;
+        return data as User | ResponseError;
       })
     );
 

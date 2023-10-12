@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, of } from 'rxjs';
 import {
+  ResponseError,
   ResponseLoading,
-  ResponseUserError,
   User
 } from '../types/response-type-users';
 import { environment } from '../../../environments/environment.development';
@@ -15,7 +15,7 @@ import { MessageService } from 'primeng/api';
 })
 export class UserUpdateService {
   private userToUpdate$ = new BehaviorSubject<
-    null | ResponseUserError | ResponseLoading
+    null | ResponseError | ResponseLoading
   >({ loading: true });
 
   constructor(
@@ -25,7 +25,7 @@ export class UserUpdateService {
   ) {}
 
   init(data: User) {
-    const url = new URL(`${environment.SERVER_PATH.GET_USERS}/{id}`);
+    const url = new URL(`${environment.SERVER_PATH.USERS}/{id}`);
 
     const id = data.userId;
 
@@ -36,7 +36,7 @@ export class UserUpdateService {
 
   private requestUpdateUser(url: string, body: User) {
     this.http
-      .put<null | ResponseUserError>(url, body)
+      .put<null | ResponseError>(url, body)
       .pipe(
         catchError(err => {
           if ('error' in err) {
@@ -45,7 +45,7 @@ export class UserUpdateService {
             return of(errorObj);
           }
 
-          const data: ResponseUserError = {
+          const data: ResponseError = {
             error: {
               errorCode: 0,
               errorType: 'FATAL_ERROR',

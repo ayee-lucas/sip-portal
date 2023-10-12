@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import {
-  ResponseError,
-  ResponseLoading,
-  User
-} from '../types/response-type-users';
+import { ResponseError, ResponseLoading } from '../types/response-type-users';
+import { Profile } from '../types/response-type-profiles';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
 import { MessageService } from 'primeng/api';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserSelectorSearchService {
-  private singleUser$ = new BehaviorSubject<
-    User | ResponseError | ResponseLoading
+export class ProfileSelectorSearchService {
+  private singleProfile$ = new BehaviorSubject<
+    Profile | ResponseError | ResponseLoading
   >({ loading: true });
 
   constructor(
@@ -23,20 +20,20 @@ export class UserSelectorSearchService {
   ) {}
 
   init(id: number) {
-    const url = new URL(`${environment.SERVER_PATH.USERS}/{id}`);
+    const url = new URL(`${environment.SERVER_PATH.PROFILES}/{id}`);
 
     url.searchParams.set('id', id.toString());
 
-    this.requestUser(url.toString());
+    this.requestProfile(url.toString());
   }
 
-  getUser(): Observable<User | ResponseError | ResponseLoading> {
-    return this.singleUser$;
+  getProfile(): Observable<Profile | ResponseError | ResponseLoading> {
+    return this.singleProfile$;
   }
 
-  private requestUser(url: string) {
+  private requestProfile(url: string) {
     this.http
-      .get<User | ResponseError>(url)
+      .get<Profile | ResponseError>(url)
       .pipe(
         catchError(err => {
           if ('error' in err) {
@@ -50,7 +47,6 @@ export class UserSelectorSearchService {
 
             return of(errorObj);
           }
-
           const data: ResponseError = {
             error: {
               errorCode: 0,
@@ -70,7 +66,7 @@ export class UserSelectorSearchService {
         })
       )
       .subscribe(data => {
-        this.singleUser$.next(data);
+        this.singleProfile$.next(data);
       });
   }
 }

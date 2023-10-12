@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserSelectorService } from '../../../services/user-selector.service';
 import { map, Observable, Subscription } from 'rxjs';
-import { ResponseUserError, User } from '../../../types/response-type-users';
+import { ResponseError, User } from '../../../types/response-type-users';
 import { QueryService } from '../../../../query/services/query.service';
 import { Params } from '@angular/router';
 import { UserSelectorSearchService } from '../../../services/user-selector-search.service';
@@ -13,9 +13,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './user-wrapper.component.html'
 })
 export class UserWrapperComponent implements OnInit, OnDestroy {
-  userSelected$!: Observable<User | null | ResponseUserError>;
+  userSelected$!: Observable<User | null | ResponseError>;
 
-  userParamLoaded$!: Observable<User | ResponseUserError>;
+  userParamLoaded$!: Observable<User | ResponseError>;
 
   params: Params;
   /** @internal */ isUser = _isUser;
@@ -65,7 +65,7 @@ export class UserWrapperComponent implements OnInit, OnDestroy {
           console.log('Error: ', data);
         }
 
-        return data as User | ResponseUserError;
+        return data as User | ResponseError;
       })
     );
   }

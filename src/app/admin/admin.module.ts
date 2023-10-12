@@ -13,7 +13,7 @@ import { UserSelectorComponent } from './components/users/user-selector/user-sel
 import { PaginatorUsersComponent } from './components/users/paginator/paginator-users.component';
 import { UserNewComponent } from './components/users/user-new/user-new.component';
 import { UserUpdateComponent } from './components/users/user-update/user-update.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -23,6 +23,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { UserWrapperComponent } from './components/users/user-wrapper/user-wrapper.component';
+import { ProfilesComponent } from './components/profiles/profiles.component';
+import { ProfileSelectorComponent } from './components/profiles/profile-selector/profile-selector.component';
+import { SearchProfileComponent } from './components/profiles/search-profile/search-profile.component';
+import { PaginatorProfilesComponent } from './components/paginator-profiles/paginator-profiles.component';
+import { SearchProfileDialogComponent } from './components/profiles/search-profile-dialog/search-profile-dialog.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -35,6 +41,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent
+  },
+  {
+    path: 'profiles',
+    component: ProfilesComponent
   }
 ];
 
@@ -48,7 +58,12 @@ const routes: Routes = [
     UserNewComponent,
     UserSelectorComponent,
     UserUpdateComponent,
-    UserWrapperComponent
+    UserWrapperComponent,
+    ProfilesComponent,
+    ProfileSelectorComponent,
+    SearchProfileComponent,
+    PaginatorProfilesComponent,
+    SearchProfileDialogComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +83,9 @@ const routes: Routes = [
     MatTooltipModule,
     MatDialogModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatProgressBarModule
   ],
   bootstrap: [FirstGlanceComponent]
 })

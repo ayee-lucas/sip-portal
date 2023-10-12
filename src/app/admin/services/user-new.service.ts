@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
+  ResponseError,
   ResponseLoading,
-  ResponseUserError,
   User
 } from '../types/response-type-users';
 import { BehaviorSubject, catchError, of } from 'rxjs';
@@ -15,7 +15,7 @@ import { UserOperationService } from './user-operation.service';
 })
 export class UserNewService {
   private userToAdd$ = new BehaviorSubject<
-    null | ResponseUserError | ResponseLoading
+    null | ResponseError | ResponseLoading
   >({ loading: true });
 
   constructor(
@@ -25,7 +25,7 @@ export class UserNewService {
   ) {}
 
   init(data: User) {
-    const url = new URL(environment.SERVER_PATH.GET_USERS);
+    const url = new URL(environment.SERVER_PATH.USERS);
 
     this.requestAddUser(url.toString(), data);
   }
@@ -39,7 +39,7 @@ export class UserNewService {
             return of(err.error);
           }
 
-          const data: ResponseUserError = {
+          const data: ResponseError = {
             error: {
               errorCode: 0,
               errorType: 'FATAL_ERROR',
