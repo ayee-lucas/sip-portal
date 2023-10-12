@@ -146,9 +146,9 @@
     "updateUsers": "Actualizar Usuarios",
     "selectUserToUpdate": "Selecciona un usuario a la izquierda para actualizarlo",
     "searchUsers": "Buscar Usuarios",
-    "enteranid": "Ingresa un ID y presiona el botón de búsqueda para mostrar el usuario",
+    "enterId": "Ingresa un ID y presiona el botón de búsqueda para mostrar el usuario",
     "loggedInAsAdmin": "Has iniciado sesión como administrador",
-    "yourinformation": "Tu información"
+    "yourInformation": "Tu información"
   },
   "list": {
     "title": "Lista",
