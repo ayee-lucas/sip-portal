@@ -27,7 +27,6 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
 import { ProfileSelectorComponent } from './components/profiles/profile-selector/profile-selector.component';
 import { SearchProfileComponent } from './components/profiles/search-profile/search-profile.component';
 import { PaginatorProfilesComponent } from './components/paginator-profiles/paginator-profiles.component';
-import { SearchProfileDialogComponent } from './components/profiles/search-profile-dialog/search-profile-dialog.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { NgOptimizedImage } from '@angular/common';
 
@@ -64,8 +63,7 @@ const routes: Routes = [
     ProfileSelectorComponent,
     SearchProfileComponent,
     PaginatorProfilesComponent,
-    SearchProfileDialogComponent,
-    NgOptimizedImage
+    
   ],
   imports: [
     CommonModule,
@@ -87,7 +85,8 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgOptimizedImage
   ],
   bootstrap: [FirstGlanceComponent]
 })
