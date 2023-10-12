@@ -1,5 +1,10 @@
-import { ResponseError, User } from '../../admin/types/response-type-users';
 import {
+  ResponseError,
+  ResponseLoading,
+  User
+} from '../../admin/types/response-type-users';
+import {
+  Profile,
   ResponseProfile,
   ResponseProfileSuccess
 } from '../../admin/types/response-type-profiles';
@@ -10,10 +15,22 @@ export function _isUser(t: User | ResponseError): t is User {
   return t !== undefined && 'userId' in t;
 }
 
-export function _isResponseError(t: User | ResponseError): t is ResponseError {
-  if ('error' in t) return true;
+export function _isUserResponseError(
+  t: User | ResponseError
+): t is ResponseError {
+  return 'error' in t;
+}
 
-  return false;
+export function _isProfile(
+  t: Profile | ResponseError | ResponseLoading
+): t is Profile {
+  return t !== undefined && 'profileId' in t;
+}
+
+export function _isProfileResponseError(
+  t: Profile | ResponseError | ResponseLoading
+): t is ResponseError {
+  return 'error' in t;
 }
 
 export function _IsProfileSuccess(
