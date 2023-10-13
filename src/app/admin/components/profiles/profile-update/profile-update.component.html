@@ -1,0 +1,125 @@
+<section class="flex w-full flex-col gap-7 p-8">
+  <header
+    class="w-full border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
+  >
+    <h1 class="font-light montserrat">Actualizar Perfil</h1>
+  </header>
+
+  <h2 class="font-light montserrat text-lg font-semibold">
+    Detalles del perfil
+  </h2>
+  <div
+    class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
+  >
+    <table
+      class="table-auto w-full montserrat font-light bg-surfaceC dark:bg-surfaceCDark rounded-b-lg p-10"
+    >
+      <caption>
+        {{
+          'updateUser.table.caption' | translate
+        }}
+      </caption>
+      <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
+        <tr>
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Nombre</th>
+          <th class="px-4 py-2">Descripcion</th>
+          <th class="px-4 py-2">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td
+            class="border-r text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedProfile.profileId }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedProfile.name }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            {{ selectedProfile.description_profile }}
+          </td>
+          <td
+            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+          >
+            <span
+              [className]="
+                selectedProfile.status
+                  ? 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark'
+                  : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
+              "
+            >
+              {{ selectedProfile.status ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
+
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="updateProfileForm"
+    class="flex w-full flex-col items-start justify-start space-y-3"
+  >
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input
+          [formControl]="updateProfileForm.controls.name"
+          matInput
+          placeholder="Nombre"
+        />
+        <mat-hint>Nombre del perfil</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descripcion</mat-label>
+        <input
+          [formControl]="updateProfileForm.controls.description_profile"
+          matInput
+          placeholder="Descripcion"
+        />
+        <mat-hint>Descripcion del Perfil</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+
+        <mat-select [(value)]="selectedProfile.status" formControlName="status">
+          <mat-option>-</mat-option>
+          <mat-option
+            *ngFor="let option of selectOptions"
+            [value]="option.value"
+            >{{ option.label }}</mat-option
+          >
+        </mat-select>
+        <mat-hint>Estado del perfil</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="w-full flex items-center gap-4">
+      <button
+        [disabled]="!updateProfileForm.valid"
+        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+        type="submit"
+      >
+        {{ 'updateUser.form.updateButton' | translate }}
+      </button>
+
+      <button
+        (click)="patchForm()"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+      >
+        {{ 'updateUser.form.resetButton' | translate }}
+      </button>
+    </div>
+  </form>
+</section>
