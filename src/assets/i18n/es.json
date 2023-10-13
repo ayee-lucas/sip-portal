@@ -1,11 +1,11 @@
 {
   "first": {
     "title": "Portal de Estacionamiento",
-    "welcome": "Bienvenido",
+    "welcome": "Bienvenido ",
     "quickAcceses": "Accesos rápidos",
     "parkingLots": "Lotes de estacionamiento",
     "rates": "Tarifas",
-    "registerEntry": "Parte operativa para registrar una nueva entrada",
+    "registerEntry": "Parte operativa para registrar",
     "chargeEntry": "Parte operativa para cobrar una entrada",
     "reports": "Reportes",
     "parkingLotsDescription": "Espacios de estacionamiento diseñados para detenerse rápidamente en áreas de alto tráfico, como aeropuertos y centros comerciales.",
