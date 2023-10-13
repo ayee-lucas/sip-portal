@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
-import { UserSelectorService } from '../../../services/user-selector.service';
 import { Profile } from '../../../types/response-type-profiles';
+import { ProfileSelectorService } from '../../../services/profile-selector.service';
 
 @Component({
   selector: 'app-profile-selector',
@@ -10,7 +9,9 @@ import { Profile } from '../../../types/response-type-profiles';
 export class ProfileSelectorComponent {
   @Input() profiles!: Profile[] | null;
 
-  responseSelected$!: Observable<Profile | null>;
+  constructor(private profileSelectorService: ProfileSelectorService) {}
 
-  constructor(private selectedUserService: UserSelectorService) {}
+  setProfile(profile: Profile) {
+    this.profileSelectorService.setSelectedProfile(profile);
+  }
 }
