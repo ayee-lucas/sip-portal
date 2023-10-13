@@ -14,11 +14,9 @@
   <app-user-new></app-user-new>
 
   <ng-container *ngIf="userSelected$ | async as user; else info">
-    <ng-container *ngIf="isUser(user)">
-      <section class="w-full">
-        <app-user-update [selectedUser]="user" class="w-full"></app-user-update>
-      </section>
-    </ng-container>
+    <section class="w-full">
+      <app-user-update [selectedUser]="user" class="w-full"></app-user-update>
+    </section>
   </ng-container>
 
   <ng-template #info>
