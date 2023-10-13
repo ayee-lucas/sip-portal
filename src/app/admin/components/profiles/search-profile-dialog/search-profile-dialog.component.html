@@ -41,7 +41,12 @@
       <div class="w-full flex items-center gap-3">
         <button class="w-full" mat-button mat-dialog-close>Cancel</button>
 
-        <button [mat-dialog-close]="true" class="w-full" mat-button>
+        <button
+          (click)="setProfile(profile)"
+          [mat-dialog-close]="true"
+          class="w-full"
+          mat-button
+        >
           Select
         </button>
       </div>
