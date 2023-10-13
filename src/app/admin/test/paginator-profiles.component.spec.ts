@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaginatorProfilesComponent } from '../components/paginator-profiles/paginator-profiles.component';
+import { PaginatorProfilesComponent } from '../components/profiles/paginator-profiles/paginator-profiles.component';
 
 describe('PaginatorProfilesComponent', () => {
   let component: PaginatorProfilesComponent;
