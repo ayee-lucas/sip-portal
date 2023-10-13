@@ -23,7 +23,7 @@
       <app-search-profile></app-search-profile>
 
       <ng-container *ngIf="isProfileSuccess(response); else loading">
-        <div class="overflow-y-auto pr-4">
+        <div class="overflow-y-auto mostly-customized-scrollbar pr-4">
           <app-profile-selector
             [profiles]="response.content"
           ></app-profile-selector>
