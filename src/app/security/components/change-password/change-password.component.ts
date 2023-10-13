@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
 import { ChangePasswordData } from '../../types/change-password-type';
 
 @Component({
@@ -18,10 +17,10 @@ export class ChangePasswordComponent implements OnInit {
   }
   private buildForm() {
     this.changePasswordForm = this.formBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      verificationCode: new FormControl('', Validators.required),
-      newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl('', Validators.required),
+      email: ['', [Validators.required, Validators.email]],
+      verificationCode:['', Validators.required],
+      newPassword: ['', Validators.required],  
+      confirmPassword: ['', Validators.required],
     });
   }
   changePassword() {
