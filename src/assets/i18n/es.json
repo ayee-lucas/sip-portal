@@ -7,7 +7,8 @@
     "audit": "Auditoría",
     "operations": "Operaciones",
     "logout": "Cerrar sesión",
-    "homeDescription": "Esta es la página de inicio."
+    "homeDescription": "Esta es la página de inicio.",
+    "query": "Consulta"
   },
   "block": {
     "holdTight": "¡Espere un momento!"

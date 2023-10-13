@@ -6,7 +6,9 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './password-recovery.component.html'
 })
 export class PasswordRecoveryComponent {
-  constructor(private TranslateService: TranslateService) {
+  constructor(
+    private TranslateService: TranslateService
+  ) {
     this.TranslateService.setDefaultLang('es');
     this.TranslateService.use('es');
   }
