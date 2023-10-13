@@ -58,6 +58,10 @@ export class SearchProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        this.searchProfileForm.setValue({ search: '' });
+      }
+
       this.queryService.deleteParam('id');
     });
   }
