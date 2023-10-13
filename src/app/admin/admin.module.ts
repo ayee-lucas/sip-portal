@@ -26,9 +26,11 @@ import { UserWrapperComponent } from './components/users/user-wrapper/user-wrapp
 import { ProfilesComponent } from './components/profiles/profiles.component';
 import { ProfileSelectorComponent } from './components/profiles/profile-selector/profile-selector.component';
 import { SearchProfileComponent } from './components/profiles/search-profile/search-profile.component';
-import { PaginatorProfilesComponent } from './components/paginator-profiles/paginator-profiles.component';
+import { PaginatorProfilesComponent } from './components/profiles/paginator-profiles/paginator-profiles.component';
 import { SearchProfileDialogComponent } from './components/profiles/search-profile-dialog/search-profile-dialog.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ProfileUpdateComponent } from './components/profiles/profile-update/profile-update.component';
+import { ProfileWrapperComponent } from './components/profiles/profile-wrapper/profile-wrapper.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -63,7 +65,9 @@ const routes: Routes = [
     ProfileSelectorComponent,
     SearchProfileComponent,
     PaginatorProfilesComponent,
-    SearchProfileDialogComponent
+    SearchProfileDialogComponent,
+    ProfileUpdateComponent,
+    ProfileWrapperComponent
   ],
   imports: [
     CommonModule,
