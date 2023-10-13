@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { QueryService } from '../../../../query/services/query.service';
 import {
   ResponseError,
@@ -12,6 +11,7 @@ import {
   _isProfile,
   _isProfileResponseError
 } from '../../../../shared/utils/TypeGuards';
+import { ProfileSelectorService } from '../../../services/profile-selector.service';
 
 @Component({
   selector: 'app-search-profile-dialog',
@@ -25,17 +25,17 @@ export class SearchProfileDialogComponent implements OnInit {
   /** @internal */ isProfile = _isProfile;
 
   constructor(
-    public dialogRef: MatDialogRef<SearchProfileDialogComponent>,
     private queryService: QueryService,
-    private profileSelectorSearchService: ProfileSelectorSearchService
+    private profileSelectorSearchService: ProfileSelectorSearchService,
+    private profileSelectorService: ProfileSelectorService
   ) {}
 
   ngOnInit() {
     this.requestProfile();
   }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  setProfile(profile: Profile) {
+    this.profileSelectorService.setSelectedProfile(profile);
   }
 
   private requestProfile() {
