@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { QueryService } from '../../../query/services/query.service';
-import { ProfileRequestService } from '../../services/profile-request.service';
+import { QueryService } from '../../../../query/services/query.service';
+import { ProfileRequestService } from '../../../services/profile-request.service';
 import { PageEvent } from '@angular/material/paginator';
-import { ResponseProfileSuccess } from '../../types/response-type-profiles';
+import { ResponseProfileSuccess } from '../../../types/response-type-profiles';
 
 @Component({
   selector: 'app-paginator-profiles',
