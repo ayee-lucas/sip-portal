@@ -1,32 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { ChangePasswordData } from '../../types/change-password-type';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html'
 })
-export class ChangePasswordComponent {
-  changePasswordForm: FormGroup;
+export class ChangePasswordComponent implements OnInit {
+  changePasswordForm!: FormGroup<ChangePasswordData>;
 
   constructor(private formBuilder: FormBuilder) {
-    this.changePasswordForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      verificationCode: ['', Validators.required],
-      newPassword: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', Validators.required],
-    });
   }
 
+  ngOnInit(): void {
+    this.buildForm();
+  }
+  private buildForm() {
+    this.changePasswordForm = this.formBuilder.group({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      verificationCode: new FormControl('', Validators.required),
+      newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', Validators.required),
+    });
+  }
   changePassword() {
     if (this.changePasswordForm.valid) {
       if (this.changePasswordForm.value.newPassword === this.changePasswordForm.value.confirmPassword) {
-        // Aquí puedes enviar los datos del formulario al servidor o realizar otras acciones necesarias.
         console.log('Password changed successfully: ' + this.changePasswordForm.value.newPassword);
+        // Here you can send the form data to the server or perform other necessary actions.
       } else {
         console.log('Passwords do not match.');
       }
     } else {
-      // El formulario no es válido, puedes mostrar mensajes de error o tomar otras acciones.
+      // The form is not valid, you can display error messages or take other actions.
     }
   }
 }
+
+
