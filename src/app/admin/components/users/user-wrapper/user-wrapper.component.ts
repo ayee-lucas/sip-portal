@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserSelectorService } from '../../../services/user-selector.service';
-import { map, Observable, Subscription } from 'rxjs';
-import { ResponseError, User } from '../../../types/response-type-users';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { User } from '../../../types/response-type-users';
 import { QueryService } from '../../../../query/services/query.service';
 import { Params } from '@angular/router';
 import { UserSelectorSearchService } from '../../../services/user-selector-search.service';
@@ -13,16 +13,35 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './user-wrapper.component.html'
 })
 export class UserWrapperComponent implements OnInit, OnDestroy {
-  userSelected$!: Observable<User | null | ResponseError>;
+  // User selected observable to be used in the template
+  userSelected$!: Observable<User | null>;
 
-  userParamLoaded$!: Observable<User | ResponseError>;
-
+  //  Params object to be used in the ngOnInit method
   params: Params;
-  /** @internal */ isUser = _isUser;
-  private userSubscription$!: Subscription;
 
+  // Unsubscribe subject to be used in the ngOnDestroy method
+  private unsubscribe$ = new Subject<boolean>();
+
+  // type guard to check if the object is a User
+  /**
+   * @private
+   * @internal
+   * */
+  private isUser = _isUser;
+
+  // Injecting the services to be used in the component
+  /**
+   * This method is called when the component is initialized
+   * it uses the queryService to get the params object from the URL
+   * assigns the params object to the params property
+   *
+   * @param userSelectorService
+   * @param userSearchService
+   * @param queryService
+   * @param translate
+   */
   constructor(
-    private selectedUserService: UserSelectorService,
+    private userSelectorService: UserSelectorService,
     private userSearchService: UserSelectorSearchService,
     private queryService: QueryService,
     private translate: TranslateService
@@ -32,51 +51,64 @@ export class UserWrapperComponent implements OnInit, OnDestroy {
     this.translate.use('es');
   }
 
+  // OnInit method
+  /**
+   * This method is called when the component is initialized
+   * Checks if the selected param exists and is greater than 0, calls the requestUser method
+   * to fetch the user data from the API when the component is initialized
+   *
+   * @returns void
+   * @memberof UserWrapperComponent
+   */
   ngOnInit() {
     const selectParam = this.params['params'].selected;
 
     if (selectParam && selectParam > 0) {
       this.requestUser();
 
-      this.subscribeToSelectedUser();
-
       this.userSearchService.init(selectParam);
 
       return;
     }
 
-    this.userSelected$ = this.selectedUserService.getUserSelected();
+    this.userSelected$ = this.userSelectorService.getUserSelected();
   }
 
+  // OnDestroy method
+  /**
+   * This method is called when the component is destroyed
+   * Handles the unsubscription from the userSelected$ observable
+   * @returns void
+   * @memberof ProfileWrapperComponent
+   */
   ngOnDestroy() {
-    if (this.userSubscription$) {
-      this.userSubscription$.unsubscribe();
-    }
+    this.unsubscribe$.next(true);
+    this.unsubscribe$.unsubscribe();
   }
 
+  // Request user method
+  /**
+   * This method is called when the component is initialized
+   * Calls the getUser method from the userSearchService
+   * to fetch the user data from the API when the component is initialized
+   * @private
+   * @returns void
+   * @memberof UserWrapperComponent
+   */
   requestUser() {
-    this.userParamLoaded$ = this.userSearchService.getUser().pipe(
-      map(data => {
+    this.userSearchService
+      .getUser()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(data => {
         if ('loading' in data) {
-          console.log('Loading: ', data);
+          return;
         }
 
-        if ('error' in data) {
-          console.log('Error: ', data);
+        if (this.isUser(data)) {
+          this.userSelectorService.setUserSelected(data);
+
+          this.userSelected$ = this.userSelectorService.getUserSelected();
         }
-
-        return data as User | ResponseError;
-      })
-    );
-  }
-
-  subscribeToSelectedUser() {
-    this.userSubscription$ = this.userParamLoaded$.subscribe(data => {
-      if (this.isUser(data)) {
-        this.selectedUserService.setUserSelected(data);
-      }
-
-      this.userSelected$ = this.selectedUserService.getUserSelected();
-    });
+      });
   }
 }
