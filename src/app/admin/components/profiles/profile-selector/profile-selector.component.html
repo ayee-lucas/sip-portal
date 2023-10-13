@@ -1,8 +1,13 @@
 <ul class="flex h-full w-full flex-col gap-3 px-3 py-5">
   <ng-container *ngIf="profiles">
     <li
+      (click)="setProfile(profile)"
       *ngFor="let profile of profiles"
-      class="relative w-full rounded-xl bg-surface dark:bg-surfaceDark before:content-[''] before:absolute before:top-0 before:bottom-0 before:dark:bg-primaryDark/80 before:bg-primary before:w-3 before:rounded-l-xl"
+      [className]="
+        profile.status
+          ? 'transition-all relative w-full rounded-xl bg-surface dark:bg-surfaceDark hover:bg-onPrimary/30 hover:dark:bg-onPrimaryDark/30'
+          : 'transition-all relative w-full rounded-xl bg-error/30 hover:animate-pulse dark:bg-onErrorDarK hover:bg-errorDark hover:dark:bg-onErrorDarK/30'
+      "
       role="button"
     >
       <div class="flex flex-col p-2 ml-5">
