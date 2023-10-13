@@ -3,16 +3,48 @@
     <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
       Perfil Encontrado
     </h1>
-    <div class="!bg-surface dark:!bg-surfaceDark w-full" mat-dialog-content>
-      <div class="pt-4 w-full">
-        <h1 class="text-xl">Name: {{ profile.name }}</h1>
+    <div
+      class="!bg-surface dark:!bg-surfaceDark w-full h-[72%] mostly-customized-scrollbar"
+      mat-dialog-content
+    >
+      <div class="w-full pt-9">
+        <div class="flex w-full flex-col gap-2 rounded-xl border montserrat">
+          <h1
+            class="w-full px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
+          >
+            ID: {{ profile.profileId }}
+          </h1>
+          <h1
+            class="w-full border-t px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
+          >
+            Nombre: {{ profile.name }}
+          </h1>
+          <h1
+            class="w-full border-t px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
+          >
+            Descripcion: {{ profile.description_profile }}
+          </h1>
+          <h1
+            [className]="
+              profile.status
+                ? 'w-full rounded-b-xl border-t px-3 py-2 text-xl bg-onPrimary border-outline dark:bg-onPrimaryDark dark:border-outlineDark/40'
+                : 'w-full rounded-b-xl border-t px-3 py-2 text-xl bg-errorDark border-outline dark:bg-onErrorDarK dark:border-outlineDark/40'
+            "
+          >
+            Status: {{ profile.status }}
+          </h1>
+        </div>
       </div>
     </div>
 
-    <mat-dialog-actions class="!bg-surface dark:!bg-surfaceDark w-full">
-      <button mat-button mat-dialog-close>Cancel</button>
-      <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-      <button [mat-dialog-close]="true" mat-button>Delete</button>
+    <mat-dialog-actions class="!bg-surface dark:!bg-surfaceDark w-full px-3">
+      <div class="w-full flex items-center gap-3">
+        <button class="w-full" mat-button mat-dialog-close>Cancel</button>
+
+        <button [mat-dialog-close]="true" class="w-full" mat-button>
+          Select
+        </button>
+      </div>
     </mat-dialog-actions>
   </ng-container>
 
@@ -20,12 +52,18 @@
     <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
       Perfil No Encontrado
     </h1>
-
-    {{ profile.error.description }}
+    <div
+      class="w-full p-3 bg-surface h-[80%] mostly-customized-scrollbar dark:bg-surfaceDark"
+      mat-dialog-content
+    >
+      <div class="w-full items-center justify-center pt-4">
+        {{ profile.error.description }}
+      </div>
+    </div>
   </ng-container>
 
   <ng-template #loading>
-    <div mat-dialog-content>
+    <div class="bg-surface dark:bg-surfaceDark">
       <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
   </ng-template>
