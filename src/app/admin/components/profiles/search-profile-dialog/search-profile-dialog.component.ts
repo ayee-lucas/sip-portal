@@ -6,12 +6,12 @@ import {
 } from '../../../types/response-type-users';
 import { Observable } from 'rxjs';
 import { Profile } from '../../../types/response-type-profiles';
-import { ProfileSelectorSearchService } from '../../../services/profile-selector-search.service';
+import { ProfileSelectorSearchService } from '../../../services/profiles/profile-selector-search.service';
 import {
   _isProfile,
   _isProfileResponseError
 } from '../../../../shared/utils/TypeGuards';
-import { ProfileSelectorService } from '../../../services/profile-selector.service';
+import { ProfileSelectorService } from '../../../services/profiles/profile-selector.service';
 
 @Component({
   selector: 'app-search-profile-dialog',

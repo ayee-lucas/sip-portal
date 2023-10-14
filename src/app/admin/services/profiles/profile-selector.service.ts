@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Profile } from '../types/response-type-profiles';
+import { Profile } from '../../types/response-type-profiles';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { QueryService } from '../../query/services/query.service';
+import { QueryService } from '../../../query/services/query.service';
 
 @Injectable({
   providedIn: 'root'

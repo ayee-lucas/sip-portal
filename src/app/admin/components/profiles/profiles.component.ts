@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResponseProfile } from '../../types/response-type-profiles';
 import { Observable } from 'rxjs';
-import { ProfileRequestService } from '../../services/profile-request.service';
+import { ProfileRequestService } from '../../services/profiles/profile-request.service';
 import { QueryService } from '../../../query/services/query.service';
 import { _IsProfileSuccess } from '../../../shared/utils/TypeGuards';
 import { Params } from '@angular/router';

@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UserSelectorService } from '../../../services/user-selector.service';
+import { UserSelectorService } from '../../../services/users/user-selector.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { User } from '../../../types/response-type-users';
 import { QueryService } from '../../../../query/services/query.service';
 import { Params } from '@angular/router';
-import { UserSelectorSearchService } from '../../../services/user-selector-search.service';
+import { UserSelectorSearchService } from '../../../services/users/user-selector-search.service';
 import { _isUser } from '../../../../shared/utils/TypeGuards';
 import { TranslateService } from '@ngx-translate/core';
 

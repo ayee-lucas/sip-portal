@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../../types/response-type-users';
 import { Observable } from 'rxjs';
-import { UserSelectorService } from '../../../services/user-selector.service';
+import { UserSelectorService } from '../../../services/users/user-selector.service';
 
 @Component({
   selector: 'app-user-selector',

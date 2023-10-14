@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import { ResponseError, ResponseUser } from '../types/response-type-users';
+import { ResponseError, ResponseUser } from '../../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../../environments/environment.development';
 import { Params } from '@angular/router';
-import { QueryService } from '../../query/services/query.service';
+import { QueryService } from '../../../query/services/query.service';
 
 @Injectable({
   providedIn: 'root'

@@ -7,8 +7,8 @@ import {
   Validators
 } from '@angular/forms';
 import { QueryService } from '../../../../query/services/query.service';
-import { UserUpdateService } from '../../../services/user-update.service';
-import { UserSelectorService } from '../../../services/user-selector.service';
+import { UserUpdateService } from '../../../services/users/user-update.service';
+import { UserSelectorService } from '../../../services/users/user-selector.service';
 
 type UpdateUserForm = {
   name: FormControl<string>;

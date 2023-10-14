@@ -7,7 +7,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import { UserNewService } from '../../../services/user-new.service';
+import { UserNewService } from '../../../services/users/user-new.service';
 import { User } from '../../../types/response-type-users';
 import { TranslateService } from '@ngx-translate/core';
 

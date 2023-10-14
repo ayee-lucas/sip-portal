@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserSelectorSearchService } from '../services/user-selector-search.service';
+import { UserSelectorSearchService } from '../services/users/user-selector-search.service';
 
 describe('UserSelectorSearchService', () => {
   let service: UserSelectorSearchService;

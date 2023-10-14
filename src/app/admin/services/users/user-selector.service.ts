@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User } from '../types/response-type-users';
-import { QueryService } from '../../query/services/query.service';
+import { User } from '../../types/response-type-users';
+import { QueryService } from '../../../query/services/query.service';
 
 @Injectable({
   providedIn: 'root'

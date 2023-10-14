@@ -1,26 +1,29 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import { ResponseError, ResponseLoading } from '../types/response-type-users';
-import { Profile } from '../types/response-type-profiles';
+import {
+  ResponseError,
+  ResponseLoading,
+  User
+} from '../../types/response-type-users';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment.development';
 import { MessageService } from 'primeng/api';
-import { environment } from '../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileSelectorSearchService {
-  // Profile Observable
+export class UserSelectorSearchService {
+  // User Observable
   /**
-   * Profile BehaviorSubject to handle the profile state
+   * User BehaviorSubject to handle the user state
    * Any subscriber will receive the last value emitted by the BehaviorSubject
    * Initializes with a loading state
    *
    * @private
-   * @memberof ProfileSelectorSearchService
+   * @memberof UserSelectorSearchService
    */
-  private singleProfile$ = new BehaviorSubject<
-    Profile | ResponseError | ResponseLoading
+  private singleUser$ = new BehaviorSubject<
+    User | ResponseError | ResponseLoading
   >({ loading: true });
 
   // Injecting the services to be used in the component
@@ -30,7 +33,7 @@ export class ProfileSelectorSearchService {
    *
    * @param http
    * @param messageService
-   * @memberof ProfileSelectorSearchService
+   * @memberof UserSelectorSearchService
    */
   constructor(
     private http: HttpClient,
@@ -39,38 +42,38 @@ export class ProfileSelectorSearchService {
 
   // Init method
   /**
-   * Initializes the profile request to the API
+   * Initializes the user request to the API
    * uses the param id to build the set the id param in the URL
-   * as a query param and calls the requestProfile method
+   * as a query param and calls the requestUser method
    *
    * @param id
-   * @memberof ProfileSelectorSearchService
+   * @memberof UserSelectorSearchService
    */
   init(id: number) {
-    const url = new URL(`${environment.SERVER_PATH.PROFILES}/{id}`);
+    const url = new URL(`${environment.SERVER_PATH.USERS}/{id}`);
 
     url.searchParams.set('id', id.toString());
 
-    this.requestProfile(url.toString());
+    this.requestUser(url.toString());
   }
 
   // Getters
   /**
-   * Returns the profile observable to be used in the component
-   * Returns either a Profile, ResponseError or ResponseLoading object
+   * Returns the user observable to be used in the component
+   * Returns either a User, ResponseError or ResponseLoading object
    *
    * @returns Observable
-   * @memberof ProfileSelectorSearchService
+   * @memberof UserSelectorSearchService
    */
-  getProfile(): Observable<Profile | ResponseError | ResponseLoading> {
-    return this.singleProfile$;
+  getUser(): Observable<User | ResponseError | ResponseLoading> {
+    return this.singleUser$;
   }
 
   // Request method
   /**
    * Makes the request to the API using the url param passed as argument by the init method.
    * subscribes to the request and handles the response, triggers the next method
-   * of the BehaviorSubject to assign the response to the profile observable and any subscriber
+   * of the BehaviorSubject to assign the response to the user observable and any subscriber
    * will receive the last value emitted by the BehaviorSubject
    *
    * Handles the error response from the API and returns a ResponseError object,
@@ -78,11 +81,11 @@ export class ProfileSelectorSearchService {
    *
    * @param url
    * @private
-   * @memberof ProfileSelectorSearchService
+   * @memberof UserSelectorSearchService
    */
-  private requestProfile(url: string) {
+  private requestUser(url: string) {
     this.http
-      .get<Profile | ResponseError>(url)
+      .get<User | ResponseError>(url)
       .pipe(
         catchError(err => {
           if ('error' in err) {
@@ -96,6 +99,7 @@ export class ProfileSelectorSearchService {
 
             return of(errorObj);
           }
+
           const data: ResponseError = {
             error: {
               errorCode: 0,
@@ -115,7 +119,7 @@ export class ProfileSelectorSearchService {
         })
       )
       .subscribe(data => {
-        this.singleProfile$.next(data);
+        this.singleUser$.next(data);
       });
   }
 }

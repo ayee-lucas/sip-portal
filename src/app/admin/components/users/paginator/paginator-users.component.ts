@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserRequestService } from '../../../services/user-request.service';
+import { UserRequestService } from '../../../services/users/user-request.service';
 import { QueryService } from '../../../../query/services/query.service';
 import { ResponseUserSuccess } from '../../../types/response-type-users';
 import { PageEvent } from '@angular/material/paginator';

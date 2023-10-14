@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserSelectorService } from '../services/user-selector.service';
+import { UserSelectorService } from '../services/users/user-selector.service';
 
 describe('SelectedUserService', () => {
   let service: UserSelectorService;

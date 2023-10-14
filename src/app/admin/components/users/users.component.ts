@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRequestService } from '../../services/user-request.service';
+import { UserRequestService } from '../../services/users/user-request.service';
 import { map, Observable } from 'rxjs';
 import { ResponseUserSuccess } from '../../types/response-type-users';
 import { QueryService } from '../../../query/services/query.service';

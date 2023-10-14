@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { QueryService } from '../../../../query/services/query.service';
-import { ProfileRequestService } from '../../../services/profile-request.service';
+import { ProfileRequestService } from '../../../services/profiles/profile-request.service';
 import { PageEvent } from '@angular/material/paginator';
 import { ResponseProfileSuccess } from '../../../types/response-type-profiles';
 

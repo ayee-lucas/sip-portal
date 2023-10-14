@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, of } from 'rxjs';
-import { ResponseProfile } from '../types/response-type-profiles';
+import { ResponseProfile } from '../../types/response-type-profiles';
 import { HttpClient } from '@angular/common/http';
-import { QueryService } from '../../query/services/query.service';
+import { QueryService } from '../../../query/services/query.service';
 import { Params } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
-import { ResponseError } from '../types/response-type-users';
+import { environment } from '../../../../environments/environment.development';
+import { ResponseError } from '../../types/response-type-users';
 import { MessageService } from 'primeng/api';
 
 @Injectable({

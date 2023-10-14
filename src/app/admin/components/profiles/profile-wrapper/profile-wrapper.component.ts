@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProfileSelectorService } from '../../../services/profile-selector.service';
+import { ProfileSelectorService } from '../../../services/profiles/profile-selector.service';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Profile } from '../../../types/response-type-profiles';
 import { QueryService } from '../../../../query/services/query.service';
-import { ProfileSelectorSearchService } from '../../../services/profile-selector-search.service';
+import { ProfileSelectorSearchService } from '../../../services/profiles/profile-selector-search.service';
 import { Params } from '@angular/router';
 import { _isProfile } from '../../../../shared/utils/TypeGuards';
 

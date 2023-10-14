@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Profile } from '../../../types/response-type-profiles';
-import { ProfileSelectorService } from '../../../services/profile-selector.service';
+import { ProfileSelectorService } from '../../../services/profiles/profile-selector.service';
 
 @Component({
   selector: 'app-profile-selector',

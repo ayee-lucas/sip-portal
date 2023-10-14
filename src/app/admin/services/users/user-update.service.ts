@@ -1,42 +1,48 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, of } from 'rxjs';
 import {
   ResponseError,
   ResponseLoading,
   User
-} from '../types/response-type-users';
-import { BehaviorSubject, catchError, of } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+} from '../../types/response-type-users';
+import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
 import { UserRequestService } from './user-request.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserNewService {
-  private userToAdd$ = new BehaviorSubject<
+export class UserUpdateService {
+  private userToUpdate$ = new BehaviorSubject<
     null | ResponseError | ResponseLoading
   >({ loading: true });
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
-    private operationService: UserRequestService
+    private userOperationService: UserRequestService,
+    private messageService: MessageService
   ) {}
 
   init(data: User) {
-    const url = new URL(environment.SERVER_PATH.USERS);
+    const url = new URL(`${environment.SERVER_PATH.USERS}/{id}`);
 
-    this.requestAddUser(url.toString(), data);
+    const id = data.userId;
+
+    url.searchParams.set('id', id.toString());
+
+    this.requestUpdateUser(url.toString(), data);
   }
 
-  private requestAddUser(url: string, body: User) {
+  private requestUpdateUser(url: string, body: User) {
     this.http
-      .post(url, body)
+      .put<null | ResponseError>(url, body)
       .pipe(
         catchError(err => {
           if ('error' in err) {
-            return of(err.error);
+            const errorObj = err.error;
+
+            return of(errorObj);
           }
 
           const data: ResponseError = {
@@ -53,6 +59,8 @@ export class UserNewService {
       )
       .subscribe(data => {
         if (data && 'error' in data) {
+          this.userToUpdate$.next(data);
+
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -62,15 +70,9 @@ export class UserNewService {
           return;
         }
 
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User added successfully'
-        });
+        this.userOperationService.refresh();
 
-        this.operationService.refresh();
-
-        this.userToAdd$.next(null);
+        this.userToUpdate$.next(null);
       });
   }
 }
