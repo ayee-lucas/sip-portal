@@ -13,6 +13,7 @@
         </h1>
 
         <button
+          (click)="refresh()"
           class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
           matTooltip="{{ 'list.refreshTooltip' | translate }}"
         >

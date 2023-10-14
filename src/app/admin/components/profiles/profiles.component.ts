@@ -32,6 +32,10 @@ export class ProfilesComponent implements OnInit {
     this.profileRequest.init(params['params']);
   }
 
+  refresh() {
+    this.profileRequest.refresh();
+  }
+
   private setDefaultParams(params: Params) {
     const paramsValues = params['params'];
 

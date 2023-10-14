@@ -34,6 +34,14 @@ export class ProfileRequestService {
     return this.profiles$;
   }
 
+  refresh() {
+    this.profiles$.next({ loading: true });
+
+    const params = this.queryService.getParams();
+
+    this.init(params['params']);
+  }
+
   private requestProfiles(url: string) {
     this.http
       .get<ResponseProfile>(url)
