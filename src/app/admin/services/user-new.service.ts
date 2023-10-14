@@ -8,7 +8,7 @@ import { BehaviorSubject, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
-import { UserOperationService } from './user-operation.service';
+import { UserRequestService } from './user-request.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class UserNewService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private operationService: UserOperationService
+    private operationService: UserRequestService
   ) {}
 
   init(data: User) {

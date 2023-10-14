@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserOperationService } from '../../services/user-operation.service';
+import { UserRequestService } from '../../services/user-request.service';
 import { map, Observable } from 'rxjs';
 import { ResponseUserSuccess } from '../../types/response-type-users';
 import { QueryService } from '../../../query/services/query.service';
@@ -15,7 +15,7 @@ export class UsersComponent implements OnInit {
   params!: Params;
 
   constructor(
-    private userOperationService: UserOperationService,
+    private userOperationService: UserRequestService,
     private queryService: QueryService,
     private translate: TranslateService
   ) {

@@ -7,7 +7,7 @@ import {
 } from '../types/response-type-users';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { UserOperationService } from './user-operation.service';
+import { UserRequestService } from './user-request.service';
 import { MessageService } from 'primeng/api';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class UserUpdateService {
 
   constructor(
     private http: HttpClient,
-    private userOperationService: UserOperationService,
+    private userOperationService: UserRequestService,
     private messageService: MessageService
   ) {}
 

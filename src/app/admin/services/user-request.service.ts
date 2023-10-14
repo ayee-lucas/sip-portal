@@ -9,7 +9,7 @@ import { QueryService } from '../../query/services/query.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserOperationService {
+export class UserRequestService {
   private userResponse$ = new BehaviorSubject<ResponseUser>({ loading: true });
 
   constructor(

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UserOperationService } from '../../../services/user-operation.service';
+import { UserRequestService } from '../../../services/user-request.service';
 import { QueryService } from '../../../../query/services/query.service';
 import { ResponseUserSuccess } from '../../../types/response-type-users';
 import { PageEvent } from '@angular/material/paginator';
@@ -15,7 +15,7 @@ export class PaginatorUsersComponent {
 
   constructor(
     private queryService: QueryService,
-    private userOperationService: UserOperationService
+    private userOperationService: UserRequestService
   ) {}
 
   pageHandler(e: PageEvent) {
