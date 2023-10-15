@@ -5,15 +5,25 @@
     <h1 class="text-6xl font-semibold w-fit rounded-2xl">Perfiles</h1>
   </header>
 
-  <ng-container *ngIf="profileSelected$ | async as profileSelected; else info">
+  <div class="mt-5 flex w-full items-center justify-end gap-3 p-2">
+    <button
+      (click)="toggleAddProfile()"
+      class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark"
+    >
+      <span>Nuevo Perfil</span>
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+
+  <ng-container *ngIf="selectedProfile$ | async as selectedProfile; else add">
     <app-profile-update
-      [selectedProfile]="profileSelected"
+      [selectedProfile]="selectedProfile"
     ></app-profile-update>
   </ng-container>
 
-  <ng-template #info>
+  <ng-template #add>
     <div class="w-full h-48 grid place-items-center">
-      <h1>Info</h1>
+      <h1>add</h1>
     </div>
   </ng-template>
 </div>
