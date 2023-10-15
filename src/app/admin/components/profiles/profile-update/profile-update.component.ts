@@ -104,6 +104,11 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
 
     child.checked = e.checked;
 
+    if (this.permissions.length === 0) {
+      this.addPermission(id);
+      return;
+    }
+
     if (this.permissions.at(this.permissions.value.indexOf(id)).value === id) {
       this.permissions.removeAt(this.permissions.value.indexOf(id));
 
