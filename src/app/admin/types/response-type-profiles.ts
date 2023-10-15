@@ -13,6 +13,7 @@ export type Profile = {
   profileId: number;
   name: string;
   description_profile: string;
+  resources?: ['ROLE_PROFILES' | 'ROLE_USERS' | 'ROLE_AUDIT'];
   status: boolean;
 };
 
