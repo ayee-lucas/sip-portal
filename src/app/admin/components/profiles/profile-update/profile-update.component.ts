@@ -12,6 +12,8 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ROLES } from '../../../../shared/utils/config';
+import { ProfileUpdateService } from '../../../services/profiles/profile-update.service';
+import { MessageService } from 'primeng/api';
 
 type UpdateProfileForm = {
   name: FormControl<string | null>;
