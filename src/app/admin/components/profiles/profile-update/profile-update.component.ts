@@ -50,7 +50,9 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private queryService: QueryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private profileUpdateService: ProfileUpdateService
   ) {}
 
   private get permissions() {
@@ -75,7 +77,45 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.updateProfileForm.value);
+    if (this.updateProfileForm.invalid) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all the required fields'
+      });
+      return;
+    }
+
+    if (!this.selectedProfile) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Selected profile not found'
+      });
+      return;
+    }
+
+    const { name, description_profile, status, permissions } =
+      this.updateProfileForm.value;
+
+    if (!name || !description_profile || status == null || !permissions) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill in all the required fields'
+      });
+      return;
+    }
+
+    const data: Profile = {
+      profileId: this.selectedProfile.profileId,
+      name: name,
+      description_profile: description_profile,
+      status: status,
+      resources: permissions
+    };
+
+    this.profileUpdateService.init(data);
   }
 
   patchForm() {
@@ -112,15 +152,11 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
     if (this.permissions.at(this.permissions.value.indexOf(id)).value === id) {
       this.permissions.removeAt(this.permissions.value.indexOf(id));
 
-      console.log(this.permissions.value);
-
       this.checkALlOptions(group);
       return;
     }
 
     this.addPermission(id);
-
-    console.log(this.permissions.value);
 
     this.checkALlOptions(group);
   }
