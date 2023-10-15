@@ -34,8 +34,14 @@ export class SearchProfileDialogComponent implements OnInit {
     this.requestProfile();
   }
 
+  /**
+   * Change param to only receive the id number
+   *
+   * @todo
+   * @param profile
+   */
   setProfile(profile: Profile) {
-    this.profileSelectorService.setSelectedProfile(profile);
+    this.profileSelectorService.setSelectedProfile(profile.profileId);
   }
 
   private requestProfile() {
