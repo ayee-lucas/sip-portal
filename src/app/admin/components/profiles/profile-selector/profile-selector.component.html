@@ -1,7 +1,7 @@
 <ul class="flex h-full w-full flex-col gap-3 px-3 py-5">
   <ng-container *ngIf="profiles">
     <li
-      (click)="setProfile(profile)"
+      (click)="setProfile(profile.profileId)"
       *ngFor="let profile of profiles"
       [className]="
         profile.status
