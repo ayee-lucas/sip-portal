@@ -1,125 +1,209 @@
-<section class="flex w-full flex-col gap-7 p-8">
-  <header
-    class="w-full border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
-  >
-    <h1 class="font-light montserrat">Actualizar Perfil</h1>
-  </header>
+<ng-container *ngIf="selectedProfile; else error">
+  <section class="flex w-full flex-col gap-7 p-8">
+    <!--- Header --->
 
-  <h2 class="font-light montserrat text-lg font-semibold">
-    Detalles del perfil
-  </h2>
-  <div
-    class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
-  >
-    <table
-      class="table-auto w-full montserrat font-light bg-surfaceC dark:bg-surfaceCDark rounded-b-lg p-10"
+    <header
+      class="w-full flex items-center justify-between pr-5 border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
     >
-      <caption>
-        {{
-          'updateUser.table.caption' | translate
-        }}
-      </caption>
-      <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
-        <tr>
-          <th class="px-4 py-2">ID</th>
-          <th class="px-4 py-2">Nombre</th>
-          <th class="px-4 py-2">Descripcion</th>
-          <th class="px-4 py-2">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td
-            class="border-r text-center border-outline dark:border-outlineDark/50 px-4 py-3"
-          >
-            {{ selectedProfile.profileId }}
-          </td>
-          <td
-            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
-          >
-            {{ selectedProfile.name }}
-          </td>
-          <td
-            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
-          >
-            {{ selectedProfile.description_profile }}
-          </td>
-          <td
-            class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
-          >
-            <span
-              [className]="
-                selectedProfile.status
-                  ? 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark'
-                  : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
-              "
+      <h1 class="font-light montserrat">Actualizar Perfil</h1>
+
+      <button
+        class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-error"
+      >
+        <span>Eliminar Perfil</span>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </header>
+
+    <h2 class="font-light montserrat text-lg font-semibold">
+      Detalles del perfil
+    </h2>
+    <div
+      class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
+    >
+      <!--- Profile Details table  --->
+      <table
+        class="table-auto w-full montserrat font-light bg-surfaceC dark:bg-surfaceCDark rounded-b-lg p-10"
+      >
+        <caption>
+          {{
+            'updateUser.table.caption' | translate
+          }}
+        </caption>
+        <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
+          <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Descripcion</th>
+            <th class="px-4 py-2">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class="border-r text-center border-outline dark:border-outlineDark/50 px-4 py-3"
             >
-              {{ selectedProfile.status ? 'Active' : 'Inactive' }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
-
-  <form
-    (ngSubmit)="onSubmit()"
-    [formGroup]="updateProfileForm"
-    class="flex w-full flex-col items-start justify-start space-y-3"
-  >
-    <div class="flex w-full items-center justify-start gap-3">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Nombre</mat-label>
-        <input
-          [formControl]="updateProfileForm.controls.name"
-          matInput
-          placeholder="Nombre"
-        />
-        <mat-hint>Nombre del perfil</mat-hint>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Descripcion</mat-label>
-        <input
-          [formControl]="updateProfileForm.controls.description_profile"
-          matInput
-          placeholder="Descripcion"
-        />
-        <mat-hint>Descripcion del Perfil</mat-hint>
-      </mat-form-field>
+              {{ selectedProfile.profileId }}
+            </td>
+            <td
+              class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+            >
+              {{ selectedProfile.name }}
+            </td>
+            <td
+              class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+            >
+              {{ selectedProfile.description_profile }}
+            </td>
+            <td
+              class="border-x text-center border-outline dark:border-outlineDark/50 px-4 py-3"
+            >
+              <span
+                [className]="
+                  selectedProfile.status
+                    ? 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark'
+                    : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
+                "
+              >
+                {{ selectedProfile.status ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="flex w-full items-center justify-start gap-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Estado</mat-label>
 
-        <mat-select [(value)]="selectedProfile.status" formControlName="status">
-          <mat-option>-</mat-option>
-          <mat-option
-            *ngFor="let option of selectOptions"
-            [value]="option.value"
-            >{{ option.label }}</mat-option
+    <!--- Update profile form  --->
+    <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="updateProfileForm"
+      class="flex w-full flex-col items-start justify-start space-y-3"
+    >
+      <div class="flex w-full items-center justify-start gap-3">
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <input
+            [formControl]="updateProfileForm.controls.name"
+            [value]="selectedProfile.name"
+            matInput
+            placeholder="Nombre"
+          />
+          <mat-hint>Nombre del perfil</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Descripcion</mat-label>
+          <input
+            [formControl]="updateProfileForm.controls.description_profile"
+            [value]="selectedProfile.description_profile"
+            matInput
+            placeholder="Descripcion"
+          />
+          <mat-hint>Descripcion del Perfil</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="flex w-full items-center justify-start gap-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Estado</mat-label>
+
+          <mat-select
+            [(value)]="selectedProfile.status"
+            formControlName="status"
           >
-        </mat-select>
-        <mat-hint>Estado del perfil</mat-hint>
-      </mat-form-field>
-    </div>
-    <div class="w-full flex items-center gap-4">
-      <button
-        [disabled]="!updateProfileForm.valid"
-        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
-        type="submit"
-      >
-        {{ 'updateUser.form.updateButton' | translate }}
-      </button>
+            <mat-option>-</mat-option>
+            <mat-option
+              *ngFor="let option of selectOptions"
+              [value]="option.value"
+              >{{ option.label }}</mat-option
+            >
+          </mat-select>
+          <mat-hint>Estado del perfil</mat-hint>
+        </mat-form-field>
+      </div>
 
-      <button
-        (click)="patchForm()"
-        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
-      >
-        {{ 'updateUser.form.resetButton' | translate }}
-      </button>
-    </div>
-  </form>
-</section>
+      <!--- Update toggles form  --->
+      <section class="w-full flex flex-col gap-7">
+        <div
+          class="w-full flex flex-col bg-surfaceC dark:bg-surfaceCDark p-8 rounded-xl"
+        >
+          <header
+            class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
+          >
+            <h1 class="text-2xl font-semibold">Configuraciones</h1>
+            <mat-slide-toggle
+              (change)="changeGroupSettings($event, settings)"
+              [checked]="settings.groupChecked"
+            ></mat-slide-toggle>
+          </header>
+          <div class="w-full flex items-center mt-4 gap-10">
+            <div
+              *ngFor="let setting of settings.children"
+              class="flex gap-2 items-center"
+            >
+              <mat-slide-toggle
+                (change)="changeSingleSetting($event, settings, setting.id)"
+                [checked]="setting.checked"
+              ></mat-slide-toggle>
+              <label>{{ setting.label }}</label>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="w-full flex flex-col bg-surfaceC dark:bg-surfaceCDark p-8 rounded-xl"
+        >
+          <header
+            class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
+          >
+            <h1 class="text-2xl font-semibold">Consultas</h1>
+            <mat-slide-toggle
+              (change)="changeGroupSettings($event, requestPermissions)"
+              [checked]="requestPermissions.groupChecked"
+            ></mat-slide-toggle>
+          </header>
+          <div class="w-full flex items-center mt-4 gap-10">
+            <div
+              *ngFor="let requestPermission of requestPermissions.children"
+              class="flex gap-2 items-center"
+            >
+              <mat-slide-toggle
+                (change)="
+                  changeSingleSetting(
+                    $event,
+                    requestPermissions,
+                    requestPermission.id
+                  )
+                "
+                [checked]="requestPermission.checked"
+              ></mat-slide-toggle>
+              <label>{{ requestPermission.label }}</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--- Update buttons form  --->
+      <div class="w-full flex items-center gap-4">
+        <button
+          [disabled]="!updateProfileForm.valid"
+          class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+          type="submit"
+        >
+          Actualizar Perfil
+        </button>
+
+        <button
+          (click)="patchForm()"
+          class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+        >
+          Restablecer
+        </button>
+      </div>
+    </form>
+  </section>
+</ng-container>
+
+<ng-template #error>
+  <div>An error has ocurred</div>
+</ng-template>
