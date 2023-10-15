@@ -24,11 +24,12 @@
       <app-search-profile></app-search-profile>
 
       <ng-container *ngIf="isProfileSuccess(response); else loading">
-        <div class="overflow-y-auto mostly-customized-scrollbar pr-4">
+        <div class="overflow-y-auto h-full mostly-customized-scrollbar pr-4">
           <app-profile-selector
             [profiles]="response.content"
           ></app-profile-selector>
         </div>
+
         <app-paginator-profiles
           [responsePage]="response"
         ></app-paginator-profiles>
@@ -42,7 +43,7 @@
     </aside>
   </ng-container>
 
-  <section class="w-full">
+  <section class="w-full overflow-y-auto">
     <app-profile-wrapper></app-profile-wrapper>
   </section>
 </main>
