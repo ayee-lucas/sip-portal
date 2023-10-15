@@ -2,91 +2,117 @@
   <section class="p-4">
     <div class="mb-4">
       <h1
-        class="text-5xl  bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block font-sans"
+        class="text-5xl text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block font-semibold montserrat"
       >
         {{ 'first.welcome' | translate }}
       </h1>
     </div>
-    <div class="mb-4"> 
+    
+    <div class="mb-4">
       <h1
-        class="text-3xl font-semibold text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block font-sans"
+        class="text-3xl font-sans  text-onSurface dark:text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block"
       >
         Estás trabajando en
         <span class="my-5 text-center text-3xl font-semibold montserrat">
           Parking
-          <span class="text-primary dark:text-primaryDark text-3xl">Portal</span>
+          <span class="text-primary dark:text-primaryDark text-3xl"
+            >Portal</span
+          >
         </span>
       </h1>
-    </div>
-    <div class="mb-4">
-      <h6
-        class="text-1xl font-semibold text-surface dark-text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block font-sans"
-      >
-        Proyecto number: 12345678
-      </h6>
-      <h6
-        class="text-1xl font-semibold text-surface dark-text-onSurfaceDark rounded-2xl pt-2 pb-1 px-4 inline-block font-sans"
-      >
-        ID Proyecto: 12345678
-      </h6>
     </div>
     <div class="flex items-center justify-left py-4 md:py-8 flex-wrap">
       <button
         type="button"
-        class="text-gray-900 border border-dark hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans"
+        class="text-gray-900 text-surfaceDark border border-surfaceDark dark:text-surface dark:border-surface shadow-xl hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded text-base font-semibold px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans transition duration-300 ease-in-out transform hover:scale-105"
       >
         {{ 'sidebar.home' | translate }}
       </button>
       <button
         type="button"
-        class="text-gray-900 border border-dark hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans"
+        class="text-gray-900 text-surfaceDark border border-surfaceDark dark:text-surface dark:border-surface shadow-xl hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded text-base font-semibold px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans transition duration-300 ease-in-out transform hover:scale-105"
       >
         {{ 'query.header' | translate }}
       </button>
       <button
         type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans"
+        class="text-gray-900 text-surfaceDark border border-surfaceDark dark:text-surface dark:border-surface shadow-xl hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded text-base font-semibold px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans transition duration-300 ease-in-out transform hover:scale-105"
       >
         Cuestiones
       </button>
       <button
         type="button"
-        class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans"
+        class="text-gray-900 text-surfaceDark border border-surfaceDark dark:text-surface dark:border-surface shadow-xl hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded text-base font-semibold px-5 py-2.5 text-center mr-3 mb-3 dark:text-white dark:focus:ring-gray-800 font-sans transition duration-300 ease-in-out transform hover:scale-105"
       >
         Operaciones
       </button>
     </div>
-    <h1 class="text-primaryDark text-2xl font-semibold mb-4 text-left font-sans">
+
+    <h1
+      class="text-surface dark:text-surfaceDark text-2xl font-semibold mb-4 text-left font-sans"
+    >
       {{ 'first.quickAcceses' | translate }}
     </h1>
-    <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full mx-auto">
-      <div class="group bg-surfaceDark rounded-lg shadow-xl min-h-[80px] border border-surface flex justify-center items-center transition duration-300 ease-in-out transform hover:scale-105">
-        <mat-icon class="text-primaryDark group-hover:text-white">directions_car</mat-icon>
-        <h1 class="font-sans group-hover:text-primaryDark transition duration-300 ">
+    <div
+      class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-5 w-full mx-auto"
+    >
+      <div
+        class="group dark:bg-surfaceDark bg-surface rounded-xl shadow-xl min-h-[100px] border border-surfaceDark dark:border-surface flex gap-2 pl-5 items-center transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <mat-icon class="text-surfaceBrightDark dark:text-primaryDark group-hover:text-white"
+          >directions_car</mat-icon
+        >
+        <h1
+          class="font-sans group-hover:text-primaryDark transition duration-300"
+        >
           {{ 'first.parkingLots' | translate }}
         </h1>
       </div>
-      <div class="group bg-surfaceDark rounded-lg shadow-xl min-h-[80px] border border-surface flex justify-center items-center transition duration-300 ease-in-out transform hover:scale-105">
-        <mat-icon class="text-primaryDark group-hover:text-white">local_parking</mat-icon>
-        <h1 class="group-hover:text-primaryDark transition duration-300 font-sans">
+      <div
+        class="group dark:bg-surfaceDark bg-surface rounded-xl shadow-xl min-h-[100px] border border-surfaceDark dark:border-surface flex gap-2 pl-5 items-center transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <mat-icon class="text-surfaceBrightDark dark:text-primaryDark group-hover:text-white"
+          >local_parking</mat-icon
+        >
+        <h1
+          class="group-hover:text-primaryDark transition duration-300 font-sans"
+        >
           {{ 'first.rates' | translate }}
         </h1>
       </div>
-      <div class="group bg-surfaceDark rounded-lg shadow-xl min-h-[80px] border border-surface flex justify-center items-center transition duration-300 ease-in-out transform hover:scale-105">
-        <mat-icon class="text-primaryDark group-hover:text-white">add_circle</mat-icon>
-        <h1 class="group-hover:text-primaryDark transition duration-300 font-sans">
+      <div
+        class="group dark:bg-surfaceDark bg-surface rounded-xl shadow-xl min-h-[100px] border border-surfaceDark dark:border-surface flex gap-2 pl-5 items-center transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <mat-icon class="text-surfaceBrightDark group-hover:text-white dark:text-primaryDark"
+          >add_circle</mat-icon
+        >
+        <h1
+          class="group-hover:text-primaryDark transition duration-300 font-sans"
+        >
           {{ 'first.registerEntry' | translate }}
         </h1>
       </div>
-      <div class="group bg-surfaceDark rounded-lg shadow-xl min-h-[80px] border border-surface flex justify-center items-center transition duration-300 ease-in-out transform hover:scale-105">
-        <mat-icon class="text-primaryDark group-hover:text-white">local_atm</mat-icon>
-        <h1 class="group-hover:text-primaryDark transition duration-300 font-sans">
+      <div
+        class="group dark:bg-surfaceDark bg-surface rounded-xl shadow-xl min-h-[100px] border border-surfaceDark dark:border-surface flex gap-2 pl-5 items-center transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <mat-icon class="text-surfaceBrightDark dark:text-primaryDark group-hover:text-white"
+          >local_atm</mat-icon
+        >
+        <h1
+          class="group-hover:text-primaryDark transition duration-300 font-sans"
+        >
           {{ 'first.chargeEntry' | translate }}
         </h1>
       </div>
-      <div class="group bg-surfaceDark rounded-lg shadow-xl min-h-[80px] border border-surface flex justify-center items-center transition duration-300 ease-in-out transform hover:scale-105">
-        <mat-icon class="text-primaryDark group-hover:text-white">description</mat-icon>
-        <h1 class="group-hover:text-primaryDark transition duration-300 font-sans">
+      <div
+        class="group dark:bg-surfaceDark bg-surface rounded-xl shadow-xl min-h-[100px] border border-surfaceDark dark:border-surface flex gap-2 pl-5 items-center transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <mat-icon class="text-surfaceBrightDark dark:text-primaryDark group-hover:text-white"
+          >description</mat-icon
+        >
+        <h1
+          class="group-hover:text-primaryDark transition duration-300 font-sans"
+        >
           {{ 'first.reports' | translate }}
         </h1>
       </div>
