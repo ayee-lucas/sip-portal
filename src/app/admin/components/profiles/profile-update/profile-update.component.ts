@@ -131,7 +131,7 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   changeGroupSettings(e: MatSlideToggleChange, group: Group) {
     group.groupChecked = e.checked;
     group.children.map(child => {
-      child.checked = e.checked;
+      this.changeSingleSetting(e, group, child.id);
     });
   }
 
