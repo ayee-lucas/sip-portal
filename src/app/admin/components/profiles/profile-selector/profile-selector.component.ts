@@ -11,7 +11,7 @@ export class ProfileSelectorComponent {
 
   constructor(private profileSelectorService: ProfileSelectorService) {}
 
-  setProfile(profile: Profile) {
-    this.profileSelectorService.setSelectedProfile(profile);
+  setProfile(id: number) {
+    this.profileSelectorService.setSelectedProfile(id);
   }
 }
