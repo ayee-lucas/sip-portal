@@ -31,6 +31,7 @@ import { SearchProfileDialogComponent } from './components/profiles/search-profi
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProfileUpdateComponent } from './components/profiles/profile-update/profile-update.component';
 import { ProfileWrapperComponent } from './components/profiles/profile-wrapper/profile-wrapper.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -89,7 +90,8 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSlideToggleModule
   ],
   bootstrap: [FirstGlanceComponent]
 })
