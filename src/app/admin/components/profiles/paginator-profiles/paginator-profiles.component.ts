@@ -4,6 +4,9 @@ import { ProfileRequestService } from '../../../services/profiles/profile-reques
 import { PageEvent } from '@angular/material/paginator';
 import { ResponseProfileSuccess } from '../../../types/response-type-profiles';
 
+/**
+ * @todo Add error hanlding when the page does not exists
+ */
 @Component({
   selector: 'app-paginator-profiles',
   templateUrl: './paginator-profiles.component.html'
