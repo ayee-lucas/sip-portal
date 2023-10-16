@@ -18,6 +18,14 @@ type PropsSingleSetting = {
   resources: FormArray;
 };
 
+/**
+ * this function is used to handle the behaviour group is called
+ * when the user clicks on the toggle button for the whole group
+ * it calls the singleSettingBehaviour function for each child
+ * @param e The Material Slide Toggle Change event
+ * @param group The group to be handled
+ * @param resources The form array to be updated
+ */
 export function groupSettingsBehaviour({
   e,
   group,
@@ -31,51 +39,75 @@ export function groupSettingsBehaviour({
   });
 }
 
+/**
+ * this function is used to handle the behaviour of a single toggle
+ * it is called when the user clicks on the toggle button for a single toggle
+ * it updates the form array and checks calls the function to check if all
+ * the toggles are checked
+ * @param e The Material Slide Toggle Change event
+ * @param group The group to be handled
+ * @param id The id of the toggle to be handled
+ * @param resources The form array to be updated
+ */
 export function singleSettingBehaviour({
   e,
   group,
   id,
   resources
 }: PropsSingleSetting) {
+  // find the child with the id
   const child = group.children.find(child => child.id === id);
 
   if (!child) {
     return;
   }
 
+  // if the child is already checked, do nothing
   if (child.checked === e.checked) {
     return;
   }
 
   child.checked = e.checked;
 
+  // if the form array is empty, add the permission
   if (resources.length === 0) {
-    addPermission(id, resources);
+    addResource(id, resources);
 
-    console.log(resources.value);
     return;
   }
 
+  // if the permission is already in the form array, remove it
   if (resources.at(resources.value.indexOf(id)).value === id) {
     resources.removeAt(resources.value.indexOf(id));
 
-    checkALlOptions(group);
+    checkAllToggles(group);
 
-    console.log(resources.value);
     return;
   }
 
-  addPermission(id, resources);
+  // Finally, add the permission if all the conditions are met
+  addResource(id, resources);
 
-  checkALlOptions(group);
-  console.log(resources.value);
+  checkAllToggles(group);
 }
 
-function addPermission(permission: string, resources: FormArray) {
-  resources.push(new FormControl(permission));
+/**
+ * this function is used to add a permission to the form array
+ * it is called when the user clicks on the toggle button for a single toggle
+ * @param role The role to be added
+ * @param resources The form array to be updated
+ */
+function addResource(role: string, resources: FormArray) {
+  resources.push(new FormControl(role));
 }
 
-export function checkALlOptions(group: Group) {
+/**
+ * This function is used to check if all the toggles are checked
+ * if all the toggles are checked, the group is checked
+ * else, is unchecked
+ * @param group The group to be checked
+ */
+export function checkAllToggles(group: Group) {
   const AllChecked = group.children.every(child => {
     return child.checked;
   });
@@ -89,20 +121,35 @@ export function checkALlOptions(group: Group) {
   group.groupChecked = false;
 }
 
+/**
+ * This function is used to build the form array with the permissions
+ * it's meant to be called in the ngOnInit lifeCycle hook of the component
+ * depending on the params, this will build the form array with the permissions
+ * @param params The params object from the route
+ * @param resources The form array to be built
+ */
 export function buildFormPermissions(params: Params, resources: FormArray) {
+  // clear the form array
   resources.clear();
 
   const user = params['users'] === 'true' ? ROLES.USERS : '';
-
-  if (user) addPermission(user, resources);
+  if (user) addResource(user, resources);
 
   const profiles = params['profilesRole'] === 'true' ? ROLES.PROFILES : '';
-  if (profiles) addPermission(profiles, resources);
+  if (profiles) addResource(profiles, resources);
 
   const audit = params['audit'] === 'true' ? ROLES.AUDIT : '';
-  if (audit) addPermission(audit, resources);
+  if (audit) addResource(audit, resources);
 }
 
+/**
+ * This function is used to build the settings group
+ * it's meant to be called in the ngOnInit lifeCycle hook of the component
+ * depending on the params, this will build the settings group
+ * if no params are passed, it will build the settings group with all the toggles unchecked
+ * @param params The params object from the route
+ * @returns Group The settings group
+ */
 export function buildSettingsGroup(params?: Params) {
   if (params) {
     const settingsGroup = {
@@ -121,7 +168,7 @@ export function buildSettingsGroup(params?: Params) {
       ]
     };
 
-    checkALlOptions(settingsGroup);
+    checkAllToggles(settingsGroup);
 
     return settingsGroup;
   }
@@ -143,6 +190,14 @@ export function buildSettingsGroup(params?: Params) {
   };
 }
 
+/**
+ * This function is used to build the queries group
+ * it's meant to be called in the ngOnInit lifeCycle hook of the component
+ * depending on the params, this will build the queries group
+ * if no params are passed, it will build the queries group with all the toggles unchecked
+ * @param params The params object from the route
+ * @returns Group The queries group
+ */
 export function buildQueriesGroup(params?: Params) {
   if (params) {
     const queriesGroup = {
@@ -156,7 +211,7 @@ export function buildQueriesGroup(params?: Params) {
       ]
     };
 
-    checkALlOptions(queriesGroup);
+    checkAllToggles(queriesGroup);
 
     return queriesGroup;
   }
