@@ -44,7 +44,7 @@ export class ProfileSelectorService {
         })
       )
       .subscribe(data => {
-        if (data) {
+        if (data && data.profileId) {
           this.queryService.updateParams({
             selected: data.profileId,
             name: data.name,
