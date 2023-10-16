@@ -32,6 +32,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProfileUpdateComponent } from './components/profiles/profile-update/profile-update.component';
 import { ProfileWrapperComponent } from './components/profiles/profile-wrapper/profile-wrapper.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ProfileNewComponent } from './components/profiles/profile-new/profile-new.component';
+import { ProfileDeleteDialogComponent } from './components/profiles/profile-delete-dialog/profile-delete-dialog.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -68,7 +70,9 @@ const routes: Routes = [
     PaginatorProfilesComponent,
     SearchProfileDialogComponent,
     ProfileUpdateComponent,
-    ProfileWrapperComponent
+    ProfileWrapperComponent,
+    ProfileNewComponent,
+    ProfileDeleteDialogComponent
   ],
   imports: [
     CommonModule,
