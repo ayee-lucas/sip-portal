@@ -1,5 +1,7 @@
 <ng-container *ngIf="selectedProfile; else error">
-  <section class="flex w-full flex-col gap-7 p-8">
+  <section
+    class="flex w-full flex-col gap-7 p-8 animate__animated animate__fadeInLeftBig animate__faster"
+  >
     <!--- Header --->
 
     <header
@@ -8,6 +10,7 @@
       <h1 class="font-light montserrat">Actualizar Perfil</h1>
 
       <button
+        (click)="openDeleteDialog()"
         class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-error"
       >
         <span>Eliminar Perfil</span>
@@ -132,17 +135,19 @@
           >
             <h1 class="text-2xl font-semibold">Configuraciones</h1>
             <mat-slide-toggle
-              (change)="changeGroupSettings($event, settings)"
-              [checked]="settings.groupChecked"
+              (change)="changeGroupSettings($event, settingsGroup)"
+              [checked]="settingsGroup.groupChecked"
             ></mat-slide-toggle>
           </header>
           <div class="w-full flex items-center mt-4 gap-10">
             <div
-              *ngFor="let setting of settings.children"
+              *ngFor="let setting of settingsGroup.children"
               class="flex gap-2 items-center"
             >
               <mat-slide-toggle
-                (change)="changeSingleSetting($event, settings, setting.id)"
+                (change)="
+                  changeSingleSetting($event, settingsGroup, setting.id)
+                "
                 [checked]="setting.checked"
               ></mat-slide-toggle>
               <label>{{ setting.label }}</label>
@@ -158,20 +163,20 @@
           >
             <h1 class="text-2xl font-semibold">Consultas</h1>
             <mat-slide-toggle
-              (change)="changeGroupSettings($event, requestPermissions)"
-              [checked]="requestPermissions.groupChecked"
+              (change)="changeGroupSettings($event, queriesGroup)"
+              [checked]="queriesGroup.groupChecked"
             ></mat-slide-toggle>
           </header>
           <div class="w-full flex items-center mt-4 gap-10">
             <div
-              *ngFor="let requestPermission of requestPermissions.children"
+              *ngFor="let requestPermission of queriesGroup.children"
               class="flex gap-2 items-center"
             >
               <mat-slide-toggle
                 (change)="
                   changeSingleSetting(
                     $event,
-                    requestPermissions,
+                    queriesGroup,
                     requestPermission.id
                   )
                 "
@@ -186,7 +191,6 @@
       <!--- Update buttons form  --->
       <div class="w-full flex items-center gap-4">
         <button
-          [disabled]="!updateProfileForm.valid"
           class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
           type="submit"
         >
@@ -194,7 +198,7 @@
         </button>
 
         <button
-          (click)="patchForm()"
+          (click)="this.updateProfileForm.reset()"
           class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
         >
           Restablecer

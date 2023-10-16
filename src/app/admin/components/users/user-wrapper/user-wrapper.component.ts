@@ -5,7 +5,7 @@ import { User } from '../../../types/response-type-users';
 import { QueryService } from '../../../../query/services/query.service';
 import { Params } from '@angular/router';
 import { UserSelectorSearchService } from '../../../services/users/user-selector-search.service';
-import { _isUser } from '../../../../shared/utils/TypeGuards';
+import { _isUser } from '../../../../shared/utils/type-guards';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

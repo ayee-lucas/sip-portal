@@ -10,7 +10,7 @@ import { ProfileSelectorSearchService } from '../../../services/profiles/profile
 import {
   _isProfile,
   _isProfileResponseError
-} from '../../../../shared/utils/TypeGuards';
+} from '../../../../shared/utils/type-guards';
 import { ProfileSelectorService } from '../../../services/profiles/profile-selector.service';
 
 @Component({

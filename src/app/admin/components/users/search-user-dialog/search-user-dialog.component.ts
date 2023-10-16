@@ -4,7 +4,7 @@ import { QueryService } from '../../../../query/services/query.service';
 import { UserSelectorSearchService } from '../../../services/users/user-selector-search.service';
 import { map, Observable } from 'rxjs';
 import { ResponseError, User } from '../../../types/response-type-users';
-import { _isUser } from '../../../../shared/utils/TypeGuards';
+import { _isUser } from '../../../../shared/utils/type-guards';
 import { UserSelectorService } from '../../../services/users/user-selector.service';
 import { TranslateService } from '@ngx-translate/core';
 

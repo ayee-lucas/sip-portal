@@ -51,6 +51,8 @@ export class ProfileWrapperComponent implements OnInit, OnDestroy {
       this.profileSelectorService.setSelectedProfile(selectParam);
       return;
     }
+
+    this.queryService.updateParams({ new: true });
   }
 
   ngOnDestroy() {
@@ -63,7 +65,8 @@ export class ProfileWrapperComponent implements OnInit, OnDestroy {
     this.queryService.setParams({
       page: params['params'].page,
       size: params['params'].size,
-      sort: params['params'].sort
+      sort: params['params'].sort,
+      new: true
     });
 
     this.profileSelectorService.clearProfile();

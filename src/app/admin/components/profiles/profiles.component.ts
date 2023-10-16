@@ -3,7 +3,7 @@ import { ResponseProfile } from '../../types/response-type-profiles';
 import { Observable } from 'rxjs';
 import { ProfileRequestService } from '../../services/profiles/profile-request.service';
 import { QueryService } from '../../../query/services/query.service';
-import { _IsProfileSuccess } from '../../../shared/utils/TypeGuards';
+import { _IsProfileSuccess } from '../../../shared/utils/type-guards';
 import { Params } from '@angular/router';
 
 @Component({

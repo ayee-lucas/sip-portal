@@ -1,0 +1,130 @@
+<section
+  class="flex w-full flex-col gap-7 p-8 animate__animated animate__fadeInRightBig animate__faster"
+>
+  <!--- Header --->
+
+  <header
+    class="w-full flex items-center justify-between pr-5 border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
+  >
+    <h1 class="font-light montserrat">Nuevo Perfil</h1>
+  </header>
+
+  <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="newProfileForm"
+    class="flex w-full flex-col items-start justify-start space-y-3"
+  >
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input
+          [formControl]="newProfileForm.controls.name"
+          matInput
+          placeholder="Nombre"
+        />
+        <mat-hint>Nombre del perfil</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Descripcion</mat-label>
+        <input
+          [formControl]="newProfileForm.controls.description_profile"
+          matInput
+          placeholder="Descripcion"
+        />
+        <mat-hint>Descripcion del Perfil</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="flex w-full items-center justify-start gap-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+
+        <mat-select formControlName="status">
+          <mat-option>-</mat-option>
+          <mat-option
+            *ngFor="let option of selectOptions"
+            [value]="option.value"
+            >{{ option.label }}</mat-option
+          >
+        </mat-select>
+        <mat-hint>Estado del perfil</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <!--- Update toggles form  --->
+    <section class="w-full flex flex-col gap-7">
+      <div
+        class="w-full flex flex-col bg-surfaceC dark:bg-surfaceCDark p-8 rounded-xl"
+      >
+        <header
+          class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
+        >
+          <h1 class="text-2xl font-semibold">Configuraciones</h1>
+          <mat-slide-toggle
+            (change)="changeGroupSettings($event, settingsGroup)"
+            [checked]="settingsGroup.groupChecked"
+          ></mat-slide-toggle>
+        </header>
+        <div class="w-full flex items-center mt-4 gap-10">
+          <div
+            *ngFor="let setting of settingsGroup.children"
+            class="flex gap-2 items-center"
+          >
+            <mat-slide-toggle
+              (change)="changeSingleSetting($event, settingsGroup, setting.id)"
+              [checked]="setting.checked"
+            ></mat-slide-toggle>
+            <label>{{ setting.label }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="w-full flex flex-col bg-surfaceC dark:bg-surfaceCDark p-8 rounded-xl"
+      >
+        <header
+          class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
+        >
+          <h1 class="text-2xl font-semibold">Consultas</h1>
+          <mat-slide-toggle
+            (change)="changeGroupSettings($event, queriesGroup)"
+            [checked]="queriesGroup.groupChecked"
+          ></mat-slide-toggle>
+        </header>
+        <div class="w-full flex items-center mt-4 gap-10">
+          <div
+            *ngFor="let requestPermission of queriesGroup.children"
+            class="flex gap-2 items-center"
+          >
+            <mat-slide-toggle
+              (change)="
+                changeSingleSetting($event, queriesGroup, requestPermission.id)
+              "
+              [checked]="requestPermission.checked"
+            ></mat-slide-toggle>
+            <label>{{ requestPermission.label }}</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--- Update buttons form  --->
+    <div class="w-full flex items-center gap-4">
+      <button
+        [disabled]="newProfileForm.invalid"
+        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+        type="submit"
+      >
+        Agregar Perfil
+      </button>
+
+      <button
+        (click)="this.newProfileForm.reset()"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+      >
+        Restablecer
+      </button>
+    </div>
+  </form>
+</section>

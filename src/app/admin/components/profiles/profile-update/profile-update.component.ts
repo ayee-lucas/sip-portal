@@ -1,37 +1,28 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Profile } from '../../../types/response-type-profiles';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QueryService } from '../../../../query/services/query.service';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { ROLES } from '../../../../shared/utils/config';
 import { ProfileUpdateService } from '../../../services/profiles/profile-update.service';
 import { MessageService } from 'primeng/api';
+import { Group, ProfileForm } from '../../../types/profiles-type';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import {
+  buildFormPermissions,
+  buildQueriesGroup,
+  buildSettingsGroup,
+  groupSettingsBehaviour,
+  singleSettingBehaviour
+} from '../../../../shared/utils/group-behaviour-handler';
+import { MatDialog } from '@angular/material/dialog';
+import { ProfileDeleteDialogComponent } from '../profile-delete-dialog/profile-delete-dialog.component';
+import { ProfileDeleteService } from '../../../services/profiles/profile-delete.service';
 
-type UpdateProfileForm = {
-  name: FormControl<string | null>;
-  description_profile: FormControl<string | null>;
-  status: FormControl<boolean | null>;
-  permissions: FormArray;
-};
-
-type Group = {
-  groupChecked: boolean;
-  children: Children[];
-};
-
-type Children = {
-  id: string;
-  label: string;
-  checked: boolean;
-};
+/**
+ * @todo Validate the form on toggle change
+ * @todo Fix Form Reset on PatchForm()
+ */
 
 @Component({
   selector: 'app-profile-update',
@@ -39,9 +30,9 @@ type Children = {
 })
 export class ProfileUpdateComponent implements OnInit, OnDestroy {
   @Input() selectedProfile!: Profile | null;
-  updateProfileForm!: FormGroup<UpdateProfileForm>;
-  settings!: Group;
-  requestPermissions!: Group;
+  updateProfileForm!: FormGroup<ProfileForm>;
+  settingsGroup!: Group;
+  queriesGroup!: Group;
 
   selectOptions = [
     { value: true, label: 'Active' },
@@ -54,7 +45,9 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
     private queryService: QueryService,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private profileUpdateService: ProfileUpdateService
+    private profileUpdateService: ProfileUpdateService,
+    private profileDeleteService: ProfileDeleteService,
+    public dialog: MatDialog
   ) {}
 
   private get permissions() {
@@ -64,13 +57,13 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.buildUpdateProfileForm();
 
-    this.route.queryParams
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe(params => {
-        this.buildSettings();
-        this.buildRequestPermissions();
-        this.buildFormPermissions(params);
-      });
+    const newParam = this.queryService.getParams()['params'].new;
+
+    if (newParam) {
+      this.queryService.deleteParam('new');
+    }
+
+    this.buildGroups();
   }
 
   ngOnDestroy() {
@@ -109,62 +102,57 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
       return;
     }
 
+    const permissionsData = permissions.filter(
+      (permission: string) =>
+        permission !== null && permission !== undefined && permission !== ''
+    );
+
     const data: Profile = {
       profileId: this.selectedProfile.profileId,
       name: name,
       description_profile: description_profile,
       status: status,
-      resources: permissions
+      resources: permissionsData
     };
 
     this.profileUpdateService.init(data);
   }
 
-  patchForm() {
-    const params = this.queryService.getParams();
-
-    this.updateProfileForm.patchValue({
-      name: params['params'].name,
-      description_profile: params['params'].description,
-      status: params['params'].status === 'true'
-    });
-  }
-
   changeGroupSettings(e: MatSlideToggleChange, group: Group) {
-    group.groupChecked = e.checked;
-    group.children.map(child => {
-      this.changeSingleSetting(e, group, child.id);
-    });
+    groupSettingsBehaviour({ e, group, resources: this.permissions });
   }
 
   changeSingleSetting(e: MatSlideToggleChange, group: Group, id: string) {
-    const child = group.children.find(child => child.id === id);
-
-    if (!child) {
-      return;
-    }
-
-    child.checked = e.checked;
-
-    if (this.permissions.length === 0) {
-      this.addPermission(id);
-      return;
-    }
-
-    if (this.permissions.at(this.permissions.value.indexOf(id)).value === id) {
-      this.permissions.removeAt(this.permissions.value.indexOf(id));
-
-      this.checkALlOptions(group);
-      return;
-    }
-
-    this.addPermission(id);
-
-    this.checkALlOptions(group);
+    singleSettingBehaviour({ e, group, id, resources: this.permissions });
   }
 
-  private addPermission(permission: string) {
-    this.permissions.push(this.fb.control(permission));
+  openDeleteDialog() {
+    const dialogRef = this.dialog.open(ProfileDeleteDialogComponent, {
+      width: '500px',
+      height: 'auto'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && this.selectedProfile) {
+        this.profileDeleteService.deleteProfile(this.selectedProfile.profileId);
+
+        return;
+      }
+    });
+  }
+
+  private buildGroups() {
+    this.route.queryParams
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(params => {
+        this.settingsGroup = buildSettingsGroup(params);
+
+        this.queriesGroup = buildQueriesGroup(params);
+
+        buildFormPermissions(params, this.permissions);
+
+        console.log(this.updateProfileForm.value);
+      });
   }
 
   private buildUpdateProfileForm() {
@@ -174,72 +162,5 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
       status: [false, Validators.required],
       permissions: this.fb.array([this.fb.control('')])
     });
-  }
-
-  private checkALlOptions(group: Group) {
-    const AllChecked = group.children.every(child => {
-      return child.checked;
-    });
-
-    if (AllChecked) {
-      group.groupChecked = true;
-
-      return;
-    }
-
-    group.groupChecked = false;
-  }
-
-  private buildSettings() {
-    const params = this.queryService.getParams();
-
-    this.settings = {
-      groupChecked: false,
-      children: [
-        {
-          id: ROLES.PROFILES,
-          label: 'Perfiles',
-          checked: params['params'].profilesRole === 'true'
-        },
-        {
-          id: ROLES.USERS,
-          label: 'Usuarios',
-          checked: params['params'].users === 'true'
-        }
-      ]
-    };
-
-    this.checkALlOptions(this.settings);
-  }
-
-  private buildRequestPermissions() {
-    const params = this.queryService.getParams();
-
-    this.requestPermissions = {
-      groupChecked: false,
-      children: [
-        {
-          id: ROLES.AUDIT,
-          label: 'Auditoria',
-          checked: params['params'].audit === 'true'
-        }
-      ]
-    };
-
-    this.checkALlOptions(this.requestPermissions);
-  }
-
-  private buildFormPermissions(params: Params) {
-    this.permissions.clear();
-
-    const user = params['users'] === 'true' ? ROLES.USERS : '';
-
-    if (user) this.addPermission(user);
-
-    const profiles = params['profilesRole'] === 'true' ? ROLES.PROFILES : '';
-    if (profiles) this.addPermission(profiles);
-
-    const audit = params['audit'] === 'true' ? ROLES.AUDIT : '';
-    if (audit) this.addPermission(audit);
   }
 }
