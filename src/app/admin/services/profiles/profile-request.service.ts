@@ -85,6 +85,7 @@ export class ProfileRequestService {
    * @description It handles the response of the request and sets the state of the profiles$ BehaviorSubject.
    * @param url The url to make the request.
    * @private
+   * @memberof ProfileRequestService
    */
   private requestProfiles(url: string) {
     this.http
