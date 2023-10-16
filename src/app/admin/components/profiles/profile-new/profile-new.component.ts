@@ -75,7 +75,7 @@ export class ProfileNewComponent implements OnInit {
       resources: permissionsData
     };
 
-    this.profileNewService.init(data);
+    this.profileNewService.addProfile(data);
   }
 
   changeGroupSettings(e: MatSlideToggleChange, group: Group) {

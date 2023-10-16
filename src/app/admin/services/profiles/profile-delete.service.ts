@@ -11,7 +11,8 @@ import { ProfileRequestService } from './profile-request.service';
 import { ProfileSelectorService } from './profile-selector.service';
 
 /**
- * ProfileDeleteService handles the deletion request of a profile.
+ * ## ProfileDeleteService handles the deletion request of a profile.
+ * @description Provides in Root of the application.
  * @class ProfileDeleteService
  */
 @Injectable({
@@ -21,7 +22,9 @@ export class ProfileDeleteService {
   /**
    * response$ is a BehaviorSubject that holds the response of the request
    * any subscriber will be notified of the changes.
+   * @description Used to handle the state of the delete request.
    * @private
+   * @memberof ProfileDeleteService
    */
   private response$ = new BehaviorSubject<
     null | ResponseError | ResponseLoading
@@ -36,6 +39,7 @@ export class ProfileDeleteService {
    * @param messageService Used to display messages, provided by PrimeNg UI library.
    * @param profileRequestService Used to refresh the profile list.
    * @param profileSelectorService Used to clear the selected profile.
+   * @memberof ProfileDeleteService
    */
   constructor(
     private http: HttpClient,
@@ -62,8 +66,7 @@ export class ProfileDeleteService {
   /**
    * This method is used to handle the http request for deleting the profile and
    * set the state of the response$ BehaviorSubject.
-   * It also handles the error response and displays a message to the user.
-   * @param url The url to make the http request.
+   * @param url The url to make the request.
    * @private
    * @memberof ProfileDeleteService
    */
@@ -74,9 +77,7 @@ export class ProfileDeleteService {
         catchError(err => {
           // If the server returns a ResponseError object, we return it.
           if ('error' in err) {
-            const errorObj = err.error;
-
-            return of(errorObj);
+            return of(err.error);
           }
 
           // If the server fails in returning a ResponseError object, we create one.
@@ -108,15 +109,16 @@ export class ProfileDeleteService {
 
         this.profileSelectorService.clearProfile();
 
-        this.profileRequestService.refresh();
-
-        this.response$.next(null);
-
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
           detail: 'Profile deleted successfully'
         });
+
+        this.profileRequestService.refresh();
+
+        // We set the response$ BehaviorSubject to null, meaning we successfully deleted a profile.
+        this.response$.next(null);
       });
   }
 }
