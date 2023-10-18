@@ -7,19 +7,21 @@
     <header
       class="w-full flex items-center justify-between pr-5 border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
     >
-      <h1 class="font-light montserrat">Actualizar Perfil</h1>
+      <h1 class="font-light montserrat">
+        {{ 'updateProfile.title' | translate }}
+      </h1>
 
       <button
         (click)="openDeleteDialog()"
         class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-error"
       >
-        <span>Eliminar Perfil</span>
+        <span>{{ 'updateProfile.deleteProfile' | translate }}</span>
         <mat-icon>delete</mat-icon>
       </button>
     </header>
 
     <h2 class="font-light montserrat text-lg font-semibold">
-      Detalles del perfil
+      {{ 'updateProfile.table.caption' | translate }}
     </h2>
     <div
       class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
@@ -30,15 +32,23 @@
       >
         <caption>
           {{
-            'updateUser.table.caption' | translate
+            'updateProfile.table.caption' | translate
           }}
         </caption>
         <thead class="bg-surfaceBright dark:bg-surfaceBrightDark">
           <tr>
-            <th class="px-4 py-2">ID</th>
-            <th class="px-4 py-2">Nombre</th>
-            <th class="px-4 py-2">Descripcion</th>
-            <th class="px-4 py-2">Estado</th>
+            <th class="px-4 py-2">
+              {{ 'updateProfile.table.id' | translate }}
+            </th>
+            <th class="px-4 py-2">
+              {{ 'updateProfile.table.name' | translate }}
+            </th>
+            <th class="px-4 py-2">
+              {{ 'updateProfile.table.description' | translate }}
+            </th>
+            <th class="px-4 py-2">
+              {{ 'updateProfile.table.status' | translate }}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -68,7 +78,11 @@
                     : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
                 "
               >
-                {{ selectedProfile.status ? 'Active' : 'Inactive' }}
+                {{
+                  selectedProfile.status
+                    ? ('updateProfile.table.statusActive' | translate)
+                    : ('updateProfile.table.statusInactive' | translate)
+                }}
               </span>
             </td>
           </tr>
@@ -77,7 +91,9 @@
     </div>
 
     <!--- Update profile form  --->
-    <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
+    <h2 class="font-light montserrat text-lg">
+      {{ 'updateProfile.form.title' | translate }}
+    </h2>
     <form
       (ngSubmit)="onSubmit()"
       [formGroup]="updateProfileForm"
@@ -85,30 +101,40 @@
     >
       <div class="flex w-full items-center justify-start gap-3">
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Nombre</mat-label>
+          <mat-label>{{
+            'updateProfile.form.nameLabel' | translate
+          }}</mat-label>
           <input
             [formControl]="updateProfileForm.controls.name"
             [value]="selectedProfile.name"
             matInput
-            placeholder="Nombre"
+            placeholder="{{ 'updateProfile.form.namePlaceholder' | translate }}"
           />
-          <mat-hint>Nombre del perfil</mat-hint>
+          <mat-hint>{{ 'updateProfile.form.nameHint' | translate }}</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-full">
-          <mat-label>Descripcion</mat-label>
+          <mat-label>{{
+            'updateProfile.form.descriptionLabel' | translate
+          }}</mat-label>
           <input
             [formControl]="updateProfileForm.controls.description_profile"
             [value]="selectedProfile.description_profile"
             matInput
-            placeholder="Descripcion"
+            placeholder="{{
+              'updateProfile.form.descriptionPlaceholder' | translate
+            }}"
           />
-          <mat-hint>Descripcion del Perfil</mat-hint>
+          <mat-hint>{{
+            'updateProfile.form.descriptionHint' | translate
+          }}</mat-hint>
         </mat-form-field>
       </div>
       <div class="flex w-full items-center justify-start gap-3">
         <mat-form-field appearance="outline">
-          <mat-label>Estado</mat-label>
+          <mat-label>{{
+            'updateProfile.form.statusLabel' | translate
+          }}</mat-label>
 
           <mat-select
             [(value)]="selectedProfile.status"
@@ -121,7 +147,7 @@
               >{{ option.label }}</mat-option
             >
           </mat-select>
-          <mat-hint>Estado del perfil</mat-hint>
+          <mat-hint>{{ 'updateProfile.form.statusHint' | translate }}</mat-hint>
         </mat-form-field>
       </div>
 
@@ -133,7 +159,9 @@
           <header
             class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
           >
-            <h1 class="text-2xl font-semibold">Configuraciones</h1>
+            <h1 class="text-2xl font-semibold">
+              {{ 'updateProfile.form.settings' | translate }}
+            </h1>
             <mat-slide-toggle
               (change)="changeGroupSettings($event, settingsGroup)"
               [checked]="settingsGroup.groupChecked"
@@ -150,7 +178,7 @@
                 "
                 [checked]="setting.checked"
               ></mat-slide-toggle>
-              <label>{{ setting.label }}</label>
+              <label>{{ setting.label | translate }}</label>
             </div>
           </div>
         </div>
@@ -161,7 +189,9 @@
           <header
             class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
           >
-            <h1 class="text-2xl font-semibold">Consultas</h1>
+            <h1 class="text-2xl font-semibold">
+              {{ 'updateProfile.form.queries' | translate }}
+            </h1>
             <mat-slide-toggle
               (change)="changeGroupSettings($event, queriesGroup)"
               [checked]="queriesGroup.groupChecked"
@@ -182,7 +212,7 @@
                 "
                 [checked]="requestPermission.checked"
               ></mat-slide-toggle>
-              <label>{{ requestPermission.label }}</label>
+              <label>{{ requestPermission.label | translate }}</label>
             </div>
           </div>
         </div>
@@ -194,14 +224,14 @@
           class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
           type="submit"
         >
-          Actualizar Perfil
+          {{ 'updateProfile.form.submit' | translate }}
         </button>
 
         <button
           (click)="this.updateProfileForm.reset()"
           class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
         >
-          Restablecer
+          {{ 'updateProfile.form.reset' | translate }}
         </button>
       </div>
     </form>
@@ -209,5 +239,5 @@
 </ng-container>
 
 <ng-template #error>
-  <div>An error has ocurred</div>
+  <div>{{ 'updateProfile.error' | translate }}</div>
 </ng-template>

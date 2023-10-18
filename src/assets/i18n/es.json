@@ -161,5 +161,76 @@
     "email": "Correo electrónico",
     "active": "Activo",
     "inactive": "Inactivo"
-  }
+  },
+  "profiles": {
+    "title": "Perfiles",
+    "newProfile": "Nuevo Perfil"
+  },
+
+  "confirmDelete": {
+    "title": "¿Estás seguro de que deseas eliminar este perfil?",
+    "cancel": "Cancelar",
+    "delete": "Eliminar"
+  },
+  "newProfile": {
+    "title": "Nuevo Perfil",
+    "formTitle": "Formulario del Perfil",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Nombre del perfil",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Descripción del Perfil",
+    "statusLabel": "Estado",
+    "statusPlaceholder": "Estado del perfil",
+    "settingsTitle": "Configuraciones",
+    "queriesTitle": "Consultas",
+    "addButtonLabel": "Agregar Perfil",
+    "resetButtonLabel": "Restablecer"
+  },
+  "profilesSelector": {
+    "idLabel": "ID:",
+    "nameLabel": "Nombre:",
+    "descriptionLabel": "Descripción:",
+    "statusLabel": "Estado:",
+    "active": "Activo",
+    "inactive": "Inactivo"
+  },
+  "updateProfile": {
+    "title": "Actualizar Perfil",
+    "deleteProfile": "Eliminar Perfil",
+    "table": {
+      "caption": "Detalles del perfil",
+      "id": "ID",
+      "name": "Nombre",
+      "description": "Descripción",
+      "status": "Estado",
+      "statusActive": "Activo",
+      "statusInactive": "Inactivo"
+    },
+    "form": {
+      "title": "Formulario del Perfil",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Nombre",
+      "nameHint": "Nombre del perfil",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Descripción",
+      "descriptionHint": "Descripción del Perfil",
+      "statusLabel": "Estado",
+      "statusHint": "Estado del perfil",
+      "settings": "Configuraciones",
+      "queries": "Consultas",
+      "submit": "Actualizar Perfil",
+      "reset": "Restablecer"
+    },
+    "error": "Ha ocurrido un error"
+  },
+    "profileDialog": {
+      "titleFound": "Perfil Encontrado",
+      "id": "ID",
+      "name": "Nombre",
+      "description": "Descripción",
+      "status": "Estado",
+      "cancel": "Cancelar",
+      "select": "Seleccionar",
+      "titleNotFound": "Perfil No Encontrado"
+    }
 }

@@ -2,7 +2,7 @@
   <label
     class="sr-only mb-3 text-sm font-medium text-primary dark:text-primaryDark"
     for="default-search"
-    >Buscar perfiles por ID</label
+    >{{ 'search.label' | translate }}</label
   >
   <div class="relative">
     <div
@@ -20,7 +20,7 @@
       [formControl]="searchProfileForm.controls.search"
       class="block w-full px-4 py-6 text-sm transition-all text-primary bg-surface placeholder-primary focus:outline-primary focus:outline-none focus:outline focus:outline-1 focus:outline-offset-0 dark:text-primaryDark dark:bg-surfaceDark dark:border-outlineDark dark:placeholder-primaryDark/80 dark:text-white focus:dark:outline-primaryDark/40"
       id="default-search"
-      placeholder="Buscar perfiles por ID"
+      placeholder="{{ 'search.placeholder' | translate }}"
       type="search"
     />
     <button

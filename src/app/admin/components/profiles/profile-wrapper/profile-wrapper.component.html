@@ -3,7 +3,9 @@
     <header
       class="bg-surfaceC dark:bg-surfaceCDark text-onSurface dark:text-onSurfaceDark rounded-2xl pt-32 pb-3 px-4"
     >
-      <h1 class="text-6xl font-semibold w-fit rounded-2xl">Perfiles</h1>
+      <h1 class="text-6xl font-semibold w-fit rounded-2xl">
+        {{ 'profiles.title' | translate }}
+      </h1>
     </header>
 
     <div class="mt-5 flex w-full items-center justify-end gap-3 p-2">
@@ -12,7 +14,7 @@
         [disabled]="!data.profile"
         class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <span>Nuevo Perfil</span>
+        <span>{{ 'profiles.newProfile' | translate }}</span>
         <mat-icon>add_circle</mat-icon>
       </button>
     </div>
