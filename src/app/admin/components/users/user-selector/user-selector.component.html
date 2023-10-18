@@ -13,16 +13,23 @@
       <mat-icon class="min-w-fit px-2">supervised_user_circle</mat-icon>
 
       <div class="flex flex-col overflow-hidden">
-        <span class="text-lg">ID: {{ user.userId }}</span>
+        <span class="text-lg"
+          >{{ 'userSelector.id' | translate }}: {{ user.userId }}</span
+        >
         <span class="truncate transition-all text-md hover:whitespace-normal"
-          >Name: {{ user.names }}</span
+          >{{ 'userSelector.name' | translate }}: {{ user.names }}</span
         >
         <span class="truncate text-sm transition-all hover:whitespace-normal"
-          >Email: {{ user.email }}</span
+          >{{ 'userSelector.email' | translate }}: {{ user.email }}</span
         >
-        <span class="text-sm"
-          >Status: {{ user.status ? 'Active' : 'Inactive' }}</span
-        >
+        <span class="text-sm">
+          {{ 'userSelector.status' | translate }}:
+          {{
+            user.status
+              ? ('userSelector.active' | translate)
+              : ('userSelector.inactive' | translate)
+          }}
+        </span>
       </div>
     </li>
   </ng-container>

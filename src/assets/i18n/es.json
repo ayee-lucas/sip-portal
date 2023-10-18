@@ -111,7 +111,7 @@
     "deactivated": "Desactivado",
     "userDetails": "Detalles del Usuario",
     "table": {
-      "caption": "Update",
+      "caption": "Actualizar",
       "id": "ID",
       "name": "Nombre",
       "lastName": "Apellido",
@@ -154,5 +154,12 @@
   "list": {
     "title": "Lista",
     "refreshTooltip": "Actualizar"
+  },
+  "userSelector": {
+    "id": "ID",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "active": "Activo",
+    "inactive": "Inactivo"
   }
 }

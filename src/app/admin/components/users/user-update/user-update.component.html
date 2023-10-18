@@ -66,13 +66,12 @@
                   : 'rounded-xl px-4 py-2 text-sm font-bold opacity-70 bg-errorDark text-error dark:bg-onErrorDarK'
               "
             >
-              {{ selectedUser.status ? 'Active' : 'Inactive' }}
+              {{
+                selectedUser.status
+                  ? ('updateUser.active' | translate)
+                  : ('updateUser.deactivated' | translate)
+              }}
             </span>
-          </td>
-          <td
-            class="border-l text-center border-outline dark:border-outlineDark/50 px-4 py-3"
-          >
-            {{ selectedUser.profileId }}
           </td>
         </tr>
       </tbody>
