@@ -12,7 +12,7 @@ import { environment } from '../../../../environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileSelectorSearchService {
+export class ProfileGetByIdService {
   // Profile Observable
   /**
    * Profile BehaviorSubject to handle the profile state
@@ -20,7 +20,7 @@ export class ProfileSelectorSearchService {
    * Initializes with a loading state
    *
    * @private
-   * @memberof ProfileSelectorSearchService
+   * @memberof ProfileGetByIdService
    */
   private singleProfile$ = new BehaviorSubject<
     Profile | ResponseError | ResponseLoading
@@ -33,7 +33,7 @@ export class ProfileSelectorSearchService {
    *
    * @param http
    * @param messageService
-   * @memberof ProfileSelectorSearchService
+   * @memberof ProfileGetByIdService
    */
   constructor(
     private http: HttpClient,
@@ -47,7 +47,7 @@ export class ProfileSelectorSearchService {
    * as a query param and calls the requestProfile method
    *
    * @param id
-   * @memberof ProfileSelectorSearchService
+   * @memberof ProfileGetByIdService
    */
   init(id: number) {
     const url = new URL(`${environment.SERVER_PATH.PROFILES}/{id}`);
@@ -63,7 +63,7 @@ export class ProfileSelectorSearchService {
    * Returns either a Profile, ResponseError or ResponseLoading object
    *
    * @returns Observable
-   * @memberof ProfileSelectorSearchService
+   * @memberof ProfileGetByIdService
    */
   getProfile(): Observable<Profile | ResponseError | ResponseLoading> {
     return this.singleProfile$;
@@ -81,7 +81,7 @@ export class ProfileSelectorSearchService {
    *
    * @param url
    * @private
-   * @memberof ProfileSelectorSearchService
+   * @memberof ProfileGetByIdService
    */
   private requestProfile(url: string) {
     this.http

@@ -6,7 +6,7 @@ import {
 } from '../../../types/response-type-users';
 import { Observable } from 'rxjs';
 import { Profile } from '../../../types/response-type-profiles';
-import { ProfileSelectorSearchService } from '../../../services/profiles/profile-selector-search.service';
+import { ProfileGetByIdService } from '../../../services/profiles/profile-get-by-id.service';
 import {
   _isProfile,
   _isProfileResponseError
@@ -26,7 +26,7 @@ export class SearchProfileDialogComponent implements OnInit {
 
   constructor(
     private queryService: QueryService,
-    private profileSelectorSearchService: ProfileSelectorSearchService,
+    private profileSelectorSearchService: ProfileGetByIdService,
     private profileSelectorService: ProfileSelectorService
   ) {}
 

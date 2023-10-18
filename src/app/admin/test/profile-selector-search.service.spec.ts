@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-import { ProfileSelectorSearchService } from '../services/profiles/profile-selector-search.service';
+import { ProfileGetByIdService } from '../services/profiles/profile-get-by-id.service';
 
 describe('ProfileSelectorSearchService', () => {
-  let service: ProfileSelectorSearchService;
+  let service: ProfileGetByIdService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProfileSelectorSearchService);
+    service = TestBed.inject(ProfileGetByIdService);
   });
 
   it('should be created', () => {
