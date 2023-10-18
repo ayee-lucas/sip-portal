@@ -35,8 +35,8 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   queriesGroup!: Group;
 
   selectOptions = [
-    { value: true, label: 'Active' },
-    { value: false, label: 'Inactive' }
+    { value: true, label: 'userSelector.active' },
+    { value: false, label: 'userSelector.inactive' }
   ];
   private unsubscribe$ = new Subject<boolean>();
 

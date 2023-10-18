@@ -19,8 +19,8 @@ import { Profile } from '../../../types/response-type-profiles';
 export class ProfileNewComponent implements OnInit {
   newProfileForm!: FormGroup<ProfileForm>;
   selectOptions = [
-    { value: true, label: 'Active' },
-    { value: false, label: 'Inactive' }
+    { value: true, label: 'userSelector.active' },
+    { value: false, label: 'userSelector.inactive' }
   ];
 
   settingsGroup!: Group;

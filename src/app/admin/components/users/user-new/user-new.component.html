@@ -97,7 +97,7 @@
               <mat-option
                 *ngFor="let option of selectOptions"
                 [value]="option.value"
-                >{{ option.label }}</mat-option
+                >{{ option.label | translate }}</mat-option
               >
             </mat-select>
             <mat-hint>{{

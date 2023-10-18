@@ -30,8 +30,8 @@ export class UserNewComponent implements OnInit {
   paramsAtInit!: Params;
 
   selectOptions = [
-    { label: 'Active', value: true },
-    { label: 'Inactive', value: false }
+    { label: 'userSelector.active', value: true },
+    { label: 'userSelector.inactive', value: false }
   ];
 
   constructor(
