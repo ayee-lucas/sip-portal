@@ -36,6 +36,7 @@ const routes: Routes = [{ path: '', component: AuditComponent }];
     MatNativeDateModule,
     MatButtonModule,
     TranslateModule.forChild({
+      defaultLanguage: 'es',
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,

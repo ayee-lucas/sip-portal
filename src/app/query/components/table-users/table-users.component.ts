@@ -12,7 +12,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FilterUserService } from '../../services/filter-user.service';
 import { Params } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table-users',
@@ -31,13 +30,7 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatSort) paginatorSort!: MatSort;
 
-  constructor(
-    private filterService: FilterUserService,
-    private TranslateService: TranslateService
-  ) {
-    this.TranslateService.setDefaultLang('es');
-    this.TranslateService.use('es');
-  }
+  constructor(private filterService: FilterUserService) {}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.mockUsers);

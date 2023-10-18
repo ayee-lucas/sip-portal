@@ -6,7 +6,6 @@ import { QueryService } from '../../../../query/services/query.service';
 import { Params } from '@angular/router';
 import { UserSelectorSearchService } from '../../../services/users/user-selector-search.service';
 import { _isUser } from '../../../../shared/utils/type-guards';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-wrapper',
@@ -43,12 +42,9 @@ export class UserWrapperComponent implements OnInit, OnDestroy {
   constructor(
     private userSelectorService: UserSelectorService,
     private userSearchService: UserSelectorSearchService,
-    private queryService: QueryService,
-    private translate: TranslateService
+    private queryService: QueryService
   ) {
     this.params = this.queryService.getParams();
-    this.translate.setDefaultLang('es');
-    this.translate.use('es');
   }
 
   // OnInit method

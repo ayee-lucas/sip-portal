@@ -4,7 +4,6 @@ import { map, Observable } from 'rxjs';
 import { ResponseUserSuccess } from '../../types/response-type-users';
 import { QueryService } from '../../../query/services/query.service';
 import { Params } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-components',
@@ -16,12 +15,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userOperationService: UserRequestService,
-    private queryService: QueryService,
-    private translate: TranslateService
-  ) {
-    translate.setDefaultLang('es');
-    translate.use('es');
-  }
+    private queryService: QueryService
+  ) {}
 
   ngOnInit() {
     this.params = this.queryService.getParams();

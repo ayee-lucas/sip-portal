@@ -9,7 +9,6 @@ import {
 } from '@angular/forms';
 import { UserNewService } from '../../../services/users/user-new.service';
 import { User } from '../../../types/response-type-users';
-import { TranslateService } from '@ngx-translate/core';
 
 export type NewUserForm = {
   name: FormControl<string | null>;
@@ -38,12 +37,8 @@ export class UserNewComponent implements OnInit {
   constructor(
     private queryService: QueryService,
     private fb: FormBuilder,
-    private addUserService: UserNewService,
-    private translate: TranslateService
-  ) {
-    translate.setDefaultLang('es');
-    translate.use('es');
-  }
+    private addUserService: UserNewService
+  ) {}
 
   ngOnInit() {
     if (this.queryService.getParams()['params'].new) {
