@@ -28,8 +28,8 @@ export class UserUpdateComponent implements OnInit {
   @Input() selectedUser!: User;
 
   selectOptions = [
-    { value: true, label: 'Active' },
-    { value: false, label: 'Inactive' }
+    { value: true, label: 'userSelector.active' },
+    { value: false, label: 'userSelector.inactive' }
   ];
 
   constructor(

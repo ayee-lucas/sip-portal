@@ -38,6 +38,7 @@ export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
     ToastModule,
     HttpClientModule,
     TranslateModule.forRoot({
+      defaultLanguage: 'es',
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,

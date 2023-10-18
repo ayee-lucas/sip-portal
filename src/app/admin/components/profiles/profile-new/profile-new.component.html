@@ -6,10 +6,13 @@
   <header
     class="w-full flex items-center justify-between pr-5 border-b pb-7 text-2xl border-b-outline dark:border-b-outlineDark/40"
   >
-    <h1 class="font-light montserrat">Nuevo Perfil</h1>
+    <h1 class="font-light montserrat" translate="newProfile.title"></h1>
   </header>
 
-  <h2 class="font-light montserrat text-lg">Formulario del Perfil</h2>
+  <h2
+    class="font-light montserrat text-lg"
+    translate="newProfile.formTitle"
+  ></h2>
   <form
     (ngSubmit)="onSubmit()"
     [formGroup]="newProfileForm"
@@ -17,38 +20,38 @@
   >
     <div class="flex w-full items-center justify-start gap-3">
       <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Nombre</mat-label>
+        <mat-label translate="newProfile.nameLabel"></mat-label>
         <input
           [formControl]="newProfileForm.controls.name"
           matInput
-          placeholder="Nombre"
+          placeholder="{{ 'newProfile.namePlaceholder' | translate }}"
         />
-        <mat-hint>Nombre del perfil</mat-hint>
+        <mat-hint translate="newProfile.namePlaceholder"></mat-hint>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Descripcion</mat-label>
+        <mat-label translate="newProfile.descriptionLabel"></mat-label>
         <input
           [formControl]="newProfileForm.controls.description_profile"
           matInput
-          placeholder="Descripcion"
+          placeholder="{{ 'newProfile.descriptionPlaceholder' | translate }}"
         />
-        <mat-hint>Descripcion del Perfil</mat-hint>
+        <mat-hint translate="newProfile.descriptionPlaceholder"></mat-hint>
       </mat-form-field>
     </div>
     <div class="flex w-full items-center justify-start gap-3">
       <mat-form-field appearance="outline">
-        <mat-label>Estado</mat-label>
+        <mat-label translate="newProfile.statusLabel"></mat-label>
 
         <mat-select formControlName="status">
           <mat-option>-</mat-option>
           <mat-option
             *ngFor="let option of selectOptions"
             [value]="option.value"
-            >{{ option.label }}</mat-option
+            >{{ option.label | translate }}</mat-option
           >
         </mat-select>
-        <mat-hint>Estado del perfil</mat-hint>
+        <mat-hint translate="newProfile.statusPlaceholder"></mat-hint>
       </mat-form-field>
     </div>
 
@@ -60,7 +63,10 @@
         <header
           class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
         >
-          <h1 class="text-2xl font-semibold">Configuraciones</h1>
+          <h1
+            class="text-2xl font-semibold"
+            translate="newProfile.settingsTitle"
+          ></h1>
           <mat-slide-toggle
             (change)="changeGroupSettings($event, settingsGroup)"
             [checked]="settingsGroup.groupChecked"
@@ -75,7 +81,7 @@
               (change)="changeSingleSetting($event, settingsGroup, setting.id)"
               [checked]="setting.checked"
             ></mat-slide-toggle>
-            <label>{{ setting.label }}</label>
+            <label>{{ setting.label | translate }}</label>
           </div>
         </div>
       </div>
@@ -86,7 +92,10 @@
         <header
           class="w-full flex items-center gap-8 pb-4 border-b border-outlineDark/40"
         >
-          <h1 class="text-2xl font-semibold">Consultas</h1>
+          <h1
+            class="text-2xl font-semibold"
+            translate="newProfile.queriesTitle"
+          ></h1>
           <mat-slide-toggle
             (change)="changeGroupSettings($event, queriesGroup)"
             [checked]="queriesGroup.groupChecked"
@@ -103,7 +112,7 @@
               "
               [checked]="requestPermission.checked"
             ></mat-slide-toggle>
-            <label>{{ requestPermission.label }}</label>
+            <label>{{ requestPermission.label | translate }}</label>
           </div>
         </div>
       </div>
@@ -116,14 +125,14 @@
         class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
         type="submit"
       >
-        Agregar Perfil
+        {{ 'newProfile.addButtonLabel' | translate }}
       </button>
 
       <button
         (click)="this.newProfileForm.reset()"
         class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
       >
-        Restablecer
+        {{ 'newProfile.resetButtonLabel' | translate }}
       </button>
     </div>
   </form>

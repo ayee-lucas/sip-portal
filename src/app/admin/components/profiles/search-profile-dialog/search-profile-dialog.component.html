@@ -1,7 +1,7 @@
 <ng-container *ngIf="profile$ | async as profile">
   <ng-container *ngIf="isProfile(profile); else loading">
     <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
-      Perfil Encontrado
+      {{ 'profileDialog.titleFound' | translate }}
     </h1>
     <div
       class="!bg-surface dark:!bg-surfaceDark w-full h-[72%] mostly-customized-scrollbar"
@@ -12,17 +12,18 @@
           <h1
             class="w-full px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
           >
-            ID: {{ profile.profileId }}
+            {{ 'profileDialog.id' | translate }}: {{ profile.profileId }}
           </h1>
           <h1
             class="w-full border-t px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
           >
-            Nombre: {{ profile.name }}
+            {{ 'profileDialog.name' | translate }}: {{ profile.name }}
           </h1>
           <h1
             class="w-full border-t px-3 py-2 text-xl border-outline dark:border-outlineDark/40"
           >
-            Descripcion: {{ profile.description_profile }}
+            {{ 'profileDialog.description' | translate }}:
+            {{ profile.description_profile }}
           </h1>
           <h1
             [className]="
@@ -31,7 +32,7 @@
                 : 'w-full rounded-b-xl border-t px-3 py-2 text-xl bg-errorDark border-outline dark:bg-onErrorDarK dark:border-outlineDark/40'
             "
           >
-            Status: {{ profile.status }}
+            {{ 'profileDialog.status' | translate }}: {{ profile.status }}
           </h1>
         </div>
       </div>
@@ -39,7 +40,9 @@
 
     <mat-dialog-actions class="!bg-surface dark:!bg-surfaceDark w-full px-3">
       <div class="w-full flex items-center gap-3">
-        <button class="w-full" mat-button mat-dialog-close>Cancel</button>
+        <button class="w-full" mat-button mat-dialog-close>
+          {{ 'profileDialog.cancel' | translate }}
+        </button>
 
         <button
           (click)="setProfile(profile)"
@@ -47,7 +50,7 @@
           class="w-full"
           mat-button
         >
-          Select
+          {{ 'profileDialog.select' | translate }}
         </button>
       </div>
     </mat-dialog-actions>
@@ -55,7 +58,7 @@
 
   <ng-container *ngIf="isError(profile)">
     <h1 class="!bg-surface dark:!bg-surfaceDark" mat-dialog-title>
-      Perfil No Encontrado
+      {{ 'profileDialog.titleNotFound' | translate }}
     </h1>
     <div
       class="w-full p-3 bg-surface h-[80%] mostly-customized-scrollbar dark:bg-surfaceDark"

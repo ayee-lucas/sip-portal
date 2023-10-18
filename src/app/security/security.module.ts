@@ -51,6 +51,7 @@ const routes: Routes = [
     MatInputModule,
     MatStepperModule,
     TranslateModule.forChild({
+      defaultLanguage: 'es',
       loader: {
         provide: TranslateLoader,
         useFactory: httpTranslateLoader,
