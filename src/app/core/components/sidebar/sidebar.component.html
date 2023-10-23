@@ -56,6 +56,16 @@
         <mat-icon>assignment_ind</mat-icon>
       </a>
     </li>
+    <li>
+      <a
+        [matTooltip]="'Parqueos'"
+        [routerLink]="['/parking']"
+        mat-icon-button
+        routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
+      >
+        <mat-icon>directions_car</mat-icon>
+      </a>
+    </li>
     <li class="mt-auto">
       <button
         (click)="logout()"
