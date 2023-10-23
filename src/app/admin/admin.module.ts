@@ -34,6 +34,7 @@ import { ProfileWrapperComponent } from './components/profiles/profile-wrapper/p
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProfileNewComponent } from './components/profiles/profile-new/profile-new.component';
 import { ProfileDeleteDialogComponent } from './components/profiles/profile-delete-dialog/profile-delete-dialog.component';
+import { ParkingComponent } from './components/parking/parking.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -72,7 +73,8 @@ const routes: Routes = [
     ProfileUpdateComponent,
     ProfileWrapperComponent,
     ProfileNewComponent,
-    ProfileDeleteDialogComponent
+    ProfileDeleteDialogComponent,
+    ParkingComponent
   ],
   imports: [
     CommonModule,
