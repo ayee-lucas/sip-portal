@@ -1,1 +1,24 @@
-<p>parking works!</p>
+<main class="h-full w-full flex">
+  <aside
+    class="flex h-full w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden"
+  >
+    <header
+      class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-onSurface/90 dark:border-outlineDark/40"
+    >
+      <h1
+        class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
+      >
+        Parqueos
+      </h1>
+    </header>
+  </aside>
+  <section class="w-full overflow-y-auto">
+    <div class="w-full h-screen p-24">
+      <div
+        class="w-full h-full bg-surfaceBright/20 dark:bg-surfaceBrightDark/20 border rounded-2xl"
+      >
+        <app-park-lot></app-park-lot>
+      </div>
+    </div>
+  </section>
+</main>
