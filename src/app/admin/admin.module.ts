@@ -35,6 +35,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProfileNewComponent } from './components/profiles/profile-new/profile-new.component';
 import { ProfileDeleteDialogComponent } from './components/profiles/profile-delete-dialog/profile-delete-dialog.component';
 import { ParkingComponent } from './components/parking/parking.component';
+import { ParkLotComponent } from './components/parking/park-lot/park-lot.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'profiles',
     component: ProfilesComponent
+  },
+  {
+    path: 'parking',
+    component: ParkingComponent
   }
 ];
 
@@ -74,7 +79,8 @@ const routes: Routes = [
     ProfileWrapperComponent,
     ProfileNewComponent,
     ProfileDeleteDialogComponent,
-    ParkingComponent
+    ParkingComponent,
+    ParkLotComponent
   ],
   imports: [
     CommonModule,
