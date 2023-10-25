@@ -31,8 +31,13 @@ export class AuditComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUsers().subscribe(users => {
-      this.data = users;
+    this.userService.getAuditData(0, 10).subscribe({
+      next: (data: any) => {
+        this.data = data.content;
+      },
+      error: err => {
+        console.log('Error: ', err);
+      }
     });
   }
 }

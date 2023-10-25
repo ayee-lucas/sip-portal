@@ -1,43 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../mocks/data';
-import { QueryService } from '../services/query.service';
-import { Params } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { mockUsers, User } from '../mocks/data';
+import { Observable, of } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-@Component({
-  selector: 'app-query',
-  templateUrl: './audit.component.html'
+@Injectable({
+  providedIn: 'root'
 })
-export class AuditComponent implements OnInit {
-  data: User[] = [];
-  _params!: Params;
+export class UserService {
+  private apiUrl = 'http://localhost:8082/sip-services/api';
 
-  constructor(
-    private userService: UserService,
-    private queryService: QueryService
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    this.getUsers();
-
-    this._params = this.queryService.getParams();
-
-    if (!this._params['params'].size) {
-      this.queryService.updateParams({ page: 0, size: 10 });
-      return;
-    }
-
-    this.queryService.updateParams({ page: 0 });
-  }
-
-  getUsers() {
-    this.userService.getAuditData(0, 10).subscribe({
-      next: (data: any) => {
-        this.data = data.content;
-      },
-      error: err => {
-        console.log('Error: ', err);
-      }
-    });
+  getAuditData(page: number, size: number): Observable<User[]> {
+    const parametros = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    const url = `http://localhost:8082/sip-services/api/audit`;
+    return this.http.get<User[]>(url, { params: parametros });
   }
 }
