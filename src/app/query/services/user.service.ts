@@ -1,14 +1,43 @@
-import { Injectable } from '@angular/core';
-import { mockUsers, User } from '../mocks/data';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../mocks/data';
+import { QueryService } from '../services/query.service';
+import { Params } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-query',
+  templateUrl: './audit.component.html'
 })
-export class UserService {
-  getUsers(): Observable<User[]> {
-    const users = of(mockUsers.content);
+export class AuditComponent implements OnInit {
+  data: User[] = [];
+  _params!: Params;
 
-    return users;
+  constructor(
+    private userService: UserService,
+    private queryService: QueryService
+  ) {}
+
+  ngOnInit() {
+    this.getUsers();
+
+    this._params = this.queryService.getParams();
+
+    if (!this._params['params'].size) {
+      this.queryService.updateParams({ page: 0, size: 10 });
+      return;
+    }
+
+    this.queryService.updateParams({ page: 0 });
+  }
+
+  getUsers() {
+    this.userService.getAuditData(0, 10).subscribe({
+      next: (data: any) => {
+        this.data = data.content;
+      },
+      error: err => {
+        console.log('Error: ', err);
+      }
+    });
   }
 }
