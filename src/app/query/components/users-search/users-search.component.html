@@ -1,12 +1,11 @@
 <!---- Filters ---->
-
 <form
   [formGroup]="searchForm"
   class="w-full h-44 flex flex-col-reverse gap-3 items-end justify-end"
 >
-  <div class="w-full flex items-center justify-between">
+  <div class="w-full flex items-center gap-2">
     <!---- Date search ---->
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ 'filters.dateRange' | translate }}</mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input
@@ -39,7 +38,7 @@
     </mat-form-field>
 
     <!---- Entity search ---->
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ 'filters.entity' | translate }}</mat-label>
       <input
         #input
@@ -53,7 +52,7 @@
     </mat-form-field>
 
     <!---- Email search ---->
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ 'filters.userEmail' | translate }}</mat-label>
       <input
         #input
@@ -67,7 +66,7 @@
     </mat-form-field>
 
     <!---- Operation search ---->
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="w-full">
       <mat-label>{{ 'filters.operation' | translate }}</mat-label>
       <input
         #input
