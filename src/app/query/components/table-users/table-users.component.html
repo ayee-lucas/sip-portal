@@ -1,5 +1,5 @@
 <table
-  [dataSource]="dataSource"
+  [dataSource]="mockUsers"
   class="rounded-xl bg-primary dark:bg-onPrimaryDark"
   mat-table
 >
@@ -41,7 +41,7 @@
       class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
       mat-cell
     >
-      {{ element.date | date: 'medium' }}
+      {{ element.eventDate | date: 'medium' }}
     </td>
   </ng-container>
 
