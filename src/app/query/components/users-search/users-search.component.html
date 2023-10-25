@@ -5,20 +5,6 @@
   class="w-full h-44 flex flex-col-reverse gap-3 items-end justify-end"
 >
   <div class="w-full flex items-center justify-between">
-    <!---- Id search ---->
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'filters.id' | translate }}</mat-label>
-      <input
-        #input
-        formControlName="identifier"
-        matInput
-        placeholder="{{ 'filters.idPlaceholder' | translate }}"
-      />
-      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
-        >perm_identity</mat-icon
-      >
-    </mat-form-field>
-
     <!---- Date search ---->
     <mat-form-field appearance="outline">
       <mat-label>{{ 'filters.dateRange' | translate }}</mat-label>
@@ -91,20 +77,6 @@
       />
       <mat-icon class="text-primary dark:text-primaryDark" matSuffix
         >format_list_numbered</mat-icon
-      >
-    </mat-form-field>
-
-    <!---- Sub search ---->
-    <mat-form-field appearance="outline">
-      <mat-label>{{ 'filters.sub' | translate }}</mat-label>
-      <input
-        #input
-        formControlName="id"
-        matInput
-        placeholder="{{ 'filters.subPlaceholder' | translate }}"
-      />
-      <mat-icon class="text-primary dark:text-primaryDark" matSuffix
-        >scatter_plot</mat-icon
       >
     </mat-form-field>
   </div>

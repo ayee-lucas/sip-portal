@@ -10,23 +10,6 @@
       'table.usersAudit' | translate
     }}
   </caption>
-  <ng-container matColumnDef="identifier">
-    <!-- Cambio de 'id' a 'identifier' -->
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl rounded-t-none bg-onPrimary dark:bg-onPrimaryDark"
-      mat-header-cell
-    >
-      {{ 'table.id' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.identifier }}
-    </td>
-  </ng-container>
 
   <ng-container matColumnDef="date">
     <th
@@ -41,7 +24,7 @@
       class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
       mat-cell
     >
-      {{ element.eventDate | date: 'medium' }}
+      {{ element.eventDate | date: 'dd/MM/yyyy HH:mm:ss' }}
     </td>
   </ng-container>
 
@@ -75,7 +58,7 @@
       class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
       mat-cell
     >
-      {{ element.user }}
+      {{ element.userAudit }}
     </td>
   </ng-container>
 
@@ -93,24 +76,6 @@
       mat-cell
     >
       {{ element.operation }}
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="id">
-    <!-- Cambio de 'sub' a 'id' -->
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
-      mat-header-cell
-    >
-      {{ 'table.sub' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.id }}
     </td>
   </ng-container>
 
