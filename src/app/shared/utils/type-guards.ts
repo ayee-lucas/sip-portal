@@ -8,6 +8,10 @@ import {
   ResponseProfile,
   ResponseProfileSuccess
 } from '../../admin/types/response-type-profiles';
+import {
+  ResponseParking,
+  ResponseParkingSuccess
+} from 'src/app/admin/types/response-type-parking';
 
 export function _isUser(t: User | ResponseError): t is User {
   if ('error' in t) return false;
@@ -36,6 +40,16 @@ export function _isProfileResponseError(
 export function _IsProfileSuccess(
   t: ResponseProfile
 ): t is ResponseProfileSuccess {
+  if (!t) return false;
+
+  if ('error' in t) return false;
+
+  return !('loading' in t);
+}
+
+export function _IsParkingSuccess(
+  t: ResponseParking
+): t is ResponseParkingSuccess {
   if (!t) return false;
 
   if ('error' in t) return false;

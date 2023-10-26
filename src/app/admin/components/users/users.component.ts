@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit {
     if (!paramsValues.page || !paramsValues.sort || !paramsValues.size) {
       this.queryService.updateParams({
         page: 0,
-        sort: 'profileId',
+        sort: 'userId',
         size: 10
       });
     }

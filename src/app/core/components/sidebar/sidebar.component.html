@@ -60,6 +60,7 @@
       <a
         [matTooltip]="'Parqueos'"
         [routerLink]="['/parking']"
+        [queryParams]="{ page: 0, size: 10, sort: 'parkingId' }"
         mat-icon-button
         routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
       >

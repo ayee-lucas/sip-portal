@@ -75,8 +75,6 @@ export class UserNewComponent implements OnInit {
 
     const { name, lastName, email, status, profileId } = this.newUserForm.value;
 
-    console.log(name, lastName, email, status, profileId);
-
     if (!name || !lastName || !email || status == null || !profileId) {
       return;
     }
