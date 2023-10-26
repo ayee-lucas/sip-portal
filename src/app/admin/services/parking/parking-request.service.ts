@@ -6,6 +6,7 @@ import { ResponseError } from '../../types/response-type-users';
 import { MessageService } from 'primeng/api';
 import { Params } from '@angular/router';
 import { environment } from 'src/environments/environment.development';
+import { QueryService } from 'src/app/query/services/query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ParkingRequestService {
 
   constructor(
     private http: HttpClient,
+    private queryService: QueryService,
     private messageService: MessageService
   ) {}
 
@@ -30,6 +32,14 @@ export class ParkingRequestService {
 
   getParkings(): Observable<ResponseParking> {
     return this.parkings$;
+  }
+
+  refresh() {
+    this.parkings$.next({ loading: true });
+
+    const params = this.queryService.getParams();
+
+    this.init(params['params']);
   }
 
   private requestParking(url: string) {

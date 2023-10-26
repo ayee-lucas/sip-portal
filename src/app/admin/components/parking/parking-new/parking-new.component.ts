@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Params } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { ParkingNewService } from 'src/app/admin/services/parking/parking-new.service';
 import { ParkingForm } from 'src/app/admin/types/parking-type';
+import { Parking } from 'src/app/admin/types/response-type-parking';
 import { QueryService } from 'src/app/query/services/query.service';
 
 @Component({
@@ -20,7 +23,9 @@ export class ParkingNewComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private queryService: QueryService
+    private queryService: QueryService,
+    private messageService: MessageService,
+    private parkingNewService: ParkingNewService
   ) {
     this.params = this.queryService.getParams();
   }
@@ -34,5 +39,40 @@ export class ParkingNewComponent implements OnInit {
       phone: [Number(this.params['params'].phone) ?? 0, Validators.min(0)],
       status: [false, Validators.required]
     });
+  }
+
+  onSubmit() {
+    const { name, address, code, manager, phone, status } =
+      this.newParkingForm.value;
+
+    if (
+      !name ||
+      !address ||
+      !code ||
+      !manager ||
+      !phone ||
+      status === null ||
+      status === undefined
+    ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Please fill all the required fields'
+      });
+
+      return;
+    }
+
+    const data: Parking = {
+      parkingId: 0,
+      code,
+      name: name.trim(),
+      address: address.trim(),
+      manager: manager.trim(),
+      phone,
+      status
+    };
+
+    this.parkingNewService.addParking(data);
   }
 }

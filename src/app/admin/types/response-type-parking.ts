@@ -13,7 +13,7 @@ export type Parking = {
   code: number;
   name: string;
   address: string;
-  phone: string;
+  phone: number;
   manager: string;
   status: boolean;
 };
