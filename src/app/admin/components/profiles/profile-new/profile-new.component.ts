@@ -69,8 +69,8 @@ export class ProfileNewComponent implements OnInit {
 
     const data: Profile = {
       profileId: 0,
-      name,
-      description_profile,
+      name: name.trim(),
+      description_profile: description_profile.trim(),
       status,
       resources: permissionsData
     };

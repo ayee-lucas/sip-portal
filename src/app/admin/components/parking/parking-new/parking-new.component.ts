@@ -10,6 +10,12 @@ import { QueryService } from 'src/app/query/services/query.service';
 })
 export class ParkingNewComponent implements OnInit {
   newParkingForm!: FormGroup<ParkingForm>;
+
+  selectOptions = [
+    { value: true, label: 'userSelector.active' },
+    { value: false, label: 'userSelector.inactive' }
+  ];
+
   private params: Params;
 
   constructor(
@@ -25,7 +31,7 @@ export class ParkingNewComponent implements OnInit {
       name: [this.params['params'].name ?? '', Validators.required],
       address: [this.params['params'].address ?? '', Validators.required],
       manager: [this.params['params'].manager ?? '', Validators.required],
-      phone: [Number(this.params['params'].phone) ?? 0, Validators.required],
+      phone: [Number(this.params['params'].phone) ?? 0, Validators.min(0)],
       status: [false, Validators.required]
     });
   }

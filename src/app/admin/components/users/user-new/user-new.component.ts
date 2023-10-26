@@ -81,9 +81,9 @@ export class UserNewComponent implements OnInit {
 
     const data: User = {
       userId: 0,
-      names: name,
-      lastNames: lastName,
-      email: email,
+      names: name.trim(),
+      lastNames: lastName.trim(),
+      email: email.trim(),
       status: status,
       profileId: profileId
     };
