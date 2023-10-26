@@ -150,16 +150,19 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
         this.queriesGroup = buildQueriesGroup(params);
 
         buildFormPermissions(params, this.permissions);
-
-        console.log(this.updateProfileForm.value);
       });
   }
 
   private buildUpdateProfileForm() {
+    const query = this.queryService.getParams();
+
     this.updateProfileForm = this.fb.group({
-      name: ['', Validators.required],
-      description_profile: ['', Validators.required],
-      status: [false, Validators.required],
+      name: [query['params'].name ?? '', Validators.required],
+      description_profile: [
+        query['params'].description ?? '',
+        Validators.required
+      ],
+      status: [!!query['params'].status ?? false, Validators.required],
       permissions: this.fb.array([this.fb.control('')])
     });
   }
