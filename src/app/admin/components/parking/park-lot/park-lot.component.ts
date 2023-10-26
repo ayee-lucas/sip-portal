@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
 })
 export class ParkLotComponent {
   rows = Array.from({ length: 20 }, (_, i) => i + 1);
+  startDate = new Date();
 }
