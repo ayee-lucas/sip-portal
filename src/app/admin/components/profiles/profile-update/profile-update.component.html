@@ -20,7 +20,7 @@
       </button>
     </header>
 
-    <h2 class="font-light montserrat text-lg font-semibold">
+    <h2 class="montserrat text-lg font-semibold">
       {{ 'updateProfile.table.caption' | translate }}
     </h2>
     <div
@@ -136,7 +136,10 @@
             'updateProfile.form.statusLabel' | translate
           }}</mat-label>
 
-          <mat-select formControlName="status">
+          <mat-select
+            [(value)]="selectedProfile.status"
+            formControlName="status"
+          >
             <mat-option>-</mat-option>
             <mat-option
               *ngFor="let option of selectOptions"
@@ -219,6 +222,7 @@
       <div class="w-full flex items-center gap-4">
         <button
           class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+          [disabled]="updateProfileForm.invalid"
           type="submit"
         >
           {{ 'updateProfile.form.submit' | translate }}
