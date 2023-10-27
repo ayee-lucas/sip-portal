@@ -1,0 +1,21 @@
+<ng-container *ngIf="parkings">
+  <ul class="w-full h-full flex flex-col gap-3 py-5 px-3">
+    <li
+      (click)="setParking(parking.parkingId)"
+      *ngFor="let parking of parkings"
+      class="rounded-xl bg-surfaceC dark:bg-surfaceCDark flex flex-col p-2 border border-outline dark:border-outlineDark/40"
+      role="button"
+    >
+      <span class="text-lg">{{ parking.name }}</span>
+      <span>Direccion: {{ parking.address }}</span>
+      <span
+        [className]="
+          parking.status
+            ? 'text-sm mt-3 rounded-lg p-2 bg-onPrimary dark:bg-onPrimaryDark text-primary dark:text-primaryDark'
+            : 'text-sm mt-3 rounded-lg p-2 bg-errorDark dark:bg-onErrorDarK text-error dark:text-errorDark'
+        "
+        >Estado: {{ parking.status ? 'Activo' : 'Inactivo' }}</span
+      >
+    </li>
+  </ul>
+</ng-container>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ProfileRequestService } from '../../services/profiles/profile-request.service';
 import { QueryService } from '../../../query/services/query.service';
 import { _IsProfileSuccess } from '../../../shared/utils/type-guards';
-import { Params } from '@angular/router';
+import { setDefaultParams } from 'src/app/shared/utils/default-params';
 
 @Component({
   selector: 'app-profiles',
@@ -21,7 +21,7 @@ export class ProfilesComponent implements OnInit {
   ) {
     const params = this.queryService.getParams();
 
-    this.setDefaultParams(params);
+    setDefaultParams(params, 'profileId');
   }
 
   ngOnInit() {
@@ -34,17 +34,5 @@ export class ProfilesComponent implements OnInit {
 
   refresh() {
     this.profileRequest.refresh();
-  }
-
-  private setDefaultParams(params: Params) {
-    const paramsValues = params['params'];
-
-    if (!paramsValues.page || !paramsValues.sort || !paramsValues.size) {
-      this.queryService.updateParams({
-        page: 0,
-        sort: 'profileId',
-        size: 10
-      });
-    }
   }
 }

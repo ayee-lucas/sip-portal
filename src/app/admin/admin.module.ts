@@ -34,6 +34,15 @@ import { ProfileWrapperComponent } from './components/profiles/profile-wrapper/p
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ProfileNewComponent } from './components/profiles/profile-new/profile-new.component';
 import { ProfileDeleteDialogComponent } from './components/profiles/profile-delete-dialog/profile-delete-dialog.component';
+import { ParkingComponent } from './components/parking/parking.component';
+import { ParkLotComponent } from './components/parking/park-lot/park-lot.component';
+import { ParkingSelectorComponent } from './components/parking/parking-selector/parking-selector.component';
+import { ParkingPaginatorComponent } from './components/parking/parking-paginator/parking-paginator.component';
+import { ParkingWrapperComponent } from './components/parking/parking-wrapper/parking-wrapper.component';
+import { ParkingNewComponent } from './components/parking/parking-new/parking-new.component';
+import { ParkingActionsComponent } from './components/parking/parking-actions/parking-actions.component';
+import { ParkingDeleteDialogComponent } from './components/parking/parking-delete-dialog/parking-delete-dialog.component';
+import { ParkingRatesComponent } from './components/parking/parking-rates/parking-rates.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -50,6 +59,10 @@ const routes: Routes = [
   {
     path: 'profiles',
     component: ProfilesComponent
+  },
+  {
+    path: 'parking',
+    component: ParkingComponent
   }
 ];
 
@@ -72,7 +85,16 @@ const routes: Routes = [
     ProfileUpdateComponent,
     ProfileWrapperComponent,
     ProfileNewComponent,
-    ProfileDeleteDialogComponent
+    ProfileDeleteDialogComponent,
+    ParkingComponent,
+    ParkLotComponent,
+    ParkingSelectorComponent,
+    ParkingPaginatorComponent,
+    ParkingWrapperComponent,
+    ParkingNewComponent,
+    ParkingActionsComponent,
+    ParkingDeleteDialogComponent,
+    ParkingRatesComponent
   ],
   imports: [
     CommonModule,

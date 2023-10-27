@@ -75,17 +75,15 @@ export class UserNewComponent implements OnInit {
 
     const { name, lastName, email, status, profileId } = this.newUserForm.value;
 
-    console.log(name, lastName, email, status, profileId);
-
     if (!name || !lastName || !email || status == null || !profileId) {
       return;
     }
 
     const data: User = {
       userId: 0,
-      names: name,
-      lastNames: lastName,
-      email: email,
+      names: name.trim(),
+      lastNames: lastName.trim(),
+      email: email.trim(),
       status: status,
       profileId: profileId
     };

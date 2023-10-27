@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Profile } from '../../../types/response-type-profiles';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { QueryService } from '../../../../query/services/query.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ProfileUpdateService } from '../../../services/profiles/profile-update.service';
 import { MessageService } from 'primeng/api';
@@ -72,6 +72,8 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    console.log(this.updateProfileForm.value);
+
     if (this.updateProfileForm.invalid) {
       this.messageService.add({
         severity: 'error',
@@ -109,8 +111,8 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
 
     const data: Profile = {
       profileId: this.selectedProfile.profileId,
-      name: name,
-      description_profile: description_profile,
+      name: name.trim(),
+      description_profile: description_profile.trim(),
       status: status,
       resources: permissionsData
     };
@@ -150,15 +152,18 @@ export class ProfileUpdateComponent implements OnInit, OnDestroy {
         this.queriesGroup = buildQueriesGroup(params);
 
         buildFormPermissions(params, this.permissions);
-
-        console.log(this.updateProfileForm.value);
       });
   }
 
   private buildUpdateProfileForm() {
+    const query = this.queryService.getParams();
+
     this.updateProfileForm = this.fb.group({
-      name: ['', Validators.required],
-      description_profile: ['', Validators.required],
+      name: [query['params'].name ?? '', Validators.required],
+      description_profile: [
+        query['params'].description ?? '',
+        Validators.required
+      ],
       status: [false, Validators.required],
       permissions: this.fb.array([this.fb.control('')])
     });

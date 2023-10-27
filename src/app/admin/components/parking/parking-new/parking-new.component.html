@@ -1,0 +1,85 @@
+<main class="w-full h-full p-3 space-y-6">
+  <h1
+    class="text-5xl w-full p-3 pt-52 rounded-xl montserrat bg-surfaceC dark:bg-surfaceCDark"
+  >
+    Nuevo Parqueo
+  </h1>
+
+  <form
+    [formGroup]="newParkingForm"
+    (ngSubmit)="onSubmit()"
+    class="flex w-full flex-col items-start justify-start space-y-3"
+  >
+    <label class="font-light montserrat text-2xl">Datos</label>
+    <div class="w-full flex items-center gap-3 justify-center">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Codigo</mat-label>
+        <input
+          formControlName="code"
+          matInput
+          type="number"
+          placeholder="Codigo"
+        />
+        <mat-hint>Codigo del nuevo parqueo</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="name" matInput placeholder="Nombre" />
+        <mat-hint>Nombre del nuevo parqueo</mat-hint>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Direccion</mat-label>
+      <input formControlName="address" matInput placeholder="Direccion" />
+      <mat-hint>Direccion</mat-hint>
+    </mat-form-field>
+    <div class="w-full flex items-center gap-3 justify-center">
+      <mat-form-field appearance="outline" class="w-1/2">
+        <mat-label>Manager</mat-label>
+        <input formControlName="manager" matInput placeholder="Manager" />
+        <mat-hint>Manager del nuevo parqueo</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-1/2">
+        <mat-label>Telefono</mat-label>
+        <input
+          formControlName="phone"
+          matInput
+          type="number"
+          placeholder="Telefono"
+        />
+        <mat-hint>Telefono del nuevo parqueo</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label translate="newProfile.statusLabel"></mat-label>
+
+        <mat-select formControlName="status">
+          <mat-option>-</mat-option>
+          <mat-option
+            *ngFor="let option of selectOptions"
+            [value]="option.value"
+            >{{ option.label | translate }}</mat-option
+          >
+        </mat-select>
+        <mat-hint translate="newProfile.statusPlaceholder"></mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="w-full flex items-center gap-4">
+      <button
+        [disabled]="newParkingForm.invalid"
+        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+        type="submit"
+      >
+        Agregar Parqueo
+      </button>
+
+      <button
+        (click)="this.newParkingForm.reset()"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+      >
+        Restablecer
+      </button>
+    </div>
+  </form>
+</main>
