@@ -19,7 +19,6 @@ export class UserRequestService {
 
   init(params: Params) {
     const url = new URL(environment.SERVER_PATH.USERS);
-
     Object.keys(params).forEach(key => {
       url.searchParams.append(key, params[key]);
     });

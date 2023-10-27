@@ -10,34 +10,29 @@ import { Params } from '@angular/router';
 })
 export class AuditComponent implements OnInit {
   data: User[] = [];
-  _params!: Params;
+  _params: Params;
 
   constructor(
     private userService: UserService,
     private queryService: QueryService
-  ) {}
+  ) {
+    this._params = this.queryService.getParams();
+  }
 
   ngOnInit() {
     this.getUsers();
-
-    this._params = this.queryService.getParams();
-
-    if (!this._params['params'].size) {
-      this.queryService.updateParams({ page: 0, size: 10 });
-      return;
-    }
-
-    this.queryService.updateParams({ page: 0 });
   }
 
   getUsers() {
-    this.userService.getAuditData(0, 10).subscribe({
-      next: (data: any) => {
-        this.data = data.content;
-      },
-      error: err => {
-        console.log('Error: ', err);
-      }
-    });
+    this.userService
+      .getAuditData(this._params['page'], this._params['size'])
+      .subscribe({
+        next: (data: any) => {
+          this.data = data.content;
+        },
+        error: err => {
+          console.log('Error: ', err);
+        }
+      });
   }
 }

@@ -12,6 +12,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { FilterUserService } from '../../services/filter-user.service';
 import { Params } from '@angular/router';
+import { PageEvent } from '@angular/material/paginator';
+import { QueryService } from '../../services/query.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-table-users',
@@ -23,6 +26,14 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
 
   @Input() defaultParams!: Params;
 
+  @Input() responsePage!: User | null;
+
+  _params!: Params;
+
+  data: User[] = [];
+
+  options = [5, 10, 15, 20];
+
   columns = ['date', 'entity', 'user', 'operation'];
   dataSource!: MatTableDataSource<User>;
 
@@ -30,10 +41,14 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatSort) paginatorSort!: MatSort;
 
-  constructor(private filterService: FilterUserService) {}
+  constructor(
+    private filterService: FilterUserService,
+    private queryService: QueryService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.mockUsers);
+    this.dataSource = new MatTableDataSource();
   }
 
   ngAfterViewInit() {
@@ -52,5 +67,22 @@ export class TableUsersComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  pageHandler(e: PageEvent) {
+    const params = this.queryService.getParams();
+    this.queryService.updateParams({ size: e.pageSize, page: e.pageIndex });
+    this.userService
+      .init({
+        page: e.pageIndex,
+        size: e.pageSize
+      })
+      .subscribe({
+        next: (data: any) => {
+          this.mockUsers = data.content;
+        },
+        error: err => {
+          console.log('Error: ', err);
+        }
+      });
   }
 }
