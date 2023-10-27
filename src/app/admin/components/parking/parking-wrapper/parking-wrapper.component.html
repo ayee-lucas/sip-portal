@@ -1,14 +1,58 @@
-<main class="w-full h-full">
-  <div
-    class="w-full p-4 bg-surfaceC dark:bg-surfaceCDark flex items-center justify-between"
-  >
-    <h1 class="text-2xl montserrat">Parqueos</h1>
-    <button
-      class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark disabled:opacity-50 disabled:cursor-not-allowed"
+<ng-container *ngIf="{ parking: selectedParking$ | async } as data">
+  <main class="w-full h-full overflow-hidden">
+    <div
+      class="w-full p-4 bg-surfaceC dark:bg-surfaceCDark flex items-center justify-between"
     >
-      <span>Nuevo Parqueo</span>
-      <mat-icon>add_circle</mat-icon>
-    </button>
-  </div>
-  <app-parking-new></app-parking-new>
-</main>
+      <h1 class="text-2xl montserrat">Parqueos</h1>
+      <ng-container *ngIf="action$ | async as actionPark">
+        <div class="flex items-center gap-3">
+          <button
+            (click)="toggleRates()"
+            *ngIf="data.parking && actionPark === 'update'"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-green-200 text-green-500 dark:bg-green-900 dark:text-green-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span>Mostrar Tarifas</span>
+            <mat-icon>commute</mat-icon>
+          </button>
+
+          <button
+            (click)="toggleUpdate()"
+            *ngIf="data.parking && actionPark === 'rates'"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-yellow-200 text-yellow-500 dark:bg-yellow-900 dark:text-yellow-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span>Editar Parqueo</span>
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button
+            (click)="openDeleteDialog()"
+            *ngIf="data.parking && actionPark === 'update'"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-errorDark"
+          >
+            <span>Eliminar Parqueo</span>
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <button
+            (click)="toggleAddProfile()"
+            *ngIf="data.parking"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span>Nuevo Parqueo</span>
+            <mat-icon>add_circle</mat-icon>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf="data.parking; else add">
+      <app-parking-actions
+        [selectedParking]="data.parking"
+      ></app-parking-actions>
+    </ng-container>
+
+    <ng-template #add>
+      <app-parking-new></app-parking-new>
+    </ng-template>
+  </main>
+</ng-container>

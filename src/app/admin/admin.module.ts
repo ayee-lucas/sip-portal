@@ -40,6 +40,9 @@ import { ParkingSelectorComponent } from './components/parking/parking-selector/
 import { ParkingPaginatorComponent } from './components/parking/parking-paginator/parking-paginator.component';
 import { ParkingWrapperComponent } from './components/parking/parking-wrapper/parking-wrapper.component';
 import { ParkingNewComponent } from './components/parking/parking-new/parking-new.component';
+import { ParkingActionsComponent } from './components/parking/parking-actions/parking-actions.component';
+import { ParkingDeleteDialogComponent } from './components/parking/parking-delete-dialog/parking-delete-dialog.component';
+import { ParkingRatesComponent } from './components/parking/parking-rates/parking-rates.component';
 
 export const httpTranslateLoader = (http: HttpClient): TranslateHttpLoader =>
   new TranslateHttpLoader(http, environment.refTranslate, '.json');
@@ -88,7 +91,10 @@ const routes: Routes = [
     ParkingSelectorComponent,
     ParkingPaginatorComponent,
     ParkingWrapperComponent,
-    ParkingNewComponent
+    ParkingNewComponent,
+    ParkingActionsComponent,
+    ParkingDeleteDialogComponent,
+    ParkingRatesComponent
   ],
   imports: [
     CommonModule,
