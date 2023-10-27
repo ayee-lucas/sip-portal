@@ -5,6 +5,13 @@ export type User = {
   user: string;
   operation: string;
   id: number;
+  content: User[];
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+  size: number;
+  number: number;
+  numberOfElements: number;
 };
 
 export const mockUsers = {

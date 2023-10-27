@@ -3,6 +3,7 @@ const PORTAL_PREFIX = '/sip-services';
 const API_PREFIX = '/api';
 const USER_PREFIX = '/user';
 const PROFILE_PREFIX = '/profile';
+const AUDIT_PREFIX = '/audit';
 const PARKING_PREFIX = '/parking';
 
 export const environment = {
@@ -15,6 +16,7 @@ export const environment = {
   SERVER_PATH: {
     USERS: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + USER_PREFIX,
     PROFILES: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + PROFILE_PREFIX,
+    AUDIT: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + AUDIT_PREFIX,
     PARKING: ROOT_PATH + PORTAL_PREFIX + API_PREFIX + PARKING_PREFIX
   },
   refTranslate: './assets/i18n/'
