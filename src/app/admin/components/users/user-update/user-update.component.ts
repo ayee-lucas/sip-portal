@@ -53,9 +53,9 @@ export class UserUpdateComponent implements OnInit {
 
     const data: User = {
       userId: this.selectedUser.userId,
-      names: formValue.name,
-      lastNames: formValue.lastName,
-      email: formValue.email,
+      names: formValue.name.trim(),
+      lastNames: formValue.lastName.trim(),
+      email: formValue.email.trim(),
       status: formValue.status,
       profileId: formValue.profile
     };

@@ -13,14 +13,14 @@
 
       <button
         (click)="openDeleteDialog()"
-        class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-error"
+        class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-errorDark"
       >
         <span>{{ 'updateProfile.deleteProfile' | translate }}</span>
         <mat-icon>delete</mat-icon>
       </button>
     </header>
 
-    <h2 class="font-light montserrat text-lg font-semibold">
+    <h2 class="montserrat text-lg font-semibold">
       {{ 'updateProfile.table.caption' | translate }}
     </h2>
     <div
@@ -218,6 +218,7 @@
       <!--- Update buttons form  --->
       <div class="w-full flex items-center gap-4">
         <button
+          [disabled]="updateProfileForm.invalid"
           class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
           type="submit"
         >

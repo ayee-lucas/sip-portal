@@ -21,20 +21,7 @@ export class UsersComponent implements OnInit {
   ngOnInit() {
     this.params = this.queryService.getParams();
 
-    if (!this.params['params'].page) {
-      this.queryService.updateParams({ ...this.params['params'], page: 0 });
-    }
-
-    if (!this.params['params'].size) {
-      this.queryService.updateParams({ ...this.params['params'], size: 10 });
-    }
-
-    if (!this.params['params'].sort) {
-      this.queryService.updateParams({
-        ...this.params['params'],
-        sort: 'userId'
-      });
-    }
+    this.setDefaultParams(this.params);
 
     this.requestUsers(this.params);
   }
@@ -59,5 +46,17 @@ export class UsersComponent implements OnInit {
     );
 
     this.userOperationService.init(params['params']);
+  }
+
+  private setDefaultParams(params: Params) {
+    const paramsValues = params['params'];
+
+    if (!paramsValues.page || !paramsValues.sort || !paramsValues.size) {
+      this.queryService.updateParams({
+        page: 0,
+        sort: 'userId',
+        size: 10
+      });
+    }
   }
 }
