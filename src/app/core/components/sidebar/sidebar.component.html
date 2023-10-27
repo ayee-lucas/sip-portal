@@ -1,5 +1,10 @@
+<button
+  class="sm:hidden fixed bg-surfaceC dark:bg-surfaceCDark top-5 right-10 p-3 z-[9999]"
+>
+  <mat-icon>menu</mat-icon>
+</button>
 <aside
-  class="min-w-[6rem] shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5"
+  class="min-w-[6rem] shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5 max-sm:fixed max-sm:top-0 max-sm:bottom-0 max-sm:left-[-100%]"
 >
   <ul class="flex flex-col items-center gap-5 h-full">
     <li>
@@ -59,8 +64,8 @@
     <li>
       <a
         [matTooltip]="'Parqueos'"
-        [routerLink]="['/parking']"
         [queryParams]="{ page: 0, size: 10, sort: 'parkingId' }"
+        [routerLink]="['/parking']"
         mat-icon-button
         routerLinkActive="!bg-onPrimary !text-primary dark:!bg-onPrimaryDark dark:!text-primaryDark"
       >
