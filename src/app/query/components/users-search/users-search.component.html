@@ -80,5 +80,25 @@
         >
       </mat-form-field>
     </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="changeFilter(searchForm)"
+        [disabled]="!searchForm.valid"
+        class="flex h-max items-center justify-center p-3 transition-all gap-3 rounded-2xl bg-surfaceC text-primary dark:bg-onPrimaryDark dark:text-primaryDark text-sm hover:bg-onPrimary hover:text-primary dark:hover:bg-surfaceCDark dark:hover:text-primaryDark"
+        type="submit"
+      >
+        <span>{{ 'filters.search' | translate }}</span>
+        <mat-icon fontIcon="search"></mat-icon>
+      </button>
+      <button
+        (click)="clearFilter()"
+        class="flex h-max items-center gap-3 p-3 transition-all shadow-inner rounded-2xl bg-surfaceC text-error dark:bg-onErrorDarK dark:text-errorDark text-sm hover:bg-errorDark hover:text-error dark:hover:bg-surfaceCDark dark:hover:text-error hover:after:content-['{{
+          'filters.clear' | translate
+        }}']"
+      >
+        <mat-icon fontIcon="cancel"></mat-icon>
+      </button>
+    </div>
   </div>
 </form>
