@@ -1,88 +1,89 @@
-<table
-  [dataSource]="mockUsers"
-  class="rounded-xl bg-primary dark:bg-onPrimaryDark"
-  mat-table
->
-  <caption
-    class="w-full px-3 py-4 text-start montserrat text-onPrimary bg-primary dark:text-primaryDark dark:bg-onPrimaryDark"
+<div class="overflow-x-auto">
+  <table
+    [dataSource]="mockUsers"
+    class="rounded-xl bg-primary dark:bg-onPrimaryDark"
+    mat-table
   >
-    {{
-      'table.usersAudit' | translate
-    }}
-  </caption>
+    <caption
+      class="w-full px-3 py-4 text-start montserrat text-onPrimary bg-primary dark:text-primaryDark dark:bg-onPrimaryDark"
+    >
+      {{
+        'table.usersAudit' | translate
+      }}
+    </caption>
 
-  <ng-container matColumnDef="date">
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
-      mat-header-cell
-    >
-      {{ 'table.date' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.eventDate | date: 'dd/MM/yyyy HH:mm:ss' }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="date">
+      <th
+        *matHeaderCellDef
+        class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+        mat-header-cell
+      >
+        {{ 'table.date' | translate }}
+      </th>
+      <td
+        *matCellDef="let element"
+        class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+        mat-cell
+      >
+        {{ element.eventDate | date: 'dd/MM/yyyy HH:mm:ss' }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="entity">
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
-      mat-header-cell
-    >
-      {{ 'table.entity' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.entity }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="entity">
+      <th
+        *matHeaderCellDef
+        class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+        mat-header-cell
+      >
+        {{ 'table.entity' | translate }}
+      </th>
+      <td
+        *matCellDef="let element"
+        class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+        mat-cell
+      >
+        {{ element.entity }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="user">
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
-      mat-header-cell
-    >
-      {{ 'table.user' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.userAudit }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="user">
+      <th
+        *matHeaderCellDef
+        class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+        mat-header-cell
+      >
+        {{ 'table.user' | translate }}
+      </th>
+      <td
+        *matCellDef="let element"
+        class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+        mat-cell
+      >
+        {{ element.userAudit }}
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="operation">
-    <th
-      *matHeaderCellDef
-      class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
-      mat-header-cell
-    >
-      {{ 'table.operation' | translate }}
-    </th>
-    <td
-      *matCellDef="let element"
-      class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
-      mat-cell
-    >
-      {{ element.operation }}
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="operation">
+      <th
+        *matHeaderCellDef
+        class="text-onPrimary dark:text-primaryDark border-primary dark:border-primaryDark !border-b-2 p-4 rounded-xl"
+        mat-header-cell
+      >
+        {{ 'table.operation' | translate }}
+      </th>
+      <td
+        *matCellDef="let element"
+        class="!bg-onSecondary dark:!bg-surfaceDark text-secondary dark:text-secondaryDark"
+        mat-cell
+      >
+        {{ element.operation }}
+      </td>
+    </ng-container>
 
-  <tr *matHeaderRowDef="columns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: columns" mat-row></tr>
-</table>
-
+    <tr *matHeaderRowDef="columns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: columns" mat-row></tr>
+  </table>
+</div>
 <mat-paginator
   (page)="pageHandler($event)"
   [length]="responsePage?.totalElements"
