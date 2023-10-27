@@ -1,7 +1,14 @@
 <main class="flex h-full w-full">
+  <button
+    (click)="toggleMobileControls()"
+    class="sm:hidden fixed p-3 rounded-full top-5 right-24 bg-onPrimary dark:bg-onPrimaryDark text-primary dark:text-primaryDark grid place-items-center z-[888]"
+  >
+    <mat-icon>list</mat-icon>
+  </button>
   <ng-container *ngIf="{ users: responseUser$ | async } as data">
     <aside
-      class="flex h-full w-1/3 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40"
+      [ngClass]="mobileControlsVisible ? 'max-sm:left-0' : 'max-sm:-left-full'"
+      class="flex h-full transition-all w-1/3 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40 max-sm:fixed max-sm:inset-y-0 max-sm:w-full max-sm:z-[887]"
     >
       <header
         class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-onSurface/90 dark:border-outlineDark/40"
@@ -9,17 +16,8 @@
         <h1
           class="w-fit rounded-xl py-2 text-xl font-light text-onSurface dark:text-onSurfaceDark tracking-wider"
         >
-          {{ 'list.title' | translate }}
+          Usuarios
         </h1>
-
-        <button
-          (click)="refresh()"
-          [disabled]="!data.users?.content"
-          class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
-          matTooltip="{{ 'list.refreshTooltip' | translate }}"
-        >
-          <mat-icon>refresh</mat-icon>
-        </button>
       </header>
 
       <app-search-users-selector></app-search-users-selector>

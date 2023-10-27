@@ -1,7 +1,7 @@
 <ng-container *ngIf="{ parking: selectedParking$ | async } as data">
-  <main class="w-full h-full overflow-hidden">
+  <main class="w-full h-full">
     <div
-      class="w-full p-4 bg-surfaceC dark:bg-surfaceCDark flex items-center justify-between"
+      class="w-full p-4 bg-surfaceC dark:bg-surfaceCDark flex max-sm:flex-col max-sm:gap-5 items-center justify-between max-sm:px-4 max-sm:py-8"
     >
       <h1 class="text-2xl montserrat">Parqueos</h1>
       <ng-container *ngIf="action$ | async as actionPark">
@@ -9,7 +9,7 @@
           <button
             (click)="toggleRates()"
             *ngIf="data.parking && actionPark === 'update'"
-            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-green-200 text-green-500 dark:bg-green-900 dark:text-green-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-green-200 text-green-500 dark:bg-green-900 dark:text-green-200 disabled:opacity-50 disabled:cursor-not-allowed max-sm:text-sm"
           >
             <span>Mostrar Tarifas</span>
             <mat-icon>commute</mat-icon>
@@ -18,7 +18,7 @@
           <button
             (click)="toggleUpdate()"
             *ngIf="data.parking && actionPark === 'rates'"
-            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-yellow-200 text-yellow-500 dark:bg-yellow-900 dark:text-yellow-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-yellow-200 text-yellow-500 dark:bg-yellow-900 dark:text-yellow-200 disabled:opacity-50 disabled:cursor-not-allowed max-sm:text-sm"
           >
             <span>Editar Parqueo</span>
             <mat-icon>edit</mat-icon>
@@ -27,7 +27,7 @@
           <button
             (click)="openDeleteDialog()"
             *ngIf="data.parking && actionPark === 'update'"
-            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-errorDark"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-errorDark text-error dark:bg-onErrorDarK dark:text-errorDark max-sm:text-sm"
           >
             <span>Eliminar Parqueo</span>
             <mat-icon>delete</mat-icon>
@@ -36,7 +36,7 @@
           <button
             (click)="toggleAddProfile()"
             *ngIf="data.parking"
-            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center gap-2 rounded-xl px-3 py-1 text-sm bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark disabled:opacity-50 disabled:cursor-not-allowed max-sm:text-sm"
           >
             <span>Nuevo Parqueo</span>
             <mat-icon>add_circle</mat-icon>

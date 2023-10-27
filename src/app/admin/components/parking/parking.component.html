@@ -1,7 +1,14 @@
 <main class="h-full w-full flex">
+  <button
+    (click)="toggleMobileControls()"
+    class="sm:hidden fixed p-3 rounded-full top-5 right-20 bg-onPrimary dark:bg-onPrimaryDark text-primary dark:text-primaryDark grid place-items-center z-[888]"
+  >
+    <mat-icon>list</mat-icon>
+  </button>
   <ng-container *ngIf="parkings$ | async as response">
     <aside
-      class="flex h-full w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden"
+      [ngClass]="mobileControlsVisible ? 'max-sm:left-0' : 'max-sm:-left-full'"
+      class="flex transition-all h-full w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeInLeft animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden max-sm:fixed max-sm:inset-y-0 max-sm:w-full max-sm:z-[887]"
     >
       <header
         class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-onSurface/90 dark:border-outlineDark/40"

@@ -18,7 +18,7 @@
     [formGroup]="newProfileForm"
     class="flex w-full flex-col items-start justify-start space-y-3"
   >
-    <div class="flex w-full items-center justify-start gap-3">
+    <div class="flex w-full max-sm:flex-col items-center justify-start gap-3">
       <mat-form-field appearance="outline" class="w-full">
         <mat-label translate="newProfile.nameLabel"></mat-label>
         <input
@@ -39,8 +39,8 @@
         <mat-hint translate="newProfile.descriptionPlaceholder"></mat-hint>
       </mat-form-field>
     </div>
-    <div class="flex w-full items-center justify-start gap-3">
-      <mat-form-field appearance="outline">
+    <div class="flex w-full max-sm:flex-col items-center justify-start gap-3">
+      <mat-form-field appearance="outline" class="max-sm:w-full">
         <mat-label translate="newProfile.statusLabel"></mat-label>
 
         <mat-select formControlName="status">
@@ -119,10 +119,10 @@
     </section>
 
     <!--- Update buttons form  --->
-    <div class="w-full flex items-center gap-4">
+    <div class="w-full flex max-sm:flex-col items-center gap-4">
       <button
         [disabled]="newProfileForm.invalid"
-        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+        class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50 max-sm:w-full"
         type="submit"
       >
         {{ 'newProfile.addButtonLabel' | translate }}
@@ -130,7 +130,7 @@
 
       <button
         (click)="this.newProfileForm.reset()"
-        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+        class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl max-sm:w-full"
       >
         {{ 'newProfile.resetButtonLabel' | translate }}
       </button>

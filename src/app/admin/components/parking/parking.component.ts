@@ -14,7 +14,9 @@ import { _IsParkingSuccess } from 'src/app/shared/utils/type-guards';
 export class ParkingComponent implements OnInit {
   parkings$!: Observable<ResponseParking>;
 
-  private params: Params;
+  mobileControlsVisible = false;
+
+  readonly params: Params;
 
   /** @internal */ isParkingSuccess = _IsParkingSuccess;
 
@@ -31,5 +33,9 @@ export class ParkingComponent implements OnInit {
     this.parkings$ = this.parkingRequestService.getParkings();
 
     this.parkingRequestService.init(this.params['params']);
+  }
+
+  toggleMobileControls() {
+    this.mobileControlsVisible = !this.mobileControlsVisible;
   }
 }

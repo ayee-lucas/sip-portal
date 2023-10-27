@@ -13,6 +13,8 @@ import { setDefaultParams } from 'src/app/shared/utils/default-params';
 export class ProfilesComponent implements OnInit {
   /** @internal */ isProfileSuccess = _IsProfileSuccess;
 
+  mobileControlsVisible = false;
+
   profiles$!: Observable<ResponseProfile>;
 
   constructor(
@@ -34,5 +36,9 @@ export class ProfilesComponent implements OnInit {
 
   refresh() {
     this.profileRequest.refresh();
+  }
+
+  toggleMobileControls() {
+    this.mobileControlsVisible = !this.mobileControlsVisible;
   }
 }

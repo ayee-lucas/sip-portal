@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
-  mobileMenuVisible = false;
+  mobileMenuVisible = true;
 
   constructor(
     private authStatusService: AuthStatusService,

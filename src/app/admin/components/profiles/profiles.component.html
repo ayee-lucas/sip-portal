@@ -1,7 +1,14 @@
 <main class="h-full flex w-full animate__animated animate__fadeIn">
+  <button
+    (click)="toggleMobileControls()"
+    class="sm:hidden fixed p-3 rounded-full top-5 right-24 bg-onPrimary dark:bg-onPrimaryDark text-primary dark:text-primaryDark grid place-items-center z-[888]"
+  >
+    <mat-icon>list</mat-icon>
+  </button>
   <ng-container *ngIf="profiles$ | async as response">
     <aside
-      class="flex h-full w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeIn animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden"
+      [ngClass]="mobileControlsVisible ? 'max-sm:left-0' : 'max-sm:-left-full'"
+      class="flex h-full transition-all w-1/4 flex-col border-r bg-onSurfaceDark border-outline/40 animate__animated animate__fadeIn animate__faster dark:bg-onSurface dark:border-outlineDark/40 overflow-x-hidden max-sm:fixed max-sm:inset-y-0 max-sm:w-full max-sm:z-[887]"
     >
       <header
         class="relative flex w-full items-center justify-between border-b px-3 py-5 text-center bg-surfaceBright border-outline/40 dark:bg-onSurface/90 dark:border-outlineDark/40"
@@ -11,14 +18,6 @@
         >
           Perfiles
         </h1>
-
-        <button
-          (click)="refresh()"
-          class="grid place-items-center rounded-xl p-1 transition-all bg-surfaceC disabled:bg-onErrorDarK disabled:text-error dark:bg-surfaceCDark disabled:dark:text-errorDark"
-          matTooltip="{{ 'list.refreshTooltip' | translate }}"
-        >
-          <mat-icon>refresh</mat-icon>
-        </button>
       </header>
 
       <app-search-profile></app-search-profile>

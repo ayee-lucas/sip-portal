@@ -15,6 +15,10 @@ export class UserSelectorService {
     return this.userSelected$;
   }
 
+  clearUserSelected() {
+    this.userSelected$.next(null);
+  }
+
   setUserSelected(user: User) {
     if (user) {
       this.queryService.updateParams({

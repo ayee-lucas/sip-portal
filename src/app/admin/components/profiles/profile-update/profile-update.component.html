@@ -24,7 +24,7 @@
       {{ 'updateProfile.table.caption' | translate }}
     </h2>
     <div
-      class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg"
+      class="w-full border border-outline dark:border-outlineDark/40 rounded-b-lg overflow-x-auto"
     >
       <!--- Profile Details table  --->
       <table
@@ -99,7 +99,7 @@
       [formGroup]="updateProfileForm"
       class="flex w-full flex-col items-start justify-start space-y-3"
     >
-      <div class="flex w-full items-center justify-start gap-3">
+      <div class="flex max-sm:flex-col w-full items-center justify-start gap-3">
         <mat-form-field appearance="outline" class="w-full">
           <mat-label>{{
             'updateProfile.form.nameLabel' | translate
@@ -130,8 +130,8 @@
           }}</mat-hint>
         </mat-form-field>
       </div>
-      <div class="flex w-full items-center justify-start gap-3">
-        <mat-form-field appearance="outline">
+      <div class="flex max-sm:flex-col w-full items-center justify-start gap-3">
+        <mat-form-field appearance="outline" class="max-sm:w-full">
           <mat-label>{{
             'updateProfile.form.statusLabel' | translate
           }}</mat-label>
@@ -216,10 +216,10 @@
       </section>
 
       <!--- Update buttons form  --->
-      <div class="w-full flex items-center gap-4">
+      <div class="w-full flex items-center gap-4 max-sm:flex-col">
         <button
           [disabled]="updateProfileForm.invalid"
-          class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50"
+          class="transition-all px-9 py-3 bg-onPrimary text-primary dark:bg-onPrimaryDark dark:text-primaryDark rounded-xl disabled:bg-surface disabled:dark:bg-surfaceDark disabled:border disabled:border-outline disabled:dark:border-outlineDark/50 max-sm:w-full"
           type="submit"
         >
           {{ 'updateProfile.form.submit' | translate }}
@@ -227,7 +227,7 @@
 
         <button
           (click)="this.updateProfileForm.reset()"
-          class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl"
+          class="transition-all px-9 py-3 bg-surfaceC text-error dark:bg-surfaceCDark dark:text-error rounded-xl max-sm:w-full"
         >
           {{ 'updateProfile.form.reset' | translate }}
         </button>

@@ -78,6 +78,7 @@ export class UserWrapperComponent implements OnInit, OnDestroy {
    * @memberof ProfileWrapperComponent
    */
   ngOnDestroy() {
+    this.userSelectorService.clearUserSelected();
     this.unsubscribe$.next(true);
     this.unsubscribe$.unsubscribe();
   }

@@ -13,6 +13,8 @@ export class UsersComponent implements OnInit {
   responseUser$!: Observable<ResponseUserSuccess>;
   params!: Params;
 
+  mobileControlsVisible = false;
+
   constructor(
     private userOperationService: UserRequestService,
     private queryService: QueryService
@@ -24,6 +26,10 @@ export class UsersComponent implements OnInit {
     this.setDefaultParams(this.params);
 
     this.requestUsers(this.params);
+  }
+
+  toggleMobileControls() {
+    this.mobileControlsVisible = !this.mobileControlsVisible;
   }
 
   refresh() {

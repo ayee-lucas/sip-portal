@@ -1,11 +1,23 @@
 <button
-  class="sm:hidden fixed bg-surfaceC dark:bg-surfaceCDark top-5 right-10 p-3 z-[9999]"
+  (click)="toggleSidebar()"
+  class="sm:hidden fixed grid place-items-center rounded-full bg-surfaceC dark:bg-surfaceCDark top-5 right-5 p-3 z-[1000]"
 >
   <mat-icon>menu</mat-icon>
 </button>
 <aside
-  class="min-w-[6rem] shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5 max-sm:fixed max-sm:top-0 max-sm:bottom-0 max-sm:left-[-100%]"
+  [className]="
+    mobileMenuVisible
+      ? 'min-w-[6rem] transition-all  shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5 max-sm:fixed max-sm:top-0 max-sm:bottom-0 max-sm:left-[-100%] max-sm:z-[999]'
+      : 'min-w-[6rem] shadow-2xl bg-surfaceC dark:bg-surfaceCDark h-screen flex flex-col py-7 items-center gap-5 max-sm:fixed max-sm:top-0 max-sm:bottom-0 max-sm:left-0 max-sm:z-[999] transition-all'
+  "
 >
+  <div
+    [className]="
+      mobileMenuVisible
+        ? 'hidden'
+        : 'fixed inset-0 bg-black/30 transition-all -z-[30]'
+    "
+  ></div>
   <ul class="flex flex-col items-center gap-5 h-full">
     <li>
       <a
